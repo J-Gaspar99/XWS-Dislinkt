@@ -10,21 +10,21 @@ import (
 	"github.com/nicholasjackson/building-microservices-youtube/product-api/startup/data"
 )
 
-// Products is a http.Handler
+// Users is a http.Handler
 type Users struct {
 	l *log.Logger
 }
 
-// NewProducts creates a products handler with the given logger
-func NewProducts(l *log.Logger) *Users {
+// NewUsers creates a users handler with the given logger
+func NewUsers(l *log.Logger) *Users {
 	return &Users{l}
 }
 
-// getProducts returns the products from the data store
-func (p *Users) GetProducts(rw http.ResponseWriter, r *http.Request) {
-	p.l.Println("Handle GET Products")
+// getUsers returns the users from the data store
+func (p *Users) GetUsers(rw http.ResponseWriter, r *http.Request) {
+	p.l.Println("Handle GET Users")
 
-	// fetch the products from the datastore
+	// fetch the users from the datastore
 	lp := data.GetUsers()
 
 	// serialize the list to JSON
@@ -35,13 +35,13 @@ func (p *Users) GetProducts(rw http.ResponseWriter, r *http.Request) {
 }
 
 func (p *Users) AddUser(rw http.ResponseWriter, r *http.Request) {
-	p.l.Println("Handle POST Product")
+	p.l.Println("Handle POST User")
 
-	prod := r.Context().Value(KeyProduct{}).(data.User)
-	data.AddUser(&prod)
+	usr := r.Context().Value(KeyUser{}).(data.User)
+	data.AddUser(&usr)
 }
 
-func (p Users) UpdateProducts(rw http.ResponseWriter, r *http.Request) {
+func (p Users) UpdateUsers(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
@@ -49,36 +49,36 @@ func (p Users) UpdateProducts(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	p.l.Println("Handle PUT Product", id)
-	prod := r.Context().Value(KeyProduct{}).(data.User)
+	p.l.Println("Handle PUT User", id)
+	prod := r.Context().Value(KeyUser{}).(data.User)
 
-	err = data.UpdateProduct(id, &prod)
-	if err == data.ErrProductNotFound {
-		http.Error(rw, "Product not found", http.StatusNotFound)
+	err = data.UpdateUser(id, &prod)
+	if err == data.ErrUserNotFound {
+		http.Error(rw, "User not found", http.StatusNotFound)
 		return
 	}
 
 	if err != nil {
-		http.Error(rw, "Product not found", http.StatusInternalServerError)
+		http.Error(rw, "User not found", http.StatusInternalServerError)
 		return
 	}
 }
 
-type KeyProduct struct{}
+type KeyUser struct{}
 
-func (p Users) MiddlewareValidateProduct(next http.Handler) http.Handler {
+func (p Users) MiddlewareValidateUser(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) {
-		prod := data.User{}
+		usr := data.User{}
 
-		err := prod.FromJSON(r.Body)
+		err := usr.FromJSON(r.Body)
 		if err != nil {
-			p.l.Println("[ERROR] deserializing product", err)
-			http.Error(rw, "Error reading product", http.StatusBadRequest)
+			p.l.Println("[ERROR] deserializing user", err)
+			http.Error(rw, "Error reading user", http.StatusBadRequest)
 			return
 		}
 
-		// add the product to the context
-		ctx := context.WithValue(r.Context(), KeyProduct{}, prod)
+		// add the user to the context
+		ctx := context.WithValue(r.Context(), KeyUser{}, usr)
 		r = r.WithContext(ctx)
 
 		// Call the next handler, which can be another middleware in the chain, or the final handler.

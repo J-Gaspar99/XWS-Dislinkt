@@ -9,18 +9,23 @@ import (
 	validator "github.com/go-playground/validator/v10"
 )
 
-// Product defines the structure for an API product
+// User defines the structure for an API product
 type User struct {
-	ID        int    `json:"id"`
-	Username  string `json: "username"`
-	FirstName string `json:"name"`
-	LastName  string `json: "lastname"`
-	Password  string `json: "password"`
+	id        int    `json:"id"`
+	username  string `json: "username"`
+	password  string `json: "password"`
+	firstName string `json:"name"`
+	lastName  string `json: "lastname"`
 
-	Biography string     `json: "biography"`
-	Email     string     `json:	"email"`
-	Phone     string     `json: "phone"`
-	BirthDate time.Month `json: "date"`
+	dateOfBirth string `json: "dateOfbirth"`
+	email       string `json: "email"`
+	phone       string `json: "phone"`
+	sex         string `json: "sex"`
+	biography   string `json: "biography"`
+	experiance  string `json: "experiance"`
+	education   string `json: "education"`
+	interests   string `json: "interests"`
+	skils       string `json: "skils"`
 
 	CreatedOn string `json:"-"`
 	UpdatedOn string `json:"-"`
@@ -37,7 +42,7 @@ func (u *User) Validate() error {
 	return validate.Struct(u)
 }
 
-// Products is a collection of Product
+// Users is a collection of User
 type Users []*User
 
 // ToJSON serializes the contents of the collection to JSON
@@ -51,71 +56,83 @@ func (p *Users) ToJSON(w io.Writer) error {
 	return e.Encode(p)
 }
 
-// GetProducts returns a list of products
+// GetUsers returns a list of users
 func GetUsers() Users {
-	return productList
+	return userList
 }
 
 func AddUser(p *User) {
-	p.ID = getNextID()
-	productList = append(productList, p)
+	p.id = getNextID()
+	userList = append(userList, p)
 }
 
-func UpdateProduct(id int, p *User) error {
-	_, pos, err := findProduct(id)
+func UpdateUser(id int, p *User) error {
+	_, pos, err := findUser(id)
 	if err != nil {
 		return err
 	}
 
-	p.ID = id
-	productList[pos] = p
+	p.id = id
+	userList[pos] = p
 
 	return nil
 }
 
-var ErrProductNotFound = fmt.Errorf("Product not found")
+var ErrUserNotFound = fmt.Errorf("User not found")
 
-func findProduct(id int) (*User, int, error) {
-	for i, p := range productList {
-		if p.ID == id {
+func findUser(id int) (*User, int, error) {
+	for i, p := range userList {
+		if p.id == id {
 			return p, i, nil
 		}
 	}
 
-	return nil, -1, ErrProductNotFound
+	return nil, -1, ErrUserNotFound
 }
 
 func getNextID() int {
-	lp := productList[len(productList)-1]
-	return lp.ID + 1
+	lp := userList[len(userList)-1]
+	return lp.id + 1
 }
 
-// productList is a hard coded list of products for this
+// userList is a hard coded list of products for this
 // example data source
-var productList = []*User{
+var userList = []*User{
 	&User{
-		ID:        1,
-		Username:  "Gale",
-		FirstName: "Jovan",
-		LastName:  "Gaspar",
-		Password:  "1234",
-		Biography: "...",
-		Email:     "jbutea@gmail.com",
-		Phone:     "061/28 45 804",
+		id:          1,
+		username:    "Gale",
+		password:    "1234",
+		firstName:   "Jovan",
+		lastName:    "Gaspar",
+		dateOfBirth: "neki",
+		email:       "jbutea@gmail.com",
+		phone:       "061/28 45 804",
+		sex:         "male",
+		biography:   "...",
+		experiance:  "...",
+		education:   "...",
+		interests:   "...",
+		skils:       "...",
 
 		CreatedOn: time.Now().UTC().String(),
 		UpdatedOn: time.Now().UTC().String(),
 	},
-	&User{
-		ID: 2,
 
-		Username:  "V1rtu0s0",
-		FirstName: "Boris",
-		LastName:  "Spasky",
-		Password:  "1234",
-		Biography: "...........",
-		Email:     "bbspsky@gmail.com",
-		Phone:     "060/21 80 812",
+	&User{
+		id:          2,
+		username:    "V1rtu0s0",
+		password:    "1234",
+		firstName:   "Boris",
+		lastName:    "Spasky",
+		dateOfBirth: "neki",
+		email:       "bbspsky@gmail.com",
+		phone:       "060/21 80 812",
+		sex:         "male",
+		biography:   "...",
+		experiance:  "...",
+		education:   "...",
+		interests:   "...",
+		skils:       "...",
 
 		CreatedOn: time.Now().UTC().String(),
 		UpdatedOn: time.Now().UTC().String(),
