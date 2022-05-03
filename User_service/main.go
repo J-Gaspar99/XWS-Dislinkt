@@ -8,6 +8,7 @@ import (
 func main() {
 
 	conf := config.NewConfig()
+
 	server := startup.NewServer(conf)
 	server.Start()
 
