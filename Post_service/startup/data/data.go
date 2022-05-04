@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net/url"
 
 	validator "github.com/go-playground/validator/v10"
 )
@@ -13,10 +14,20 @@ type Post struct {
 	id           int    `json:"id"`
 	created_time string `json: "created_time"`
 	links        string `json:"links"`
-	images       string `json: "images"`
+	images[]     Images `json: "images"`
 	text         string `json: "text"`
 	user         string `json:"user"`
 }
+
+type Images struct{
+	id		int			`json: "id"`
+	url		string		`json: "string"`
+	width	string		`json: "string"`
+	height	string		`json: "string"`
+
+}
+
+
 
 func (p *Post) FromJSON(r io.Reader) error {
 	e := json.NewDecoder(r)
@@ -88,9 +99,20 @@ var postList = []*Post{
 		id:           1,
 		created_time: "1440501087",
 		links:        "",  //{"https://instagram.com/p/6zeBG2H1oH/"},
-		images:       " ", //{
+		images:      [
+			&Image{url:"",
+			width:"120",
+			height:"150",
+			}
+		],
+		
+		
+		
+		// [{url:"sdhg", sizeMB: "12"},{}], //{
 		//standard_resolution:"", //{
-		//url:    "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/s640x640/sh0.08/e35/11906267_1671515619746683_1237948463_n.jpg",
+		//url:    "https://scontent.cdninstagram.co
+		 //+
+		// gd32m/hphotos-xfa1/t51.2885-15/s640x640/sh0.08/e35/11906267_1671515619746683_1237948463_n.jpg",
 		//width:  640,
 		//height: 640,
 		//},
