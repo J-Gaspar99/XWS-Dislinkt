@@ -100,7 +100,7 @@ func SearchUsersEndpoint(response http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(response).Encode(posts)
 }
 
-//Get 1
+//Get 1 by id
 func GetUserByIDEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
 	params := mux.Vars(request)
