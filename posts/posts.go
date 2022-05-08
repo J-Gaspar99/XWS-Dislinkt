@@ -17,9 +17,7 @@ type Posts struct {
 	FullText string             `json:"text,omitempty" bson:"text,omitempty"`
 	Likes    int32              `json:"like,omitempty" bson:"like,omitempty"`
 	Dislike  int32              `json:"dislike,omitempty" bson:"dislike,omitempty"`
-	User     struct {
-		UserName string `json:"username" bson:"username"`
-	} `json:"user,omitempty" bson:"user,omitempty"`
+	UserID   primitive.ObjectID `json:"userid,omitempty" bson:"userid,omitempty"`
 }
 
 //Get 1 by ID
