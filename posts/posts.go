@@ -20,6 +20,15 @@ type Posts struct {
 	} `json:"user,omitempty" bson:"user,omitempty"`
 }
 
+func CreatePostEndpoint(response http.ResponseWriter, request *http.Request) {
+	response.Header().Add("content-type", "application/json")
+	var post Posts
+	json.NewDecoder(request.Body).Decode(&post)
+	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	result, _ := collection1.InsertOne(ctx, post)
+	json.NewEncoder(response).Encode(result)
+}
+
 func GetPostsEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
 

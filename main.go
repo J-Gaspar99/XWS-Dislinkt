@@ -44,17 +44,20 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/posts", posts.GetPostsEndpoint).Methods("GET")
+	router.HandleFunc("/posts", posts.CreatePostEndpoint).Methods("POST")
 	//router.HandleFunc("/posts/search", posts.SearchPostsEndpoint).Methods("GET")
 
 	router.HandleFunc("/users", user.GetUsersEndpoint).Methods("GET")
-	router.HandleFunc("/user/search", user.SearchUsersEndpoint).Methods("GET")
-	router.HandleFunc("/user/register", user.RegiterUserEndpoint).Methods("POST")
-	router.HandleFunc("/user/login", user.LoginUserEndpoint).Methods("POST")
-	router.HandleFunc("/user/update", user.UpdateUserEndpoint).Methods("PUT")
+	//router.HandleFunc("/user/search", user.SearchUsersEndpoint).Methods("GET")
+	router.HandleFunc("/users", user.RegiterUserEndpoint).Methods("POST")
+	//router.HandleFunc("/user/login", user.LoginUserEndpoint).Methods("POST")
+	//router.HandleFunc("/user/update", user.UpdateUserEndpoint).Methods("PUT")
 
 	router.HandleFunc("/followings", followings.GetFollowingsEndpoint).Methods("GET")
+	router.HandleFunc("/followings", followings.CreateFollowingEndpoint).Methods("POST")
 
 	router.HandleFunc("/followrequests", followRequests.GetFollowRequestsEndpoint).Methods("GET")
+	router.HandleFunc("/followrequests", followRequests.CreateFollowRequestEndpoint).Methods("POST")
 
 	http.ListenAndServe(":12345", router)
 }
