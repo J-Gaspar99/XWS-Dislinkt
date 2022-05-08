@@ -87,36 +87,6 @@ func GetPostsByUserIDEndpoint(response http.ResponseWriter, request *http.Reques
 	json.NewEncoder(response).Encode(posts)
 }
 
-/*
-func SearchPostsEndpoint(response http.ResponseWriter, request *http.Request) {
-	response.Header().Set("content-type", "application/json")
-	queryParams := request.URL.Query()
-	var posts []Posts
-	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
-	searchStage := bson.D{
-		{"$search", bson.D{
-			{"index", "synsearch"},
-			{"text", bson.D{
-				{"query", queryParams.Get("q")},
-				{"path", "text"},
-				{"synonyms", "posts"},
-			}},
-		}},
-	}
-	cursor, err := collection1.Aggregate(ctx, mongo.Pipeline{searchStage})
-	if err != nil {
-		response.WriteHeader(http.StatusInternalServerError)
-		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
-		return
-	}
-	if err = cursor.All(ctx, &posts); err != nil {
-		response.WriteHeader(http.StatusInternalServerError)
-		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
-		return
-	}
-	json.NewEncoder(response).Encode(posts)
-}
-*/
 var collection1 *mongo.Collection
 
 func Handle(client *mongo.Client) {
