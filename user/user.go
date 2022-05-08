@@ -198,30 +198,7 @@ var client1 *mongo.Client
 var collection1 *mongo.Collection
 
 func Handle(client *mongo.Client) {
-	/*
-		fmt.Println("Pokretanje...(user)")
-		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-		defer cancel()
-		client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb+srv://admin:ExClM5mbC5jclJyA@cluster.ihwbw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
-		if err != nil {
-			panic(err)
-
-		}
-
-		defer func() {
-			if err = client.Disconnect(ctx); err != nil {
-				panic(err)
-			}
-		}()*/
 
 	collection1 = client.Database("XML").Collection("users")
-	/*
-		router1 := mux.NewRouter()
-		router1.HandleFunc("/users", GetUsersEndpoint).Methods("GET")
-		router1.HandleFunc("/search", SearchUsersEndpoint).Methods("GET")
-		router1.HandleFunc("/register", RegiterUserEndpoint).Methods("POST")
-		router1.HandleFunc("/login", LoginUserEndpoint).Methods("POST")
-		router1.HandleFunc("/update", UpdateUserEndpoint).Methods("PUT")
 
-		http.ListenAndServe(":12345", router1)*/
 }
