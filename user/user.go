@@ -10,7 +10,9 @@ import (
 	"time"
 
 	//"github.com/gorilla/mux"
+	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 
 	//	"go.mongodb.org/mongo-driver/mongo/options"
@@ -44,11 +46,11 @@ type PersonalInfo struct {
 }
 
 type User struct {
-	ID        int    `json:"id"	bson:"id"`
-	UserName  string `json: "username"	bson: "username"`
-	Password  string `json: "password"	bson: "password"`
-	FirstName string `json:"name"	bson:"name"`
-	LastName  string `json: "lastname"	bson: "lastname"`
+	ID        primitive.ObjectID `json:"_id"	bson:"_id"`
+	UserName  string             `json: "username"	bson: "username"`
+	Password  string             `json: "password"	bson: "password"`
+	FirstName string             `json:"name"	bson:"name"`
+	LastName  string             `json: "lastname"	bson: "lastname"`
 
 	DateOfBirth string `json: "dateOfbirth"	bson: "dateOfbirth"`
 	Email       string `json: "email"	bson: "email"`
@@ -94,6 +96,8 @@ func getHash(pwd []byte) string {
 	return tokenString, nil
 }
 */
+
+//Create 1
 func RegiterUserEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("Content-Type", "application/json")
 	var user User
@@ -171,6 +175,23 @@ func SearchUsersEndpoint(response http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(response).Encode(posts)
 }
 
+//Get 1
+func GetUserByIDEndpoint(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("content-type", "application/json")
+	params := mux.Vars(request)
+	id, _ := primitive.ObjectIDFromHex(params["id"])
+	var user User
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	err := collection1.FindOne(ctx, User{ID: id}).Decode(&user)
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
+		return
+	}
+	json.NewEncoder(response).Encode(user)
+}
+
+//Get all
 func GetUsersEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
 
