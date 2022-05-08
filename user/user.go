@@ -3,7 +3,6 @@ package user
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 
 	//"fmt"
 	"log"
@@ -99,9 +98,6 @@ func RegiterUserEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("Content-Type", "application/json")
 	var user User
 	json.NewDecoder(request.Body).Decode(&user)
-	fmt.Println(request.Body)
-	user.Password = getHash([]byte(user.Password))
-	collection1 := client1.Database("XML").Collection("users")
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	result, _ := collection1.InsertOne(ctx, user)
 	json.NewEncoder(response).Encode(result)

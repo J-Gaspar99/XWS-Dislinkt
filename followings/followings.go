@@ -16,6 +16,15 @@ type Followings struct {
 	FollowingID int64 `json:"followingID,omitempty" bson:"followingID,omitempty"`
 }
 
+func CreateFollowingEndpoint(response http.ResponseWriter, request *http.Request) {
+	response.Header().Add("content-type", "application/json")
+	var followings Followings
+	json.NewDecoder(request.Body).Decode(&followings)
+	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	result, _ := collection1.InsertOne(ctx, followings)
+	json.NewEncoder(response).Encode(result)
+}
+
 func GetFollowingsEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
 
