@@ -66,6 +66,27 @@ func GetPostsEndpoint(response http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(response).Encode(posts)
 }
 
+//get all by userID
+func GetPostsByUserIDEndpoint(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("content-type", "application/json")
+	params := mux.Vars(request)
+	uuserid, _ := primitive.ObjectIDFromHex(params["userid"])
+	var posts []Posts
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	cursor, err := collection1.Find(ctx, Posts{UserID: uuserid})
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
+		return
+	}
+	if err = cursor.All(ctx, &posts); err != nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
+		return
+	}
+	json.NewEncoder(response).Encode(posts)
+}
+
 /*
 func SearchPostsEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")

@@ -14,8 +14,8 @@ import (
 
 type FollowRequests struct {
 	ID          primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
-	FollowerID  int64              `json:"followerID,omitempty" bson:"followerID,omitempty"`
-	FollowingID int64              `json:"followingID,omitempty" bson:"followingID,omitempty"`
+	FollowerID  primitive.ObjectID `json:"followerID,omitempty" bson:"followerID,omitempty"`
+	FollowingID primitive.ObjectID `json:"followingID,omitempty" bson:"followingID,omitempty"`
 }
 
 //Get 1 by ID
