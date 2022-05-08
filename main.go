@@ -45,6 +45,7 @@ func main() {
 
 	router.HandleFunc("/posts", posts.GetPostsEndpoint).Methods("GET")
 	router.HandleFunc("/post/{id}", posts.GetPostByIDEndpoint).Methods("GET")
+	router.HandleFunc("/posts/userid/{userid}", posts.GetPostsByUserIDEndpoint).Methods("GET")
 	router.HandleFunc("/posts", posts.CreatePostEndpoint).Methods("POST")
 	//router.HandleFunc("/posts/search", posts.SearchPostsEndpoint).Methods("GET")
 
@@ -52,11 +53,13 @@ func main() {
 	router.HandleFunc("/user/{id}", user.GetUserByIDEndpoint).Methods("GET")
 	//router.HandleFunc("/user/search", user.SearchUsersEndpoint).Methods("GET")
 	router.HandleFunc("/users", user.RegiterUserEndpoint).Methods("POST")
-	//router.HandleFunc("/user/login", user.LoginUserEndpoint).Methods("POST")
+	router.HandleFunc("/user/login/{username}/{password}", user.LoginUserEndpoint).Methods("GET")
 	//router.HandleFunc("/user/update", user.UpdateUserEndpoint).Methods("PUT")
 
 	router.HandleFunc("/followings", followings.GetFollowingsEndpoint).Methods("GET")
 	router.HandleFunc("/following/{id}", followings.GetFollowingByIDEndpoint).Methods("GET")
+	router.HandleFunc("/following/fing/{followingID}", followings.GetFollowingByFollowingIDEndpoint).Methods("GET")
+	router.HandleFunc("/followings/fings/{followingID}", followings.GetFollowingByFollowingIDEndpoint).Methods("GET")
 	router.HandleFunc("/followings", followings.CreateFollowingEndpoint).Methods("POST")
 
 	router.HandleFunc("/followrequests", followRequests.GetFollowRequestsEndpoint).Methods("GET")

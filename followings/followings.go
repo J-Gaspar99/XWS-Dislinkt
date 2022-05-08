@@ -14,8 +14,8 @@ import (
 
 type Followings struct {
 	ID          primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
-	FollowerID  int64              `json:"followerID,omitempty" bson:"followerID,omitempty"`
-	FollowingID int64              `json:"followingID,omitempty" bson:"followingID,omitempty"`
+	FollowerID  primitive.ObjectID `json:"followerID,omitempty" bson:"followerID,omitempty"`
+	FollowingID primitive.ObjectID `json:"followingID,omitempty" bson:"followingID,omitempty"`
 }
 
 //Get 1 by ID
@@ -27,6 +27,43 @@ func GetFollowingByIDEndpoint(response http.ResponseWriter, request *http.Reques
 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
 	err := collection1.FindOne(ctx, Followings{ID: id}).Decode(&following)
 	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
+		return
+	}
+	json.NewEncoder(response).Encode(following)
+}
+
+//Get 1 by FollowingID
+func GetFollowingByFollowingIDEndpoint(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("content-type", "application/json")
+	params := mux.Vars(request)
+	followingID, _ := primitive.ObjectIDFromHex(params["followingID"])
+	var following Followings
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	err := collection1.FindOne(ctx, Followings{FollowingID: followingID}).Decode(&following)
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
+		return
+	}
+	json.NewEncoder(response).Encode(following)
+}
+
+//get all by userID
+func GetFollowingsByFollowingIDEndpoint(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("content-type", "application/json")
+	params := mux.Vars(request)
+	followingID, _ := primitive.ObjectIDFromHex(params["followingID"])
+	var following []Followings
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	cursor, err := collection1.Find(ctx, Followings{FollowingID: followingID})
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
+		return
+	}
+	if err = cursor.All(ctx, &following); err != nil {
 		response.WriteHeader(http.StatusInternalServerError)
 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
 		return
