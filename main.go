@@ -2,6 +2,8 @@ package main
 
 // ExClM5mbC5jclJyA
 import (
+
+	"XML/comments"
 	"XML/followRequests"
 	"XML/followings"
 	"XML/posts"
@@ -40,6 +42,8 @@ func main() {
 	posts.Handle(client)
 	followings.Handle(client)
 	followRequests.Handle(client)
+	comments.Handle(client)
+
 
 	router := mux.NewRouter()
 
@@ -47,11 +51,9 @@ func main() {
 	router.HandleFunc("/post/{id}", posts.GetPostByIDEndpoint).Methods("GET")
 	router.HandleFunc("/posts/userid/{userid}", posts.GetPostsByUserIDEndpoint).Methods("GET")
 	router.HandleFunc("/posts", posts.CreatePostEndpoint).Methods("POST")
-	//router.HandleFunc("/posts/search", posts.SearchPostsEndpoint).Methods("GET")
 
 	router.HandleFunc("/users", user.GetUsersEndpoint).Methods("GET")
 	router.HandleFunc("/user/{id}", user.GetUserByIDEndpoint).Methods("GET")
-	//router.HandleFunc("/user/search", user.SearchUsersEndpoint).Methods("GET")
 	router.HandleFunc("/users", user.RegiterUserEndpoint).Methods("POST")
 	router.HandleFunc("/user/login/{username}/{password}", user.LoginUserEndpoint).Methods("GET")
 	router.HandleFunc("/user/update/{id}", user.UpdateUserEndpoint).Methods("PUT")
@@ -66,5 +68,10 @@ func main() {
 	router.HandleFunc("/followrequest/{id}", followRequests.GetFollowRequestByIDEndpoint).Methods("GET")
 	router.HandleFunc("/followrequests", followRequests.CreateFollowRequestEndpoint).Methods("POST")
 
+	router.HandleFunc("/comments", comments.GetCommentsEndpoint).Methods("GET")
+	router.HandleFunc("/comment/{id}", comments.GetCommentByIDEndpoint).Methods("GET")
+	router.HandleFunc("/comments/postid/{postid}", comments.GetCommentsByPostIDEndpoint).Methods("GET")
+	router.HandleFunc("/comments", comments.CreateCommentEndpoint).Methods("POST")
+  
 	http.ListenAndServe(":12345", router)
 }

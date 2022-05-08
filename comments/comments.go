@@ -1,4 +1,4 @@
-package posts
+package comments
 
 import (
 	"context"
@@ -12,45 +12,43 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type Posts struct {
+type Comments struct {
 	ID       primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	FullText string             `json:"text,omitempty" bson:"text,omitempty"`
-	Likes    int32              `json:"like,omitempty" bson:"like,omitempty"`
-	Dislike  int32              `json:"dislike,omitempty" bson:"dislike,omitempty"`
-	UserID   primitive.ObjectID `json:"userid,omitempty" bson:"userid,omitempty"`
+	PostID   primitive.ObjectID `json:"postid,omitempty" bson:"postid,omitempty"`
 }
 
 //Get 1 by ID
-func GetPostByIDEndpoint(response http.ResponseWriter, request *http.Request) {
+func GetCommentByIDEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
 	params := mux.Vars(request)
 	id, _ := primitive.ObjectIDFromHex(params["id"])
-	var post Posts
+	var comment Comments
 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
-	err := collection1.FindOne(ctx, Posts{ID: id}).Decode(&post)
+	err := collection1.FindOne(ctx, Comments{ID: id}).Decode(&comment)
 	if err != nil {
 		response.WriteHeader(http.StatusInternalServerError)
 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
 		return
 	}
-	json.NewEncoder(response).Encode(post)
+	json.NewEncoder(response).Encode(comment)
 }
 
 //Create 1
-func CreatePostEndpoint(response http.ResponseWriter, request *http.Request) {
+func CreateCommentEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Add("content-type", "application/json")
-	var post Posts
-	json.NewDecoder(request.Body).Decode(&post)
+	var comment Comments
+	json.NewDecoder(request.Body).Decode(&comment)
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	result, _ := collection1.InsertOne(ctx, post)
+	result, _ := collection1.InsertOne(ctx, comment)
 	json.NewEncoder(response).Encode(result)
 }
 
 //Get all
-func GetPostsEndpoint(response http.ResponseWriter, request *http.Request) {
+func GetCommentsEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
 
-	var posts []Posts
+	var comments []Comments
 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
 	cursor, err := collection1.Find(ctx, bson.M{})
 	if err != nil {
@@ -58,39 +56,39 @@ func GetPostsEndpoint(response http.ResponseWriter, request *http.Request) {
 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
 		return
 	}
-	if err = cursor.All(ctx, &posts); err != nil {
+	if err = cursor.All(ctx, &comments); err != nil {
 		response.WriteHeader(http.StatusInternalServerError)
 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
 		return
 	}
-	json.NewEncoder(response).Encode(posts)
+	json.NewEncoder(response).Encode(comments)
 }
 
 //get all by userID
-func GetPostsByUserIDEndpoint(response http.ResponseWriter, request *http.Request) {
+func GetCommentsByPostIDEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
 	params := mux.Vars(request)
-	uuserid, _ := primitive.ObjectIDFromHex(params["userid"])
-	var posts []Posts
+	postid, _ := primitive.ObjectIDFromHex(params["postid"])
+	var comments []Comments
 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
-	cursor, err := collection1.Find(ctx, Posts{UserID: uuserid})
+	cursor, err := collection1.Find(ctx, Comments{PostID: postid})
 	if err != nil {
 		response.WriteHeader(http.StatusInternalServerError)
 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
 		return
 	}
-	if err = cursor.All(ctx, &posts); err != nil {
+	if err = cursor.All(ctx, &comments); err != nil {
 		response.WriteHeader(http.StatusInternalServerError)
 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
 		return
 	}
-	json.NewEncoder(response).Encode(posts)
+	json.NewEncoder(response).Encode(comments)
 }
 
 var collection1 *mongo.Collection
 
 func Handle(client *mongo.Client) {
 
-	collection1 = client.Database("XML").Collection("posts")
+	collection1 = client.Database("XML").Collection("comments")
 
 }

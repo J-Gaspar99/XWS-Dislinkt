@@ -68,6 +68,7 @@ func LoginUserEndpoint(response http.ResponseWriter, request *http.Request) {
 
 func UpdateUserEndpoint(response http.ResponseWriter, request *http.Request) {
 
+
 	response.Header().Set("Content-Type", "application/json")
 	var Noviuser User
 	json.NewDecoder(request.Body).Decode(&Noviuser)
@@ -131,6 +132,7 @@ func UpdateUserEndpoint(response http.ResponseWriter, request *http.Request) {
 	result, _ := collection1.InsertOne(ctx, Stariuser)
 	json.NewEncoder(response).Encode(result)
 
+
 }
 
 func SearchUsersEndpoint(response http.ResponseWriter, request *http.Request) {
@@ -163,7 +165,8 @@ func SearchUsersEndpoint(response http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(response).Encode(posts)
 }
 
-//Get 1
+//Get 1 by id
+
 func GetUserByIDEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
 	params := mux.Vars(request)
