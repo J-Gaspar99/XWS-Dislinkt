@@ -68,6 +68,71 @@ func LoginUserEndpoint(response http.ResponseWriter, request *http.Request) {
 
 func UpdateUserEndpoint(response http.ResponseWriter, request *http.Request) {
 
+
+	response.Header().Set("Content-Type", "application/json")
+	var Noviuser User
+	json.NewDecoder(request.Body).Decode(&Noviuser)
+	//ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	//result, _ := collection1.ReplaceOne(ctx, Noviuser)
+
+	params := mux.Vars(request)
+	id, _ := primitive.ObjectIDFromHex(params["id"])
+	var Stariuser User
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	err := collection1.FindOne(ctx, User{ID: id}).Decode(&Stariuser)
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError)
+		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
+		return
+	}
+
+	if Noviuser.Biography != Stariuser.Biography {
+		Stariuser.Biography = Noviuser.Biography
+	}
+	if Noviuser.isPrivate != Stariuser.isPrivate {
+		Stariuser.isPrivate = Noviuser.isPrivate
+	}
+	if Noviuser.DateOfBirth != Stariuser.DateOfBirth {
+		Stariuser.DateOfBirth = Noviuser.DateOfBirth
+	}
+	if Noviuser.Education != Stariuser.Experiance {
+		Stariuser.Education = Noviuser.Education
+	}
+	if Noviuser.Email != Stariuser.Email {
+		Stariuser.Email = Noviuser.Email
+	}
+	if Noviuser.Experiance != Stariuser.Experiance {
+		Stariuser.Experiance = Noviuser.Experiance
+	}
+	if Noviuser.FirstName != Stariuser.FirstName {
+		Stariuser.FirstName = Noviuser.FirstName
+	}
+	if Noviuser.Interests != Stariuser.Interests {
+		Stariuser.Interests = Noviuser.Interests
+	}
+	if Noviuser.LastName != Stariuser.LastName {
+		Stariuser.LastName = Noviuser.LastName
+	}
+	if Noviuser.Password != Stariuser.Password {
+		Stariuser.Password = Noviuser.Password
+	}
+	if Noviuser.Phone != Stariuser.Phone {
+		Stariuser.Phone = Noviuser.Phone
+	}
+	if Noviuser.Sex != Stariuser.Sex {
+		Stariuser.Sex = Noviuser.Sex
+	}
+	if Noviuser.UserName != Stariuser.UserName {
+		Stariuser.UserName = Noviuser.UserName
+	}
+	if Noviuser.Skils != Stariuser.Skils {
+		Stariuser.Skils = Noviuser.Skils
+	}
+
+	result, _ := collection1.InsertOne(ctx, Stariuser)
+	json.NewEncoder(response).Encode(result)
+
+
 }
 
 func SearchUsersEndpoint(response http.ResponseWriter, request *http.Request) {
@@ -101,6 +166,7 @@ func SearchUsersEndpoint(response http.ResponseWriter, request *http.Request) {
 }
 
 //Get 1 by id
+
 func GetUserByIDEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
 	params := mux.Vars(request)

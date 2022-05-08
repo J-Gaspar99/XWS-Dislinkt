@@ -2,6 +2,7 @@ package main
 
 // ExClM5mbC5jclJyA
 import (
+
 	"XML/comments"
 	"XML/followRequests"
 	"XML/followings"
@@ -43,6 +44,7 @@ func main() {
 	followRequests.Handle(client)
 	comments.Handle(client)
 
+
 	router := mux.NewRouter()
 
 	router.HandleFunc("/posts", posts.GetPostsEndpoint).Methods("GET")
@@ -54,6 +56,7 @@ func main() {
 	router.HandleFunc("/user/{id}", user.GetUserByIDEndpoint).Methods("GET")
 	router.HandleFunc("/users", user.RegiterUserEndpoint).Methods("POST")
 	router.HandleFunc("/user/login/{username}/{password}", user.LoginUserEndpoint).Methods("GET")
+	router.HandleFunc("/user/update/{id}", user.UpdateUserEndpoint).Methods("PUT")
 
 	router.HandleFunc("/followings", followings.GetFollowingsEndpoint).Methods("GET")
 	router.HandleFunc("/following/{id}", followings.GetFollowingByIDEndpoint).Methods("GET")
@@ -69,6 +72,6 @@ func main() {
 	router.HandleFunc("/comment/{id}", comments.GetCommentByIDEndpoint).Methods("GET")
 	router.HandleFunc("/comments/postid/{postid}", comments.GetCommentsByPostIDEndpoint).Methods("GET")
 	router.HandleFunc("/comments", comments.CreateCommentEndpoint).Methods("POST")
-
+  
 	http.ListenAndServe(":12345", router)
 }
