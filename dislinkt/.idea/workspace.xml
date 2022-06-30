@@ -36,7 +36,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/follows/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Comment/src/main/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -50,26 +50,39 @@
       <recent name="com.dislinkt.user" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\XML-PROJEKAT\dislinkt\follows\src\main\resources" />
-      <recent name="D:\XML-PROJEKAT\dislinkt\follows\src\main\java\com\dislinkt\follows" />
+      <recent name="D:\XML-PROJEKAT\dislinkt\Comment\src\main\resources" />
+      <recent name="D:\XML-PROJEKAT\dislinkt\Comment\src\main\java\com\dislinkt\comment" />
+      <recent name="D:\XML-PROJEKAT\dislinkt\dislike\src\main\java\com\dislinkt\dislike" />
+      <recent name="D:\XML-PROJEKAT\dislinkt\dislike\src\main\resources" />
+      <recent name="D:\XML-PROJEKAT\dislinkt\like\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\XML-PROJEKAT\dislinkt\followRequest\src\main\java" />
+      <recent name="D:\XML-PROJEKAT\dislinkt\followRequest\src\main" />
+      <recent name="D:\XML-PROJEKAT\dislinkt\followRequest\src" />
       <recent name="D:\XML-PROJEKAT\dislinkt\user\src\main\java\com\dislinkt\user" />
       <recent name="D:\XML-PROJEKAT\dislinkt" />
-      <recent name="D:\XML-PROJEKAT\dislinkt\user\src\main\resources" />
     </key>
   </component>
   <component name="RunManager" selected="Compound.RUN">
     <configuration name="RUN" type="CompoundRunConfigurationType">
       <toRun name="PostApplication" type="SpringBootApplicationConfigurationType" />
+      <toRun name="FollowRequest" type="SpringBootApplicationConfigurationType" />
       <toRun name="Follows" type="SpringBootApplicationConfigurationType" />
+      <toRun name="Comment" type="SpringBootApplicationConfigurationType" />
       <toRun name="UserApplication" type="SpringBootApplicationConfigurationType" />
+      <toRun name="Like" type="SpringBootApplicationConfigurationType" />
+      <toRun name="Dislike" type="SpringBootApplicationConfigurationType" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="CompoundRunConfigurationType">
       <toRun name="PostApplication" type="SpringBootApplicationConfigurationType" />
+      <toRun name="FollowRequest" type="SpringBootApplicationConfigurationType" />
       <toRun name="Follows" type="SpringBootApplicationConfigurationType" />
+      <toRun name="Comment" type="SpringBootApplicationConfigurationType" />
       <toRun name="UserApplication" type="SpringBootApplicationConfigurationType" />
+      <toRun name="Like" type="SpringBootApplicationConfigurationType" />
+      <toRun name="Dislike" type="SpringBootApplicationConfigurationType" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
@@ -83,9 +96,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Comment" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Comment" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dislinkt.comment.CommentApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dislike" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="dislike" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dislinkt.dislike.DislikeApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FollowRequest" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="followRequest" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dislinkt.followRequest.FollowRequestApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Follows" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="follows" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.dislinkt.follows.FollowsApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Like" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="like" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dislinkt.like.LikeApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
@@ -118,6 +167,10 @@
     </configuration>
     <list>
       <item itemvalue="Compound.RUN" />
+      <item itemvalue="Spring Boot.Comment" />
+      <item itemvalue="Spring Boot.Dislike" />
+      <item itemvalue="Spring Boot.FollowRequest" />
+      <item itemvalue="Spring Boot.Like" />
       <item itemvalue="Spring Boot.Follows" />
       <item itemvalue="Spring Boot.PostApplication" />
       <item itemvalue="Spring Boot.UserApplication" />
@@ -133,7 +186,7 @@
       <updated>1656421940068</updated>
       <workItem from="1656421941216" duration="25000" />
       <workItem from="1656421984014" duration="3690000" />
-      <workItem from="1656601943897" duration="4703000" />
+      <workItem from="1656601943897" duration="8026000" />
     </task>
     <servers />
   </component>
