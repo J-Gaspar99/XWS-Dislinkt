@@ -1,11 +1,19 @@
 package com.dislinkt.user;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
-@Builder
+@Getter
+@Setter
+@ToString
+
+@Document(collection ="User")
+
 public class User {
+    @Id
     private Integer id;
     private String firstName;
     private String lastName;

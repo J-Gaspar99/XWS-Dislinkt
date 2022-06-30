@@ -1,20 +1,46 @@
 package com.dislinkt.user;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+
 @RestController
-@RequestMapping("api/v1/users")
-public record UserController(UserService userService) {
+//@RequestMapping("api/v1/users")  //on ovo nema videcemo po potrebi
+public class UserController {
 
-    @PostMapping
-    public void registerUser(@RequestBody UserRegistrationRequest userRegistrationRequest) {
-        log.info("new user registration {}", userRegistrationRequest);
-        userService.registerUser(userRegistrationRequest);
+    @Autowired
+    private UserRepository userRepository;
+
+    //CREATE
+    @PostMapping("/createUser")
+    public String createUser(@RequestBody User user){
+        userRepository.save(user);
+        return "Created user with id: " + user.getId();
     }
+
+    //FIND ALL
+    @GetMapping("/findAllUsers")
+    public List<User> getUsers(){
+        return userRepository.findAll();
+    }
+
+    //FIND BY ID
+    @GetMapping("/findById/{id}")
+    public Optional<User> getUser(@PathVariable int id){
+        return userRepository.findById(id);
+    }
+
+    //DELETE
+    @DeleteMapping("/deleteUser/{id}")
+    public String deleteuser(@PathVariable int id){
+        userRepository.deleteById(id);
+        return "Deleted user with id: " + id;
+    }
+
+
 }
 
