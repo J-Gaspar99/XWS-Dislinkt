@@ -38,7 +38,7 @@ public class UserController {
 
     //DELETE
     @DeleteMapping("/user/{id}")
-    public String deleteuser(@PathVariable int id){
+    public String deleteUser(@PathVariable int id){
         userRepository.deleteById(id);
         return "Deleted user with id: " + id;
     }
@@ -49,13 +49,50 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User userDetails){
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User does not exist with id:"+ id));
 
+        user.setUserName(userDetails.getUserName());
+        user.setPassword(userDetails.getPassword());
+
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
         user.setEmail(userDetails.getEmail());
+        user.setPhone(userDetails.getPhone());
+        user.setGender(userDetails.getGender());
+        user.setDateOfBirth(userDetails.getDateOfBirth());
+        user.setBiography(userDetails.getBiography());
+        user.setWorkExperience(userDetails.getWorkExperience());
+        user.setHobbies(userDetails.getHobbies());
+        user.setPublicity(userDetails.getPublicity());
 
 
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
+    }
+
+    //FIND BY USERNAME AND PASSWORD
+    @GetMapping("/user/{userName}/{password}")
+    public User logUser(@PathVariable("userName") String userName, @PathVariable("password") String password){
+        User loggedUser = userRepository.findByUserNameAndPassword(userName,password);
+        return loggedUser;
+    }
+
+    //LOGIN
+    @PostMapping("/login/{userName}/{password}")
+    public User loginUser(@PathVariable("userName") String userName, @PathVariable("password") String password)
+    {
+        Optional<User> user = Optional.ofNullable(userRepository.findByUserNameAndPassword(userName,password));
+        User user2;
+        if(!user.isPresent())
+        {
+            return null;
+        }
+        else
+        {
+            user2 = user.get();
+
+            return user2;
+
+
+        }
     }
 }
 

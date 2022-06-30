@@ -11,6 +11,8 @@
   <modules>
     <module>user</module>
     <module>post</module>
+      <module>follows</module>
+      <module>followRequests</module>
   </modules>
 
   <name>dislinkt</name>
@@ -63,5 +65,15 @@
         </plugin>
       </plugins>
     </pluginManagement>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>16</source>
+                  <target>16</target>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
 </project>

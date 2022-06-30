@@ -36,7 +36,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/follows/src/main/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -49,13 +49,29 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.dislinkt.user" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\XML-PROJEKAT\dislinkt\follows\src\main\resources" />
+      <recent name="D:\XML-PROJEKAT\dislinkt\follows\src\main\java\com\dislinkt\follows" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\XML-PROJEKAT\dislinkt\user\src\main\java\com\dislinkt\user" />
       <recent name="D:\XML-PROJEKAT\dislinkt" />
       <recent name="D:\XML-PROJEKAT\dislinkt\user\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Compound.RUN">
+    <configuration name="RUN" type="CompoundRunConfigurationType">
+      <toRun name="PostApplication" type="SpringBootApplicationConfigurationType" />
+      <toRun name="Follows" type="SpringBootApplicationConfigurationType" />
+      <toRun name="UserApplication" type="SpringBootApplicationConfigurationType" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="CompoundRunConfigurationType">
+      <toRun name="PostApplication" type="SpringBootApplicationConfigurationType" />
+      <toRun name="Follows" type="SpringBootApplicationConfigurationType" />
+      <toRun name="UserApplication" type="SpringBootApplicationConfigurationType" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -67,7 +83,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="Follows" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="follows" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dislinkt.follows.FollowsApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="post" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dislinkt.post.PostApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="user" />
       <extension name="coverage">
         <pattern>
@@ -76,15 +110,18 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.dislinkt.user.UserApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.UserApplication" />
-      </list>
-    </recent_temporary>
+    <list>
+      <item itemvalue="Compound.RUN" />
+      <item itemvalue="Spring Boot.Follows" />
+      <item itemvalue="Spring Boot.PostApplication" />
+      <item itemvalue="Spring Boot.UserApplication" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -96,6 +133,7 @@
       <updated>1656421940068</updated>
       <workItem from="1656421941216" duration="25000" />
       <workItem from="1656421984014" duration="3690000" />
+      <workItem from="1656601943897" duration="4703000" />
     </task>
     <servers />
   </component>
