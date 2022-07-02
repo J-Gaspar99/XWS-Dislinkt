@@ -15,8 +15,7 @@ class ProfilesComponent extends Component {
         
     }
     view(id){
-        //otvara stranicu tog profila ako je on public ako je private onda alert da ne moze dok se ne uloguje i ne zaprati ga
-        //napraviti activeProfile
+      
         axios.get("http://localhost:8081/user/" + id).then(response => {
             localStorage.setItem('activeProfile', JSON.stringify(response.data));
         })
@@ -40,7 +39,7 @@ class ProfilesComponent extends Component {
         
         axios.get("http://localhost:8081/user").then((res)=>{
                 this.setState({profiles: res.data});
-                console.log(res.data);
+                
         });
         
     

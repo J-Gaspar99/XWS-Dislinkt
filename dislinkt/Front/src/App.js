@@ -9,6 +9,10 @@ import RegistrationComponent from './components/RegistrationComponent';
 import LoginComponent from './components/LoginComponent';
 import ProfilesComponent from './components/ProfilesComponent';
 import ViewProfileComponent from './components/ViewProfileComponent';
+import ViewPostsComponent from './components/ViewPostsComponent';
+import UserProfileComponent from './components/UserProfileComponent';
+
+
 
 import Unautentifieduserheader from './components/UnautentifiedUserHeader';
 
@@ -53,7 +57,8 @@ function App() {
               <Route path = "/homepage" component={HomePageCommponent} ></Route>
               <Route path = "/profiles" component={ProfilesComponent} ></Route>
               <Route path = "/viewprofile" component={ViewProfileComponent} ></Route>
-
+              <Route path = "/viewposts" component={ViewPostsComponent} ></Route>
+              <Route path = "/userprofile" component={UserProfileComponent} ></Route>
               </Switch>
           </div>
                                 

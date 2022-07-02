@@ -47,9 +47,10 @@ public class UserController {
     }
 
 
+
     //UPDATE
     @PutMapping("/user/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User userDetails){
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User userDetails){
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User does not exist with id:"+ id));
 
         user.setUserName(userDetails.getUserName());
@@ -80,7 +81,7 @@ public class UserController {
 
 
     //get by publicity
-    @GetMapping("/users/publicity/{publicity}")
+    @GetMapping("/user/publicity/{publicity}")
     public List<User> getAllUsersByPublicity(@PathVariable Integer publicity){return userRepository.findByPublicity(publicity);}
 
     //get by Fname and Lname

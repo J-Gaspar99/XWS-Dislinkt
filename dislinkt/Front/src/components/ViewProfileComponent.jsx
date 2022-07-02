@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 
 
@@ -17,19 +18,23 @@ class ViewProfileComponent extends Component {
             biography:'',
             workexperiance:'',
             hobbies:'',
-            publicity:''
+            publicity:'',
+
+            posts: []
             
         }
-       
+        this.seeposts = this.seeposts.bind(this);
     }
-    
+    seeposts(){
+        this.props.history.push('/viewposts');   
+    }
 
     componentDidMount(){
         
         let activeProfile =  JSON.parse(localStorage.getItem('activeProfile'))
 
             this.setState({
-            
+            id:activeProfile.id,
             username: activeProfile.userName,
             firstname:activeProfile.firstName,
             lastname:activeProfile.lastName,
@@ -70,7 +75,7 @@ class ViewProfileComponent extends Component {
                                 <input  name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler}/>
                                 
                                 <br/>
-                                <div className="center"><button className="loginbtn" onClick={()=>this.seeposts(this.state.id)}>See posts</button></div>
+                                <div className="center"><button className="loginbtn" onClick={()=>this.seeposts()}>See posts</button></div>
 
             </div>
             
