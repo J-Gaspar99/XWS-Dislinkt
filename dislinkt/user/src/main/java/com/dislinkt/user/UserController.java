@@ -12,7 +12,9 @@ import java.util.Optional;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(
+        origins = {"http://localhost:3000"}
+)
 public class UserController {
 
     @Autowired
@@ -76,24 +78,26 @@ public class UserController {
         return loggedUser;
     }
 
-    //LOGIN
-    @PostMapping("/login/{userName}/{password}")
-    public User loginUser(@PathVariable("userName") String userName, @PathVariable("password") String password)
-    {
-        Optional<User> user = Optional.ofNullable(userRepository.findByUserNameAndPassword(userName,password));
-        User user2;
-        if(!user.isPresent())
-        {
-            return null;
-        }
-        else
-        {
-            user2 = user.get();
 
-            return user2;
+    //get by publicity
+    @GetMapping("/users/publicity/{publicity}")
+    public List<User> getAllUsersByPublicity(@PathVariable Integer publicity){return userRepository.findByPublicity(publicity);}
 
+    //get by Fname and Lname
+    @GetMapping("/user/name/{fname}/{lname}")
+    public User getUserByFnameAndLname(@PathVariable("fname") String fname, @PathVariable("lname") String lname){
+        return userRepository.findByFirstNameAndLastName(fname,lname);
 
-        }
     }
+
+    //get by UserName
+    @GetMapping("/user/username/{username}")
+    public User getUserByUserName(@PathVariable("username") String username){
+        return userRepository.findByUserName(username);
+
+    }
+
+
+
 }
 
