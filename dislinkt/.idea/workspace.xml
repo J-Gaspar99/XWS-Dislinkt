@@ -41,9 +41,11 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="ts.external.directory.path" value="E:\IntelliJ IDEA 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -64,7 +66,7 @@
       <recent name="D:\XML-PROJEKAT\dislinkt" />
     </key>
   </component>
-  <component name="RunManager" selected="Compound.RUN">
+  <component name="RunManager" selected="Spring Boot.UserApplication">
     <configuration name="RUN" type="CompoundRunConfigurationType">
       <toRun name="PostApplication" type="SpringBootApplicationConfigurationType" />
       <toRun name="FollowRequest" type="SpringBootApplicationConfigurationType" />
@@ -187,6 +189,7 @@
       <workItem from="1656421941216" duration="25000" />
       <workItem from="1656421984014" duration="3690000" />
       <workItem from="1656601943897" duration="8026000" />
+      <workItem from="1656768044528" duration="4760000" />
     </task>
     <servers />
   </component>
