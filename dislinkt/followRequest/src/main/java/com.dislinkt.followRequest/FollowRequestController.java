@@ -55,5 +55,18 @@ public class FollowRequestController {
         return ResponseEntity.ok(updatedFollowRequest);
     }
 
+    //get by Follower
+    @GetMapping("/followRequest/follower/{follower}")
+    public FollowRequest getFollowByFollowerId(@PathVariable("follower") Integer follower){
+        return followRequestRepository.findByFollowerId(follower);
+
+    }
+
+    //get by Following
+    @GetMapping("/followRequest/following/{following}")
+    public FollowRequest getFollowByFollowingId(@PathVariable("following") Integer following){
+        return followRequestRepository.findByFollowingId(following);
+
+    }
 
 }

@@ -58,5 +58,27 @@ public class DislikeController {
     }
 
 
+    //get by OwnerId
+    @GetMapping("/dislike/ownerid/{ownerid}")
+    public List <Dislike> getDislikeByOwnerId(@PathVariable("ownerid") Integer ownerid){
+        return dislikeRepository.findByOwnerId(ownerid);
+
+    }
+
+
+    //get by PostId
+    @GetMapping("/dislike/postid/{postid}")
+    public List <Dislike> getDislikeByPostId(@PathVariable("postid") Integer postid){
+        return dislikeRepository.findByPostId(postid);
+
+    }
+
+
+    //get by ownerId and PostId
+    @GetMapping("/dislike/owneridpostid/{ownerid}/{postid}")
+    public Dislike getDislikeByOwnerIdAndPostId(@PathVariable("ownerid") Integer ownerid, @PathVariable("postid") Integer postid) {
+        return dislikeRepository.findByOwnerIdAndPostId(ownerid, postid);
+
+    }
 }
 

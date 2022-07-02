@@ -58,5 +58,26 @@ public class LikeController {
     }
 
 
+    //get by OwnerId
+    @GetMapping("/like/ownerid/{ownerid}")
+    public List <Like> getLikeByOwnerId(@PathVariable("ownerid") Integer ownerid){
+        return likeRepository.findByOwnerId(ownerid);
+
+    }
+
+
+    //get by PostId
+    @GetMapping("/like/postid/{postid}")
+    public List <Like> getLikeByPostId(@PathVariable("postid") Integer postid){
+        return likeRepository.findByPostId(postid);
+
+    }
+
+    //get by ownerId and PostId
+    @GetMapping("/like/owneridpostid/{ownerid}/{postid}")
+    public Like getLikeByOwnerIdAndPostId(@PathVariable("ownerid") Integer ownerid, @PathVariable("postid") Integer postid) {
+        return likeRepository.findByOwnerIdAndPostId(ownerid, postid);
+
+    }
 }
 

@@ -57,4 +57,12 @@ public class PostController {
         Post updatedPost = postRepository.save(post);
         return ResponseEntity.ok(updatedPost);
     }
+
+
+    //get by OwnerId
+    @GetMapping("/post/ownerid/{ownerid}")
+    public List <Post> getPostByOwnerId(@PathVariable("ownerid") Integer ownerid){
+        return postRepository.findByOwnerId(ownerid);
+
+    }
 }

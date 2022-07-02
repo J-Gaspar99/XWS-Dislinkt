@@ -21,26 +21,26 @@ public class CommentController {
 
     //CREATE
     @PostMapping("/comment")
-    public String createComment(@RequestBody Comment comment){
+    public String createComment(@RequestBody Comment comment) {
         commentRepository.save(comment);
         return "Created comment with id: " + comment.getId();
     }
 
     //FIND ALL
     @GetMapping("/comment")
-    public List<Comment> getComments(){
+    public List<Comment> getComments() {
         return commentRepository.findAll();
     }
 
     //FIND BY ID
     @GetMapping("/comment/{id}")
-    public Optional<Comment> getComment(@PathVariable int id){
+    public Optional<Comment> getComment(@PathVariable int id) {
         return commentRepository.findById(id);
     }
 
     //DELETE
     @DeleteMapping("/comment/{id}")
-    public String deleteComment(@PathVariable int id){
+    public String deleteComment(@PathVariable int id) {
         commentRepository.deleteById(id);
         return "Deleted comment with id: " + id;
     }
@@ -48,8 +48,8 @@ public class CommentController {
 
     //UPDATE
     @PutMapping("/comment/{id}")
-    public ResponseEntity<Comment> updateComment(@PathVariable Integer id, @RequestBody Comment commentDetails){
-        Comment comment = commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Comment does not exist with id:"+ id));
+    public ResponseEntity<Comment> updateComment(@PathVariable Integer id, @RequestBody Comment commentDetails) {
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Comment does not exist with id:" + id));
 
         comment.setOwnerId(commentDetails.getOwnerId());
         comment.setPostId(commentDetails.getPostId());
@@ -59,5 +59,25 @@ public class CommentController {
     }
 
 
-}
+    //get by OwnerId
+    @GetMapping("/comment/ownerid/{ownerid}")
+    public List<Comment> getCommentByOwnerId(@PathVariable("ownerid") Integer ownerid) {
+        return commentRepository.findByOwnerId(ownerid);
 
+    }
+
+
+    //get by PostId
+    @GetMapping("/comment/postid/{postid}")
+    public List<Comment> getCommentByPostId(@PathVariable("postid") Integer postid) {
+        return commentRepository.findByPostId(postid);
+
+    }
+
+    //get by ownerId and PostId
+    @GetMapping("/comment/owneridpostid/{ownerid}/{postid}")
+    public Comment getCommentByOwnerIdAndPostId(@PathVariable("ownerid") Integer ownerid, @PathVariable("postid") Integer postid) {
+        return commentRepository.findByOwnerIdAndPostId(ownerid, postid);
+
+    }
+}

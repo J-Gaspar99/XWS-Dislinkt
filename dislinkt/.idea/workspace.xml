@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c40837-d016-4e90-ab46-ec4d6d083409" name="Changes" comment="" />
+    <list default="true" id="61c40837-d016-4e90-ab46-ec4d6d083409" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comment/src/main/java/com/dislinkt/comment/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Comment/src/main/java/com/dislinkt/comment/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comment/src/main/java/com/dislinkt/comment/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Comment/src/main/java/com/dislinkt/comment/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comment/target/classes/com/dislinkt/comment/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Comment/target/classes/com/dislinkt/comment/CommentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comment/target/classes/com/dislinkt/comment/CommentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Comment/target/classes/com/dislinkt/comment/CommentRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dislike/src/main/java/com/dislinkt/dislike/DislikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dislike/src/main/java/com/dislinkt/dislike/DislikeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dislike/src/main/java/com/dislinkt/dislike/DislikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/dislike/src/main/java/com/dislinkt/dislike/DislikeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dislike/target/classes/com/dislinkt/dislike/DislikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/dislike/target/classes/com/dislinkt/dislike/DislikeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dislike/target/classes/com/dislinkt/dislike/DislikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/dislike/target/classes/com/dislinkt/dislike/DislikeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/followRequest/src/main/java/com.dislinkt.followRequest/FollowRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/followRequest/src/main/java/com.dislinkt.followRequest/FollowRequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/followRequest/src/main/java/com.dislinkt.followRequest/FollowRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/followRequest/src/main/java/com.dislinkt.followRequest/FollowRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/followRequest/target/classes/com/dislinkt/followRequest/FollowRequestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/followRequest/target/classes/com/dislinkt/followRequest/FollowRequestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/followRequest/target/classes/com/dislinkt/followRequest/FollowRequestRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/followRequest/target/classes/com/dislinkt/followRequest/FollowRequestRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/follows/src/main/java/com/dislinkt/follows/FollowsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/follows/src/main/java/com/dislinkt/follows/FollowsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/follows/src/main/java/com/dislinkt/follows/FollowsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/follows/src/main/java/com/dislinkt/follows/FollowsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/follows/target/classes/com/dislinkt/follows/FollowsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/follows/target/classes/com/dislinkt/follows/FollowsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/follows/target/classes/com/dislinkt/follows/FollowsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/follows/target/classes/com/dislinkt/follows/FollowsRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/like/src/main/java/com/dislinkt/like/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/like/src/main/java/com/dislinkt/like/LikeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/like/src/main/java/com/dislinkt/like/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/like/src/main/java/com/dislinkt/like/LikeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/like/target/classes/com/dislinkt/like/LikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/like/target/classes/com/dislinkt/like/LikeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/like/target/classes/com/dislinkt/like/LikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/like/target/classes/com/dislinkt/like/LikeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/src/main/java/com/dislinkt/post/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/java/com/dislinkt/post/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/src/main/java/com/dislinkt/post/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/post/src/main/java/com/dislinkt/post/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/target/classes/com/dislinkt/post/PostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/post/target/classes/com/dislinkt/post/PostController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/target/classes/com/dislinkt/post/PostRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/post/target/classes/com/dislinkt/post/PostRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/dislinkt/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/com/dislinkt/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/com/dislinkt/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/com/dislinkt/user/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/classes/com/dislinkt/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/classes/com/dislinkt/user/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/classes/com/dislinkt/user/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/classes/com/dislinkt/user/UserRepository.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +54,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="2BCtYCZmamUxlecn2WNxpkZG1Od" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -36,14 +76,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Comment/src/main/resources" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.jdks/openjdk-18.0.1.1" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="show.run.dashboard.notification" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -64,7 +105,7 @@
       <recent name="D:\XML-PROJEKAT\dislinkt" />
     </key>
   </component>
-  <component name="RunManager" selected="Compound.RUN">
+  <component name="RunManager" selected="Spring Boot.UserApplication">
     <configuration name="RUN" type="CompoundRunConfigurationType">
       <toRun name="PostApplication" type="SpringBootApplicationConfigurationType" />
       <toRun name="FollowRequest" type="SpringBootApplicationConfigurationType" />
@@ -187,6 +228,8 @@
       <workItem from="1656421941216" duration="25000" />
       <workItem from="1656421984014" duration="3690000" />
       <workItem from="1656601943897" duration="8026000" />
+      <workItem from="1656769979394" duration="127000" />
+      <workItem from="1656770121051" duration="6283000" />
     </task>
     <servers />
   </component>
