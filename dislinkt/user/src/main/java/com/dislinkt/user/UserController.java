@@ -12,6 +12,9 @@ import java.util.Optional;
 
 
 @RestController
+@CrossOrigin(
+        origins = {"http://localhost:3000"}
+)
 public class UserController {
 
     @Autowired
