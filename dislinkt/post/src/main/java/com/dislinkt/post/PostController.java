@@ -15,10 +15,13 @@ import java.util.Optional;
 public class PostController {
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private SequencerService seqService;
 
     //CREATE
     @PostMapping("/post")
     public String createPost(@RequestBody Post post){
+        post.setId(seqService.getSeq("posts_sequence"));
         postRepository.save(post);
         return "Created post with id: " + post.getId();
     }

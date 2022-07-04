@@ -16,10 +16,12 @@ import java.util.Optional;
 public class FollowsController {
     @Autowired
     private FollowsRepository followsRepository;
-
+    @Autowired
+    private SequencerService seqService;
     //CREATE
     @PostMapping("/follows")
     public String createFollows(@RequestBody Follows follows){
+        follows.setId(seqService.getSeq("follows_sequence"));
         followsRepository.save(follows);
         return "Created follows with id: " + follows.getId();
     }

@@ -5,6 +5,7 @@ class RegistrationComponent extends Component {
     constructor(props){
         super(props)
         this.state={
+            id:this.props.match.params.id,
             username:'',
             password:'',
 
@@ -40,6 +41,7 @@ class RegistrationComponent extends Component {
     register(){
         //CREATE USER
         let newUser ={
+            id:this.state.id,
             userName:this.state.username,
             password:this.state.password,
 
@@ -53,15 +55,18 @@ class RegistrationComponent extends Component {
             workExperiance:this.state.workexperiance,
             hobbies:this.state.hobbies,
             publicity:this.state.publicity
-        }
+        };
 
+        axios.get("http://localhost:8081/user/username/" + newUser.userName).then(response => {
         
-   
+        if(response.data.id == null){
         console.log('newUser => ' + JSON.stringify(newUser));
         console.log(newUser);
         axios.post("http://localhost:8081/user/",newUser).then((res) => {
             console.log(newUser);
-            }); 
+            }); }
+            else{alert("Username already in use")}
+        });
 
             
     }

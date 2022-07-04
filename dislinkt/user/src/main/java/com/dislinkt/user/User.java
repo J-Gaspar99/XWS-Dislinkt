@@ -1,10 +1,8 @@
 package com.dislinkt.user;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -13,9 +11,14 @@ import java.util.Date;
 @Setter
 @ToString
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection ="User")
 
 public class User {
+    @Transient
+    public static final String SEQUENCE_NAME = "users_sequence";
     @Id
     private Integer id;
 

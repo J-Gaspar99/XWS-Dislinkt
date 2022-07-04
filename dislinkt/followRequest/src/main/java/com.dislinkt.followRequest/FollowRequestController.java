@@ -15,10 +15,13 @@ import java.util.Optional;
 public class FollowRequestController {
     @Autowired
     private FollowRequestRepository followRequestRepository;
+    @Autowired
+    private SequencerService seqService;
 
     //CREATE
     @PostMapping("/followRequest")
     public String createFollowRequest(@RequestBody FollowRequest followRequest){
+        followRequest.setId(seqService.getSeq("followrequests_sequence"));
         followRequestRepository.save(followRequest);
         return "Created followRequest with id: " + followRequest.getId();
     }

@@ -17,6 +17,7 @@
       <module>like</module>
       <module>dislike</module>
       <module>Comment</module>
+      <module>Sequencer</module>
   </modules>
 
   <name>dislinkt</name>

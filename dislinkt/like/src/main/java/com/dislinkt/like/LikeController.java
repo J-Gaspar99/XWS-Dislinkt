@@ -18,10 +18,13 @@ public class LikeController {
 
     @Autowired
     private LikeRepository likeRepository;
+    @Autowired
+    private SequencerService seqService;
 
     //CREATE
     @PostMapping("/like")
     public String createLike(@RequestBody Like like){
+        like.setId(seqService.getSeq("likes_sequence"));
         likeRepository.save(like);
         return "Created like with id: " + like.getId();
     }

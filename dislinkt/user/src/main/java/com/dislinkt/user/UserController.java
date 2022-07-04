@@ -20,9 +20,13 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private SequencerService seqService;
     //CREATE
     @PostMapping("/user")
     public String createUser(@RequestBody User user){
+        //generate sequence
+        user.setId(seqService.getSeq("users_sequence"));
         userRepository.save(user);
         return "Created user with id: " + user.getId();
     }
