@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import IncomeService from '../services/IncomeService';
+import IncomeService from '../../services/IncomeService';
 import axios from 'axios';
 
 class IncomeComponent extends Component {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class RegistrationComponent extends Component {
     constructor(props){
@@ -38,7 +39,31 @@ class RegistrationComponent extends Component {
     }
     register(){
         //CREATE USER
-        this.props.history.push('/profile');
+        let newUser ={
+            userName:this.state.username,
+            password:this.state.password,
+
+            firstName:this.state.firstname,
+            lastName:this.state.lastname,
+            email: this.state.email,
+            phoneNumber:this.state.phonenumber,
+            gender:this.state.gender,
+            dateOfBirth:this.state. dateofbirth,
+            biography:this.state.biography,
+            workExperiance:this.state.workexperiance,
+            hobbies:this.state.hobbies,
+            publicity:this.state.publicity
+        }
+
+        
+   
+        console.log('newUser => ' + JSON.stringify(newUser));
+        console.log(newUser);
+        axios.post("http://localhost:8081/user/",newUser).then((res) => {
+            console.log(newUser);
+            }); 
+
+            
     }
     changeUserNameHandler = (event) => {
         this.setState({username: event.target.value});

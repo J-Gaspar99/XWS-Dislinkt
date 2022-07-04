@@ -22,20 +22,16 @@ class LoginComponent extends Component {
 
 
     login() {
-        if (validator.isUserName(this.state.userName)) {
 
-            //LINK
-            axios.post("http://localhost:8080/login/" + this.state.userName + "/" + this.state.password).then(response => {
-                localStorage.setItem('activeUser', JSON.stringify(response.data));
+        axios.get("http://localhost:8081/user/" + this.state.userName + "/" + this.state.password).then(response => {
+                localStorage.setItem('activeUser', JSON.stringify(response.data))
+                
+            });
+            this.props.history.push('/userprofile');
+            window.location.reload(false);
+            
 
-                let activeUser = JSON.parse(localStorage.getItem('activeUser'));
-            })
-
-
-        } else {
-            this.setState({ errorMessage: 'User name or password is invalid' })
-
-        }
+            
 
     }
 
@@ -49,7 +45,7 @@ class LoginComponent extends Component {
 
 
     componentDidMount() {
-        
+        localStorage.clear();
 
     }
 

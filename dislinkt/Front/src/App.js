@@ -1,6 +1,5 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import localhost from './components/localhost.jsx';
 import background from './images/back.jpg';
 
 import HeaderComponent from './components/HeaderComponent';
@@ -9,6 +8,12 @@ import RegistrationComponent from './components/RegistrationComponent';
 import LoginComponent from './components/LoginComponent';
 import ProfilesComponent from './components/ProfilesComponent';
 import ViewProfileComponent from './components/ViewProfileComponent';
+import ViewPostsComponent from './components/ViewPostsComponent';
+import UserProfileComponent from './components/UserProfileComponent';
+import UserPostsComponent from './components/UserPostsComponent';
+import CreatePostComponent from './components/CreatePostComponent';
+
+
 
 import Unautentifieduserheader from './components/UnautentifiedUserHeader';
 
@@ -53,6 +58,12 @@ function App() {
               <Route path = "/homepage" component={HomePageCommponent} ></Route>
               <Route path = "/profiles" component={ProfilesComponent} ></Route>
               <Route path = "/viewprofile" component={ViewProfileComponent} ></Route>
+              <Route path = "/viewposts" component={ViewPostsComponent} ></Route>
+              <Route path = "/userprofile" component={UserProfileComponent} ></Route>
+              <Route path = "/userposts" component={UserPostsComponent} ></Route>
+              
+
+
 
               </Switch>
           </div>

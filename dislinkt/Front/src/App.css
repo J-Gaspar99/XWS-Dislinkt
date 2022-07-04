@@ -294,11 +294,11 @@ thead,th {
   text-align: center;
   height: 50px;
   border: 2px solid black;
-  background-color: rgb(143,165,174);
+  background-color: gray;
 }
 
 tr:hover {
-  background-color: lightblue;  
+  background-color: lightgray;  
 }
 
 tr:nth-child(even) {
@@ -306,7 +306,7 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(even):hover {
-  background-color: lightblue;
+  background-color: lightgray;
 }
 
 td {

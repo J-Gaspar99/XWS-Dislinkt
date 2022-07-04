@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import background from './try/pexels-ron-lach-10412889.jpg';
+
 
 
 class HomePageCommponent extends Component {
