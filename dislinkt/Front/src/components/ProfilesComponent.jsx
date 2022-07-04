@@ -5,12 +5,13 @@ class ProfilesComponent extends Component {
     constructor(props){
         super(props)
         this.state = {
-            profiles: []
+            profiles: [],
+            search :''
         }
         
 
         this.view = this.view.bind(this);
-
+        this.search = this.search.bind(this);
         
         
     }
@@ -33,8 +34,17 @@ class ProfilesComponent extends Component {
     }
  
     
+    changeSearchHandler = (event) => {
+        this.setState({ search: event.target.value });
+        
 
-    
+    }
+    search(username) {
+        
+        axios.get("http://localhost:8081/user/username/" + username).then((res) => {
+            this.view(res.data.id)
+        });
+    } 
     componentDidMount(){
         
         axios.get("http://localhost:8081/user").then((res)=>{
@@ -50,7 +60,9 @@ class ProfilesComponent extends Component {
                
 
                 <div> <br/><br/><br/><br/><br/><br/><br/><br/>
-         
+                <input style={{position:'absolute',top:'154px'}} name="name" value={this.state.search} onChange={this.changeSearchHandler}></input>
+                <button style={{position:'absolute',top:'150px',left:'440px'}} onClick={() => this.search(this.state.search)} className="loginbtn">Search</button>
+                
                     <h2 className="text-center">Profiles</h2>
 
                     <div className="row">

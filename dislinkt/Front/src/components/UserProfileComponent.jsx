@@ -95,15 +95,17 @@ class UserProfileComponent extends Component {
             biography:this.state.biography,
             workExperiance:this.state.workExperiance,
             hobbies:this.state.hobbies,
-            publicity:this.state.publicity,
+            publicity:this.state.publicity
         };
 
-        let coid = this.state.id;
+        let uuid = this.state.id;
         
         
 
         console.log('updatedUser => ' + JSON.stringify(updatedUser));
-        axios.put("http://localhost:8081/user/"+coid,updatedUser);
+        axios.put("http://localhost:8081/user/"+ uuid ,updatedUser).then(res=> {
+            this.props.history.push('/userprofile')
+        }); 
         
     }
     componentDidMount() {
@@ -116,7 +118,7 @@ class UserProfileComponent extends Component {
             firstName: activeUser.firstName,
             lastName: activeUser.lastName,
             email: activeUser.email,
-            phonenumber: activeUser.phoneNumber,
+            phoneNumber: activeUser.phoneNumber,
             gender: activeUser.gender,
             dateOfBirth: activeUser.dateOfBirth,
             biography: activeUser.biography,

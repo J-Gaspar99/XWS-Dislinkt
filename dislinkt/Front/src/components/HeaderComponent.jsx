@@ -21,17 +21,10 @@ class HeaderComponent extends Component {
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link style={navLinkStyle} href="/userprofile" >Profile </Nav.Link>                                
-                                <NavDropdown title="Scheduled" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">Ship</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">Cottage</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Adventure</NavDropdown.Item>                                    
-                                </NavDropdown>
-                                <NavDropdown title="History" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="/clientshipshistory">Ships I visited</NavDropdown.Item>
-                                    <NavDropdown.Item href="/clientcottagehistory">Cottages I visited</NavDropdown.Item>
-                                    <NavDropdown.Item href="/clientadventureshistory">Adventures I visited</NavDropdown.Item>                                    
-                                </NavDropdown>
+                                <Nav.Link style={navLinkStyle} href="/userprofile" >My profile </Nav.Link> 
+                                <Nav.Link style={navLinkStyle} href="/userposts" >My posts </Nav.Link>                               
+                                <Nav.Link style={navLinkStyle} href="/profiles" >Profiles </Nav.Link>
+                                
                             </Nav>
 
 
