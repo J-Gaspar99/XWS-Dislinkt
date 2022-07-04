@@ -13,11 +13,11 @@ class UserProfileComponent extends Component {
             firstname: '',
             lastname: '',
             email: '',
-            phone: '',
+            phonenumber: '',
             gender: '',
             dateofbirth: '',
             biography: '',
-            workexperiance: '',
+            workexperience: '',
             hobbies: '',
             publicity: ''
 
@@ -32,7 +32,7 @@ class UserProfileComponent extends Component {
         this.changeGenderHandler = this.changeGenderHandler.bind(this);
         this.changeDateOfBirthHandler = this.changeDateOfBirthHandler.bind(this);
         this.changeBiographyHandler = this.changeBiographyHandler.bind(this);
-        this.changeWorkExperianceHandler = this.changeWorkExperianceHandler.bind(this);
+        this.changeWorkExperienceHandler = this.changeWorkExperienceHandler.bind(this);
         this.changeHobbiesHandler = this.changeHobbiesHandler.bind(this);
         this.changePublicityHandler = this.changePublicityHandler.bind(this);
 
@@ -75,8 +75,8 @@ class UserProfileComponent extends Component {
     changeBiographyHandler = (event) => {
         this.setState({biography: event.target.value});
     }
-    changeWorkExperianceHandler = (event) => {
-        this.setState({workexperiance: event.target.value});
+    changeWorkExperienceHandler = (event) => {
+        this.setState({workexperience: event.target.value});
     }
     changeHobbiesHandler = (event) => {
         this.setState({hobbies: event.target.value});
@@ -91,25 +91,30 @@ class UserProfileComponent extends Component {
         console.log(activeUser.id);
         let updatedUser = {
             id:idd,
-            username:this.state.username,
+            userName:this.state.username,
             password:this.state.password,
-            firstname:this.state.firstname,
-            lastname:this.state.lastname,
+            firstName:this.state.firstname,
+            lastName:this.state.lastname,
             email:this.state.email,
-            phone:this.state.phone,
-            dateofbirth:this.state.dateofbirth,
+            phoneNumber:this.state.phonenumber,
+            dateOfBirth:this.state.dateofbirth,
             biography:this.state.biography,
-            workexperiance:this.state.workexperiance,
+            workExperience:this.state.workexperience,
             hobbies:this.state.hobbies,
             publicity:this.state.publicity
         };
 
 
         console.log('updatedUser => ' + JSON.stringify(updatedUser));
-        axios.put("http://localhost:8081/user/"+ activeUser.id,updatedUser)
+        axios.put("http://localhost:8081/user/"+ activeUser.id,updatedUser).then(response => {
+                localStorage.setItem('activeUser', JSON.stringify(response.data))
+                
+            });
         /*.then(res=> {
             this.props.history.push('/userprofile')
         }); */
+
+
         
     }
     componentDidMount() {
@@ -117,16 +122,16 @@ class UserProfileComponent extends Component {
         let activeUser = JSON.parse(localStorage.getItem('activeUser'))
         this.setState({
             id: activeUser.id,
-            userName: activeUser.userName,
+            username: activeUser.userName,
             password: activeUser.password,
-            firstName: activeUser.firstName,
-            lastName: activeUser.lastName,
+            firstname: activeUser.firstName,
+            lastname: activeUser.lastName,
             email: activeUser.email,
-            phoneNumber: activeUser.phoneNumber,
+            phonenumber: activeUser.phoneNumber,
             gender: activeUser.gender,
-            dateOfBirth: activeUser.dateOfBirth,
+            dateofbirth: activeUser.dateOfBirth,
             biography: activeUser.biography,
-            workExperiance: activeUser.workExperiance,
+            workexperience: activeUser.workExperience,
             hobbies: activeUser.hobbies,
             publicity: activeUser.publicity
 
@@ -160,8 +165,8 @@ class UserProfileComponent extends Component {
                                 <input type="date" name="dateofbirth" className="form-control" value={this.state.dateofbirth} onChange={this.changeDateOfBirthHandler} />
                                 <label> Biography: </label>
                                 <input name="biography" className="form-control" value={this.state.biography} onChange={this.changeBiographyHandler} />
-                                <label> Work experiance: </label>
-                                <input name="workexperiance" className="form-control" value={this.state.workexperiance} onChange={this.changeWorkExperianceHandler} />
+                                <label> Work experience: </label>
+                                <input name="workexperience" className="form-control" value={this.state.workexperience} onChange={this.changeWorkExperienceHandler} />
                                 <label> Hobbies: </label>
                                 <input name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler} />
                                 <label> Publicity: </label>

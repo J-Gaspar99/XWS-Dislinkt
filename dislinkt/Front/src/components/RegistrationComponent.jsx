@@ -16,7 +16,7 @@ class RegistrationComponent extends Component {
             gender:'',
             dateofbirth: '',
             biography:'',
-            workexperiance:'',
+            workexperience:'',
             hobbies:'',
             publicity:''
             
@@ -31,7 +31,7 @@ class RegistrationComponent extends Component {
         this.changeGenderHandler = this.changeGenderHandler.bind(this);
         this.changeDateOfBirthHandler = this.changeDateOfBirthHandler.bind(this);
         this.changeBiographyHandler = this.changeBiographyHandler.bind(this);
-        this.changeWorkExperianceHandler = this.changeWorkExperianceHandler.bind(this);
+        this.changeWorkExperienceHandler = this.changeWorkExperienceHandler.bind(this);
         this.changeHobbiesHandler = this.changeHobbiesHandler.bind(this);
         this.changePublicityHandler = this.changePublicityHandler.bind(this);
 
@@ -48,11 +48,11 @@ class RegistrationComponent extends Component {
             firstName:this.state.firstname,
             lastName:this.state.lastname,
             email: this.state.email,
-            phonenumber:this.state.phonenumber,
+            phoneNumber:this.state.phonenumber,
             gender:this.state.gender,
             dateOfBirth:this.state. dateofbirth,
             biography:this.state.biography,
-            workExperiance:this.state.workexperiance,
+            workExperience:this.state.workexperience,
             hobbies:this.state.hobbies,
             publicity:this.state.publicity
         };
@@ -105,8 +105,8 @@ class RegistrationComponent extends Component {
     changeBiographyHandler = (event) => {
         this.setState({biography: event.target.value});
     }
-    changeWorkExperianceHandler = (event) => {
-        this.setState({workexperiance: event.target.value});
+    changeWorkExperienceHandler = (event) => {
+        this.setState({workexperience: event.target.value});
     }
     changeHobbiesHandler = (event) => {
         this.setState({hobbies: event.target.value});
@@ -133,6 +133,8 @@ class RegistrationComponent extends Component {
                                 <input  name="firstname" className="form-control" value={this.state.firstname} onChange={this.changeFirstNameHandler}/>
                                 <label> Last name: </label>
                                 <input  name="lastname" className="form-control" value={this.state.lastname} onChange={this.changeLastNameHandler}/>
+                                <label> Gender: </label>
+                                <input  name="gender" className="form-control" value={this.state.gender} onChange={this.changeGenderHandler}/>
                                 <label> Email: </label>
                                 <input  name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler}/>
                                 <label> Phone number: </label>
@@ -141,8 +143,8 @@ class RegistrationComponent extends Component {
                                 <input type="date"  name="dateofbirth" className="form-control" value={this.state.dateofbirth} onChange={this.changeDateOfBirthHandler}/>
                                 <label> Biography: </label>
                                 <input  name="biography" className="form-control" value={this.state.biography} onChange={this.changeBiographyHandler}/>   
-                                <label> Work experiance: </label>
-                                <input  name="workexperiance" className="form-control" value={this.state.workexperiance} onChange={this.changeWorkExperianceHandler}/> 
+                                <label> Work experience: </label>
+                                <input  name="workexperience" className="form-control" value={this.state.workexperience} onChange={this.changeWorkExperienceHandler}/> 
                                 <label> Hobbies: </label>
                                 <input  name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler}/>
                                 <label> Publicity: </label>
