@@ -46,7 +46,7 @@ class LoginComponent extends Component {
 
     componentDidMount() {
         localStorage.clear();
-
+        localStorage.clear();
     }
 
     render() {

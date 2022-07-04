@@ -17,8 +17,10 @@ class UserPostComponent extends Component {
    }
 
     componentDidMount(){
-        let activeUser =  JSON.parse(localStorage.getItem('activeUser'))
+        let activeUser =  JSON.parse(localStorage.getItem('activeUser'));
+        
         axios.get("http://localhost:8080/post/ownerid/" + activeUser.id).then((res) => {
+            
             this.setState({ posts: res.data });
             }); 
 

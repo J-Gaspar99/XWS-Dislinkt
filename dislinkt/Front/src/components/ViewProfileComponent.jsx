@@ -26,7 +26,7 @@ class ViewProfileComponent extends Component {
         this.seeposts = this.seeposts.bind(this);
     }
     seeposts(){
-        this.props.history.push('/viewposts');   
+        this.props.history.push('/loggedviewposts');   
     }
 
     componentDidMount(){

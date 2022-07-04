@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import background from './images/back.jpg';
 
 import HeaderComponent from './components/HeaderComponent';
-import HomePageCommponent from './components/HomePageCommponent';
+import HomePageComponent from './components/HomePageComponent';
 import RegistrationComponent from './components/RegistrationComponent';
 import LoginComponent from './components/LoginComponent';
 import ProfilesComponent from './components/ProfilesComponent';
@@ -12,6 +12,7 @@ import ViewPostsComponent from './components/ViewPostsComponent';
 import UserProfileComponent from './components/UserProfileComponent';
 import UserPostsComponent from './components/UserPostsComponent';
 import CreatePostComponent from './components/CreatePostComponent';
+//import LoggedViewPostsComponent from './components/LoggedViewPostsComponent';
 
 
 
@@ -51,12 +52,12 @@ function App() {
           <div className="container">
             <Switch> 
         
-            <Route path = "/" exact component={HomePageCommponent}></Route>
+            <Route path = "/" exact component={HomePageComponent}></Route>
               <Route path = "/login" exact component={LoginComponent}></Route>
               <Route path = "/register" component={RegistrationComponent}></Route>
       
               <Route path = "/login" component={LoginComponent}></Route>
-              <Route path = "/homepage" component={HomePageCommponent} ></Route>
+              <Route path = "/homepage" component={HomePageComponent} ></Route>
               <Route path = "/profiles" component={ProfilesComponent} ></Route>
               <Route path = "/viewprofile" component={ViewProfileComponent} ></Route>
               <Route path = "/viewposts" component={ViewPostsComponent} ></Route>
@@ -64,7 +65,7 @@ function App() {
               <Route path = "/userposts" component={UserPostsComponent} ></Route>
               <Route path = "/loggedprofiles" component={LoggedProfileComponent} ></Route>
               <Route path = "/createpost" component={CreatePostComponent} ></Route>
-
+              
 
 
 
