@@ -63,7 +63,8 @@ function App() {
               <Route path = "/userprofile" component={UserProfileComponent} ></Route>
               <Route path = "/userposts" component={UserPostsComponent} ></Route>
               <Route path = "/loggedprofile" component={LoggedProfileComponent} ></Route>
-              
+              <Route path = "/createpost" component={CreatePostComponent} ></Route>
+
 
 
 
