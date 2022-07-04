@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 
-class HomePageCommponent extends Component {
+class HomePageComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -48,4 +48,4 @@ class HomePageCommponent extends Component {
     }
 }
 
-export default HomePageCommponent
+export default HomePageComponent
