@@ -49,10 +49,10 @@ class LoggedProfileComponent extends Component {
     follow(id){
         let activeUser = JSON.parse(localStorage.getItem('activeUser'));
 
-        axios.get("http://localhost:8081/follows/followerandfollowing/"+activeUser.id+"/"+id).then(res => {             //IF Follow doesnt exists
+        axios.get("http://localhost:8082/follows/followerandfollowing/"+activeUser.id+"/"+id).then(res => {             //IF Follow doesnt exists
             if (res.data.id == null)
             {
-                axios.get("http://localhost:8081/followrequest/followerandfollowing/"+activeUser.id+"/"+id).then(res2 => {  //IF FollowRequest doesnt exists
+                axios.get("http://localhost:8083/followrequest/followerandfollowing/"+activeUser.id+"/"+id).then(res2 => {  //IF FollowRequest doesnt exists
                     if(res2.data.id == null){
 
 
@@ -67,12 +67,12 @@ class LoggedProfileComponent extends Component {
 
                             if(response.data.publicity == 1){   //PUBLIC
 
-                                axios.post("http://localhost:8081/follows",follow)
+                                axios.post("http://localhost:8082/follows",follow)
                                 alert("Follow successful")
                                
                             }
                             else{                               //PRIVATE
-                                axios.post("http://localhost:8081/followrequest",follow)
+                                axios.post("http://localhost:8083/followrequest",follow)
                                 alert("Follow request sent")
 
                             };

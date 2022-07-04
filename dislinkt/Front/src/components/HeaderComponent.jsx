@@ -23,7 +23,7 @@ class HeaderComponent extends Component {
                             <Nav className="me-auto">
                                 <Nav.Link style={navLinkStyle} href="/userprofile" >My profile </Nav.Link> 
                                 <Nav.Link style={navLinkStyle} href="/userposts" >My posts </Nav.Link>                               
-                                <Nav.Link style={navLinkStyle} href="/profiles" >Profiles </Nav.Link>
+                                <Nav.Link style={navLinkStyle} href="/loggedprofiles" >Profiles </Nav.Link>
                                 
                             </Nav>
 

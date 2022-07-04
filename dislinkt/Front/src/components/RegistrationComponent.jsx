@@ -148,7 +148,7 @@ class RegistrationComponent extends Component {
                                 <label> Publicity: </label>
                                 <input  name="publicity" className="form-control" value={this.state.publicity} onChange={this.changePublicityHandler}/>
                                 
-                                <div className="center"><button className="loginbtn" onClick={()=>this.register}>Register</button></div>
+                                <div className="center"><button className="loginbtn" onClick={()=>this.register()}>Register</button></div>
                             </div>
                         </form>
                             
