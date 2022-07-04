@@ -63,15 +63,22 @@ public class FollowsController {
 
     //get by Follower
     @GetMapping("/follows/follower/{follower}")
-    public Follows getFollowByFollowerId(@PathVariable("follower") Integer follower){
+    public List <Follows> getFollowByFollowerId(@PathVariable("follower") Integer follower){
         return followsRepository.findByFollowerId(follower);
 
     }
 
     //get by Following
     @GetMapping("/follows/following/{following}")
-    public Follows getFollowByFollowingId(@PathVariable("following") Integer following){
+    public List <Follows> getFollowByFollowingId(@PathVariable("following") Integer following){
         return followsRepository.findByFollowingId(following);
+
+    }
+
+    //get by FollowerAndFollowing
+    @GetMapping("/follows/followerandfollowing/{follower}/{following}")
+    public Follows getFollowByFollowerIdAndFollowingId(@PathVariable("follower") Integer follower,@PathVariable("following") Integer following){
+        return followsRepository.findByFollowerIdAndFollowingId(follower,following);
 
     }
 

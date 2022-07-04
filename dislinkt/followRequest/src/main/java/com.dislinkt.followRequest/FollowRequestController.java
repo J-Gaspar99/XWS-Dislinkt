@@ -19,7 +19,7 @@ public class FollowRequestController {
     private SequencerService seqService;
 
     //CREATE
-    @PostMapping("/followRequest")
+    @PostMapping("/followrequest")
     public String createFollowRequest(@RequestBody FollowRequest followRequest){
         followRequest.setId(seqService.getSeq("followrequests_sequence"));
         followRequestRepository.save(followRequest);
@@ -27,19 +27,19 @@ public class FollowRequestController {
     }
 
     //FIND ALL
-    @GetMapping("/followRequest")
+    @GetMapping("/followrequest")
     public List<FollowRequest> getFollowRequest(){
         return followRequestRepository.findAll();
     }
 
     //FIND BY ID
-    @GetMapping("/followRequest/{id}")
+    @GetMapping("/followrequest/{id}")
     public Optional<FollowRequest> getFollowRequest(@PathVariable int id){
         return followRequestRepository.findById(id);
     }
 
     //DELETE
-    @DeleteMapping("/followRequest/{id}")
+    @DeleteMapping("/followrequest/{id}")
     public String deleteFollowRequest(@PathVariable int id){
         followRequestRepository.deleteById(id);
         return "Deleted followRequest with id: " + id;
@@ -47,7 +47,7 @@ public class FollowRequestController {
 
 
     //UPDATE
-    @PutMapping("/followRequest/{id}")
+    @PutMapping("/followrequest/{id}")
     public ResponseEntity<FollowRequest> updateFollowRequest(@PathVariable Integer id, @RequestBody FollowRequest followRequestDetails){
         FollowRequest followRequest = followRequestRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("FollowRequest does not exist with id:"+ id));
 
@@ -60,16 +60,23 @@ public class FollowRequestController {
     }
 
     //get by Follower
-    @GetMapping("/followRequest/follower/{follower}")
-    public FollowRequest getFollowByFollowerId(@PathVariable("follower") Integer follower){
+    @GetMapping("/followrequest/follower/{follower}")
+    public List <FollowRequest> getFollowByFollowerId(@PathVariable("follower") Integer follower){
         return followRequestRepository.findByFollowerId(follower);
 
     }
 
     //get by Following
-    @GetMapping("/followRequest/following/{following}")
-    public FollowRequest getFollowByFollowingId(@PathVariable("following") Integer following){
+    @GetMapping("/followrequest/following/{following}")
+    public List <FollowRequest> getFollowByFollowingId(@PathVariable("following") Integer following){
         return followRequestRepository.findByFollowingId(following);
+
+    }
+
+    //get by FollowerAndFollowing
+    @GetMapping("/followrequest/followerandfollowing/{follower}/{following}")
+    public FollowRequest getFollowByFollowerIdAndFollowingId(@PathVariable("follower") Integer follower,@PathVariable("following") Integer following){
+        return followRequestRepository.findByFollowerIdAndFollowingId(follower,following);
 
     }
 

@@ -16,6 +16,7 @@ import CreatePostComponent from './components/CreatePostComponent';
 
 
 import Unautentifieduserheader from './components/UnautentifiedUserHeader';
+import LoggedProfileComponent from './components/LoggedProfileComponent';
 
 const backStyle = {
   width: '100%',
@@ -61,6 +62,7 @@ function App() {
               <Route path = "/viewposts" component={ViewPostsComponent} ></Route>
               <Route path = "/userprofile" component={UserProfileComponent} ></Route>
               <Route path = "/userposts" component={UserPostsComponent} ></Route>
+              <Route path = "/loggedprofile" component={LoggedProfileComponent} ></Route>
               
 
 
