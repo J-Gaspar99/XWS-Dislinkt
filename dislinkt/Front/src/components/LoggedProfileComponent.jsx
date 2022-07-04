@@ -19,7 +19,7 @@ class LoggedProfileComponent extends Component {
       
         axios.get("http://localhost:8081/user/" + id).then(response => {
             localStorage.setItem('activeProfile', JSON.stringify(response.data));
-        })
+        });
 
         let activeProfile = JSON.parse(localStorage.getItem('activeProfile'));
         console.log (activeProfile);

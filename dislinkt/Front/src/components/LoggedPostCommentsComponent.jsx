@@ -50,7 +50,7 @@ class LoggedPostCommentsComponent extends Component {
 
                 <div> <br/><br/><br/><br/><br/><br/><br/><br/>
                 <input style={{position:'absolute',top:'154px'}} name="name" value={this.state.text} onChange={this.changeTextHandler}></input>
-                <button style={{position:'absolute',top:'150px',left:'440px'}} onClick={() => this.createComment(activePost.id)} className="loginbtn">Comment</button>
+                <button style={{position:'absolute',top:'150px',left:'440px'}} onClick={() => this.createComment()} className="loginbtn">Comment</button>
                 
                     <h2 className="text-center">Comments</h2>
 

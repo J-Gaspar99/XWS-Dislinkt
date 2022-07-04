@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 
 
-class LoggedViewPostComponent extends Component {
+class LoggedViewPostsComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -16,6 +16,7 @@ class LoggedViewPostComponent extends Component {
     like(id) {
         let activeUser = JSON.parse(localStorage.getItem('activeUser'));
         axios.get("http://localhost:8080/post/" + id).then(response => {
+            console.log(response.data);
 
 
 
@@ -32,7 +33,7 @@ class LoggedViewPostComponent extends Component {
                             let updatedPost = {
                                 id:response.data.id,
                                 text: response.data.text,
-                                likes:response.data.likes + 1,
+                                likes:response.data.likes +1,
                                 dislikes:response.data.dislikes,
                                 comments:response.data.comments,
                                 ownerId:response.data.ownerId
@@ -41,7 +42,7 @@ class LoggedViewPostComponent extends Component {
 
                             axios.put("http://localhost:8080/post"+id,updatedPost);
                             axios.post("http://localhost:8084/like", like);
-                            alert("Liked")
+                            alert("Liked");
 
 
                         }
@@ -209,4 +210,4 @@ class LoggedViewPostComponent extends Component {
     }
 }
 
-export default LoggedViewPostComponent;
+export default LoggedViewPostsComponent;
