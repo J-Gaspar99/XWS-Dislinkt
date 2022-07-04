@@ -48,7 +48,7 @@ class RegistrationComponent extends Component {
             firstName:this.state.firstname,
             lastName:this.state.lastname,
             email: this.state.email,
-            phoneNumber:this.state.phonenumber,
+            phonenumber:this.state.phonenumber,
             gender:this.state.gender,
             dateOfBirth:this.state. dateofbirth,
             biography:this.state.biography,
@@ -148,7 +148,7 @@ class RegistrationComponent extends Component {
                                 <label> Publicity: </label>
                                 <input  name="publicity" className="form-control" value={this.state.publicity} onChange={this.changePublicityHandler}/>
                                 
-                                <div className="center"><button className="loginbtn" onClick={this.register}>Register</button></div>
+                                <div className="center"><button className="loginbtn" onClick={()=>this.register}>Register</button></div>
                             </div>
                         </form>
                             

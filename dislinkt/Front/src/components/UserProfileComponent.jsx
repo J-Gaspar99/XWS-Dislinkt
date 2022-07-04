@@ -6,18 +6,18 @@ class UserProfileComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: this.props.match.params.id,
-            userName: '',
+            id:this.props.match.params.id,
+            username: '',
             password: '',
 
-            firstName: '',
-            lastName: '',
+            firstname: '',
+            lastname: '',
             email: '',
-            phoneNumber: '',
+            phone: '',
             gender: '',
-            dateOfBirth: '',
+            dateofbirth: '',
             biography: '',
-            workExperiance: '',
+            workexperiance: '',
             hobbies: '',
             publicity: ''
 
@@ -36,76 +36,80 @@ class UserProfileComponent extends Component {
         this.changeHobbiesHandler = this.changeHobbiesHandler.bind(this);
         this.changePublicityHandler = this.changePublicityHandler.bind(this);
 
-
+        this.update = this.update.bind(this);
 
     }
 
     changeUserNameHandler = (event) => {
-        this.setState({ userName: event.target.value });
+        this.setState({username: event.target.value});
     }
     changePasswordHandler = (event) => {
-        this.setState({ password: event.target.value });
+        this.setState({password: event.target.value});
     }
 
-
+    
 
     changeFirstNameHandler = (event) => {
-        this.setState({ firstName: event.target.value });
+        this.setState({firstname: event.target.value});
     }
     changeLastNameHandler = (event) => {
-        this.setState({ lastName: event.target.value });
+        this.setState({lastname: event.target.value});
     }
 
-
+    changeAdressHandler = (event) => {
+        this.setState({adress: event.target.value});
+    }
     changeEmailHandler = (event) => {
-        this.setState({ email: event.target.value });
+        this.setState({email: event.target.value});
     }
     changePhoneNumberHandler = (event) => {
-        this.setState({ phoneNumber: event.target.value });
+        this.setState({phonenumber: event.target.value});
     }
     changeGenderHandler = (event) => {
-        this.setState({ gender: event.target.value });
+        this.setState({gender: event.target.value});
     }
 
     changeDateOfBirthHandler = (event) => {
-        this.setState({ dateOfBirth: event.target.value });
+        this.setState({dateofbirth: event.target.value});
     }
     changeBiographyHandler = (event) => {
-        this.setState({ biography: event.target.value });
+        this.setState({biography: event.target.value});
     }
     changeWorkExperianceHandler = (event) => {
-        this.setState({ workExperiance: event.target.value });
+        this.setState({workexperiance: event.target.value});
     }
     changeHobbiesHandler = (event) => {
-        this.setState({ hobbies: event.target.value });
+        this.setState({hobbies: event.target.value});
     }
     changePublicityHandler = (event) => {
-        this.setState({ publicity: event.target.value });
+        this.setState({publicity: event.target.value});
     }
-    update() {
+    update(idd) {
 
+        
+        let activeUser =  JSON.parse(localStorage.getItem('activeUser'))
+        console.log(activeUser.id);
         let updatedUser = {
-            userName:this.state.userName,
+            id:idd,
+            username:this.state.username,
             password:this.state.password,
-            firstName:this.state.firstName,
-            lastName:this.state.lastName,
+            firstname:this.state.firstname,
+            lastname:this.state.lastname,
             email:this.state.email,
-            phoneNumber:this.state.phoneNumber,
-            dateOfBirth:this.state.dateOfBirth,
+            phone:this.state.phone,
+            dateofbirth:this.state.dateofbirth,
             biography:this.state.biography,
-            workExperiance:this.state.workExperiance,
+            workexperiance:this.state.workexperiance,
             hobbies:this.state.hobbies,
             publicity:this.state.publicity
         };
 
-        let uuid = this.state.id;
-        
-        
 
         console.log('updatedUser => ' + JSON.stringify(updatedUser));
-        axios.put("http://localhost:8081/user/"+ uuid ,updatedUser).then(res=> {
+        axios.put("http://localhost:8081/user/"+ activeUser.id,updatedUser)
+        /*.then(res=> {
             this.props.history.push('/userprofile')
-        }); 
+        }); */
         
     }
     componentDidMount() {
@@ -140,30 +144,30 @@ class UserProfileComponent extends Component {
                         <form>
                             <div className="form-group">
                                 <label> Username: </label>
-                                <input name="username" className="form-control" value={this.state.userName} onChange={this.changeUserNameHandler} />
+                                <input name="username" className="form-control" value={this.state.username} onChange={this.changeUserNameHandler} />
                                 <label> Password: </label>
                                 <input name="password" className="form-control" value={this.state.password} onChange={this.changePasswordHandler} />
 
                                 <label> First name: </label>
-                                <input name="firstname" className="form-control" value={this.state.firstName} onChange={this.changeFirstNameHandler} />
+                                <input name="firstname" className="form-control" value={this.state.firstname} onChange={this.changeFirstNameHandler} />
                                 <label> Last name: </label>
-                                <input name="lastname" className="form-control" value={this.state.lastName} onChange={this.changeLastNameHandler} />
+                                <input name="lastname" className="form-control" value={this.state.lastname} onChange={this.changeLastNameHandler} />
                                 <label> Email: </label>
                                 <input name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} />
                                 <label> Phone number: </label>
-                                <input name="phonenumber" className="form-control" value={this.state.phoneNumber} onChange={this.changePhoneNumberHandler} />
+                                <input name="phonenumber" className="form-control" value={this.state.phonenumber} onChange={this.changePhoneNumberHandler} />
                                 <label> Date of birth: </label>
-                                <input type="date" name="dateofbirth" className="form-control" value={this.state.dateOfBirth} onChange={this.changeDateOfBirthHandler} />
+                                <input type="date" name="dateofbirth" className="form-control" value={this.state.dateofbirth} onChange={this.changeDateOfBirthHandler} />
                                 <label> Biography: </label>
                                 <input name="biography" className="form-control" value={this.state.biography} onChange={this.changeBiographyHandler} />
                                 <label> Work experiance: </label>
-                                <input name="workexperiance" className="form-control" value={this.state.workExperiance} onChange={this.changeWorkExperianceHandler} />
+                                <input name="workexperiance" className="form-control" value={this.state.workexperiance} onChange={this.changeWorkExperianceHandler} />
                                 <label> Hobbies: </label>
                                 <input name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler} />
                                 <label> Publicity: </label>
                                 <input name="publicity" className="form-control" value={this.state.publicity} onChange={this.changePublicityHandler} />
 
-                                <div className="center"><button className="loginbtn" onClick={this.update()}>Update</button></div>
+                                <div className="center"><button className="loginbtn" onClick={()=>this.update(this.state.id)}>Update</button></div>
                             </div>
                         </form>
 
