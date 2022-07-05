@@ -40,7 +40,7 @@ class LoggedViewPostsComponent extends Component {
                             };
 
 
-                            axios.put("http://localhost:8080/post"+id,updatedPost);
+                            axios.put("http://localhost:8080/post/"+id,updatedPost);
                             axios.post("http://localhost:8084/like", like);
                             alert("Liked");
 
@@ -62,7 +62,7 @@ class LoggedViewPostsComponent extends Component {
                             };
 
 
-                            axios.put("http://localhost:8080/post"+id,updatedPost);
+                            axios.put("http://localhost:8080/post/"+id,updatedPost);
                             axios.delete("http://localhost:8085/dislike/" + res2.data.id);
                             axios.post("http://localhost:8084/like", like);
                             alert("Liked")
@@ -90,21 +90,22 @@ class LoggedViewPostsComponent extends Component {
                             ownerId: activeUser.id,
                             postId: id
                         };
+                       // let dis = response.data.dislikes + 1;
                         let updatedPost = {
                             id:response.data.id,
                             text: response.data.text,
                             likes:response.data.likes ,
-                            dislikes:response.data.dislikes +1,
+                            dislikes:response.data.dislikes + 1,
                             comments:response.data.comments,
                             ownerId:response.data.ownerId
                         };
+                            console.log(updatedPost);
+
+                        axios.put("http://localhost:8080/post/"+id,updatedPost);
 
 
-                        axios.put("http://localhost:8080/post"+id,updatedPost);
 
-
-
-                        axios.post("http://localhost:8085/dislike", dislike);
+                        axios.post("http://localhost:8085/dislike/", dislike);
                         alert("Disliked")
 
 
@@ -115,17 +116,18 @@ class LoggedViewPostsComponent extends Component {
                             ownerId: activeUser.id,
                             postId: id
                         };
+                        let dis = response.data.dislikes + 1;
                         let updatedPost = {
                             id:response.data.id,
                             text: response.data.text,
                             likes:response.data.likes - 1,
-                            dislikes:response.data.dislikes +1,
+                            dislikes:dis,
                             comments:response.data.comments,
                             ownerId:response.data.ownerId
                         };
+                        console.log(updatedPost);
 
-
-                        axios.put("http://localhost:8080/post"+id,updatedPost);
+                        axios.put("http://localhost:8080/post/"+id,updatedPost);
                         axios.delete("http://localhost:8084/like/" + res2.data.id);
                         axios.post("http://localhost:8085/dislike", dislike);
                         alert("Disliked")

@@ -65,6 +65,12 @@ class CreatePostComponent extends Component {
                                 <div className="center"><button className="loginbtn" onClick={()=>this.createPost()}>Create</button></div>
                             </div>
                         </form>
+                        <h1>Upload new Photo</h1>
+                        <form method="POST" action="http://localhost:8087/photos/add" encType="multipart/form-data">
+                            Title:<input type="text" name="title" />
+                            Image:<input type="file" name="image" accept="image/*" />
+                        <input type="submit" value="Upload" />
+</form>
                             
                     </div>
                    

@@ -20,12 +20,13 @@ class LoggedPostCommentsComponent extends Component {
         this.setState({ text: event.target.value });
         
     }
-    createComment(postid) {
+    createComment() {
         let activeUser =  JSON.parse(localStorage.getItem('activeUser'));
+        let activePost =  JSON.parse(localStorage.getItem('activePost'));
         let newComment = {
             id:this.state.id,
             ownerId :activeUser.id,
-            postId: postid,
+            postId: activePost.id,
             text: this.state.text
 
         }
@@ -68,6 +69,7 @@ class LoggedPostCommentsComponent extends Component {
                                     this.state.comments.map(
                                         comments =>
                                         <tr key= {comments.id}>
+                                        
                                             <td>{comments.text}</td>
                                             
                                         </tr>
