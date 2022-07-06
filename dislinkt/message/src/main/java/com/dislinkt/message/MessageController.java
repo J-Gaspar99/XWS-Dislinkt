@@ -11,9 +11,7 @@ import java.util.Optional;
 
 
 @RestController
-@CrossOrigin(
-        origins = {"http://localhost:3000"}
-)
+@CrossOrigin(origins = "http://localhost:3000")
 public class MessageController {
 
     @Autowired
@@ -63,6 +61,7 @@ public class MessageController {
         message.setReceiverUserName(messageDetails.getReceiverUserName());
         message.setText(messageDetails.getText());
         message.setTime(messageDetails.getTime());
+        message.setChatId(messageDetails.getChatId());
 
 
 
@@ -73,13 +72,17 @@ public class MessageController {
 
 
 
-    //get by publicity
+    //get by senderid and receiverid
     @GetMapping("/message/senderId/receiverId/{senderId}/{receiverId}")
-    public List<Message> getAllUsersByPublicity(@PathVariable("senderId") Integer senderId,@PathVariable("receiverId") Integer receiverId)
+    public List<Message> getAllUsersBySenderIdAndReceiverId(@PathVariable("senderId") Integer senderId,@PathVariable("receiverId") Integer receiverId)
     {return messageRepository.findBySenderIdAndReceiverId(senderId,receiverId);
     }
 
-
+    //get by chatter
+    @GetMapping("/message/chatId/{chatId}")
+    public List<Message> getAllUsersByChatter(@PathVariable("chatId") Integer chatId)
+    {return messageRepository.findByChatId(chatId);
+    }
 
 
 

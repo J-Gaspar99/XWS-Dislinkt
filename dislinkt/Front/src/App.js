@@ -17,6 +17,7 @@ import LoggedProfileComponent from './components/LoggedProfileComponent';
 import LoggedViewPostsComponent from './components/LoggedViewPostsComponent';
 import LoggedPostCommentsComponent from './components/LoggedPostCommentsComponent';
 import MyFriendsComponent from './components/MyFriendsComponent';
+import ChatComponent from './components/ChatComponent';
 
 
 
@@ -69,6 +70,7 @@ function App() {
               <Route path = "/loggedviewposts" component={LoggedViewPostsComponent} ></Route>
               <Route path = "/loggedpostcomments" component={LoggedPostCommentsComponent} ></Route>
               <Route path = "/myfriends" component={MyFriendsComponent} ></Route>
+              <Route path = "/chat" component={ChatComponent} ></Route>
 
 
 

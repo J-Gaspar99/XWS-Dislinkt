@@ -18,20 +18,14 @@ class MyFriendsComponent extends Component {
         
     }
     viewChat(id){
-      
-        axios.get("http://localhost:8081/user/" + id).then(response => {
-            localStorage.setItem('activeProfile', JSON.stringify(response.data));
-        })
+        //setovanenje acticeFriend-a i otvaranje stranice chat
+        axios.get("http://localhost:8081/user/" +id).then(response => {
+            localStorage.setItem('activeFriend', JSON.stringify(response.data))
+            this.props.history.push('/chat')
+        });
+        
 
-        let activeProfile = JSON.parse(localStorage.getItem('activeProfile'));
-        console.log (activeProfile);
-        if (activeProfile.publicity==1){
-            this.props.history.push('/viewprofile');
-        } 
-        else {
-            alert("Profile that you trying to view is private. Please login and follow the profile if you still want to view it.")
-        }
-
+        
 
     }
  
@@ -99,7 +93,7 @@ class MyFriendsComponent extends Component {
                                             
                                            
                                             <td>
-                                                <button style={{marginLeft:"10px"}} onClick={()=>this.view(friends.id)} className="loginbtn">Chat</button>
+                                                <button style={{marginLeft:"10px"}} onClick={()=>this.viewChat(friends.followingId)} className="loginbtn">Chat</button>
                                                 
                                             </td>
                                         </tr>
