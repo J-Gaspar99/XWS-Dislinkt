@@ -73,6 +73,11 @@ public class MessageController {
 
 
 
+    //get by publicity
+    @GetMapping("/message/senderId/receiverId/{senderId}/{receiverId}")
+    public List<Message> getAllUsersByPublicity(@PathVariable("senderId") Integer senderId,@PathVariable("receiverId") Integer receiverId)
+    {return messageRepository.findBySenderIdAndReceiverId(senderId,receiverId);
+    }
 
 
 
