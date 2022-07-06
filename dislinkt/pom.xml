@@ -19,6 +19,7 @@
       <module>Comment</module>
 
       <module>photo</module>
+      <module>message</module>
   </modules>
 
   <name>dislinkt</name>
