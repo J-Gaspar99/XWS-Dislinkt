@@ -19,7 +19,8 @@ class UserProfileComponent extends Component {
             biography: '',
             workexperience: '',
             hobbies: '',
-            publicity: ''
+            publicity: '',
+            
 
         }
         this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
@@ -35,6 +36,7 @@ class UserProfileComponent extends Component {
         this.changeWorkExperienceHandler = this.changeWorkExperienceHandler.bind(this);
         this.changeHobbiesHandler = this.changeHobbiesHandler.bind(this);
         this.changePublicityHandler = this.changePublicityHandler.bind(this);
+        
 
         this.update = this.update.bind(this);
 
@@ -83,7 +85,9 @@ class UserProfileComponent extends Component {
     }
     changePublicityHandler = (event) => {
         this.setState({publicity: event.target.value});
-    }
+        }
+
+       
     update(idd) {
 
         
@@ -117,27 +121,33 @@ class UserProfileComponent extends Component {
 
         
     }
+
+    
+    
+
     componentDidMount() {
 
+        
         let activeUser = JSON.parse(localStorage.getItem('activeUser'))
         this.setState({
-            id: activeUser.id,
-            username: activeUser.userName,
-            password: activeUser.password,
-            firstname: activeUser.firstName,
-            lastname: activeUser.lastName,
-            email: activeUser.email,
-            phonenumber: activeUser.phoneNumber,
-            gender: activeUser.gender,
-            dateofbirth: activeUser.dateOfBirth,
-            biography: activeUser.biography,
-            workexperience: activeUser.workExperience,
-            hobbies: activeUser.hobbies,
-            publicity: activeUser.publicity
+        id: activeUser.id,
+        username: activeUser.userName,
+        password: activeUser.password,
+        firstname: activeUser.firstName,
+        lastname: activeUser.lastName,
+        email: activeUser.email,
+        phonenumber: activeUser.phoneNumber,
+        gender: activeUser.gender,
+        dateofbirth: activeUser.dateOfBirth,
+        biography: activeUser.biography,
+        workexperience: activeUser.workExperience,
+        hobbies: activeUser.hobbies,
+        publicity: activeUser.publicity
 
-        });
+    });
 
     }
+
     render() {
         return (
             <div>
@@ -171,6 +181,7 @@ class UserProfileComponent extends Component {
                                 <input name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler} />
                                 <label> Publicity: </label>
                                 <input name="publicity" className="form-control" value={this.state.publicity} onChange={this.changePublicityHandler} />
+                                
 
                                 <div className="center"><button className="loginbtn" onClick={()=>this.update(this.state.id)}>Update</button></div>
                             </div>

@@ -17,6 +17,8 @@ import LoggedProfileComponent from './components/LoggedProfileComponent';
 import LoggedViewPostsComponent from './components/LoggedViewPostsComponent';
 import LoggedPostCommentsComponent from './components/LoggedPostCommentsComponent';
 
+
+
 const backStyle = {
   width: '100%',
   height: '938px',
