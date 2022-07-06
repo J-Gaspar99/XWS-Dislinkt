@@ -108,15 +108,19 @@ class UserProfileComponent extends Component {
             publicity:this.state.publicity
         };
 
+        axios.get("http://localhost:8081/user/username/" + updatedUser.userName).then(response1 => {
+        
+        if(response1.data.id == null){
 
-        console.log('updatedUser => ' + JSON.stringify(updatedUser));
-        axios.put("http://localhost:8081/user/"+ activeUser.id,updatedUser).then(response => {
-                localStorage.setItem('activeUser', JSON.stringify(response.data))
+            console.log('updatedUser => ' + JSON.stringify(updatedUser));
+
+            axios.put("http://localhost:8081/user/"+ activeUser.id,updatedUser).then(response => {
+                    localStorage.setItem('activeUser', JSON.stringify(response.data));
+                    
                 
-            });
-        /*.then(res=> {
-            this.props.history.push('/userprofile')
-        }); */
+            }); }
+            else{alert("Username already in use")}
+        });
 
 
         

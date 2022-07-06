@@ -22,6 +22,7 @@ class UserPostComponent extends Component {
         axios.get("http://localhost:8080/post/ownerid/" + activeUser.id).then((res) => {
             
             this.setState({ posts: res.data });
+            console.log(this.state.posts);
             }); 
 
     }

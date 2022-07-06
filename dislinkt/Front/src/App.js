@@ -16,6 +16,7 @@ import Unautentifieduserheader from './components/UnautentifiedUserHeader';
 import LoggedProfileComponent from './components/LoggedProfileComponent';
 import LoggedViewPostsComponent from './components/LoggedViewPostsComponent';
 import LoggedPostCommentsComponent from './components/LoggedPostCommentsComponent';
+import MyFriendsComponent from './components/MyFriendsComponent';
 
 
 
@@ -67,7 +68,7 @@ function App() {
               <Route path = "/createpost" component={CreatePostComponent} ></Route>
               <Route path = "/loggedviewposts" component={LoggedViewPostsComponent} ></Route>
               <Route path = "/loggedpostcomments" component={LoggedPostCommentsComponent} ></Route>
-
+              <Route path = "/myfriends" component={MyFriendsComponent} ></Route>
 
 
 
