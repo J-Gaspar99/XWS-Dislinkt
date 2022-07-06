@@ -20,5 +20,7 @@ public class FollowRequest {
     private Integer id;
     private Integer followerId;
     private Integer followingId;
+    private String followerUserName;
+    private String followingUserName;
 
 }

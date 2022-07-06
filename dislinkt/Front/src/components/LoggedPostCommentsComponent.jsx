@@ -27,13 +27,16 @@ class LoggedPostCommentsComponent extends Component {
             id:this.state.id,
             ownerId :activeUser.id,
             postId: activePost.id,
-            text: this.state.text
+            text: this.state.text,
+            ownerUserName: activeUser.userName
 
         }
 
         axios.post("http://localhost:8086/comment/", newComment).then((res) => {
             console.log(newComment);
             });
+
+            window.location.reload(false);
     } 
     componentDidMount(){
         let activePost =  JSON.parse(localStorage.getItem('activePost'));
@@ -59,7 +62,7 @@ class LoggedPostCommentsComponent extends Component {
                      <table >
                             <thead>
                                 <tr>
-                                
+                                    <th>Owner</th>
                                     <th>Text</th>
                                     
                                 </tr>
@@ -69,7 +72,7 @@ class LoggedPostCommentsComponent extends Component {
                                     this.state.comments.map(
                                         comments =>
                                         <tr key= {comments.id}>
-                                        
+                                            <td>{comments.ownerUserName}</td>
                                             <td>{comments.text}</td>
                                             
                                         </tr>

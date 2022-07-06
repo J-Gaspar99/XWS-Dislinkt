@@ -57,6 +57,7 @@ public class CommentController {
 
         comment.setOwnerId(commentDetails.getOwnerId());
         comment.setPostId(commentDetails.getPostId());
+        comment.setOwnerUserName(commentDetails.getOwnerUserName());
 
         Comment updatedComment = commentRepository.save(comment);
         return ResponseEntity.ok(updatedComment);

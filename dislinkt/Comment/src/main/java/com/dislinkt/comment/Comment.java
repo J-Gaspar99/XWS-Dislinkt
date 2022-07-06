@@ -23,5 +23,6 @@ public class Comment {
     private Integer ownerId;
     private Integer postId;
     private String text;
+    private String ownerUserName;
 
 }

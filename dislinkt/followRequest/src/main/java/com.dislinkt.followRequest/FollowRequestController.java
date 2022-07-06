@@ -53,6 +53,8 @@ public class FollowRequestController {
 
         followRequest.setFollowerId(followRequestDetails.getFollowerId());
         followRequest.setFollowingId(followRequestDetails.getFollowingId());
+        followRequest.setFollowerUserName(followRequestDetails.getFollowerUserName());
+        followRequest.setFollowingUserName(followRequestDetails.getFollowingUserName());
 
 
         FollowRequest updatedFollowRequest = followRequestRepository.save(followRequest);

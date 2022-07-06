@@ -53,7 +53,8 @@ public class FollowsController {
 
         follows.setFollowerId(followsDetails.getFollowerId());
         follows.setFollowingId(followsDetails.getFollowingId());
-
+        follows.setFollowerUserName(followsDetails.getFollowerUserName());
+        follows.setFollowingUserName(followsDetails.getFollowingUserName());
 
         Follows updatedFollows = followsRepository.save(follows);
         return ResponseEntity.ok(updatedFollows);

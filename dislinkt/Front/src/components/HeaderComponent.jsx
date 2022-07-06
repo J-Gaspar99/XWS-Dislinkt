@@ -24,6 +24,7 @@ class HeaderComponent extends Component {
                                 <Nav.Link style={navLinkStyle} href="/userprofile" >My profile </Nav.Link> 
                                 <Nav.Link style={navLinkStyle} href="/userposts" >My posts </Nav.Link>                               
                                 <Nav.Link style={navLinkStyle} href="/loggedprofiles" >Profiles </Nav.Link>
+                                <Nav.Link style={navLinkStyle} href="/myfriends" >My friends </Nav.Link>
                                 
                             </Nav>
 

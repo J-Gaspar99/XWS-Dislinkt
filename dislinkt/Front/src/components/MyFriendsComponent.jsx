@@ -6,7 +6,7 @@ class MyFriendsComponent extends Component {
         super(props)
         this.state = {
             
-           friends: [], friends2: []
+           friends: []
            
             
         }
@@ -42,7 +42,9 @@ class MyFriendsComponent extends Component {
         
         axios.get("http://localhost:8082/follows/follower/" + activeUser.id).then((res)=>{
           
-               let tmpArray=[];
+            this.setState({friends: res.data});
+            console.log(this.state.friends);
+               /*let tmpArray=[];
                 for(const key in res.data){
                    
                    tmpArray[key]=res.data[key].followingId;
@@ -61,8 +63,9 @@ class MyFriendsComponent extends Component {
                 //console.log(this.state.friends);
                
                 
-               
+               */
         });
+        
 
       
     
@@ -81,9 +84,7 @@ class MyFriendsComponent extends Component {
                             <thead>
                                 <tr>
                                 
-                                    <th>User name</th>
-                                    <th>First name</th>
-                                    <th>Last name</th>
+                                    <th>Username</th>
                                     
                                     <th>Action</th>
                                 
@@ -94,12 +95,11 @@ class MyFriendsComponent extends Component {
                                     this.state.friends.map(
                                         friends =>
                                         <tr key= {friends.id}>
-                                            <td>{friends.userName}</td>
-                                            <td>{friends.firstName}</td>
-                                            <td>{friends.lastName}</td>
+                                            <td>{friends.followingUserName}</td>
+                                            
                                            
                                             <td>
-                                                <button style={{marginLeft:"10px"}} onClick={()=>this.view(friends.id)} className="loginbtn">View</button>
+                                                <button style={{marginLeft:"10px"}} onClick={()=>this.view(friends.id)} className="loginbtn">Chat</button>
                                                 
                                             </td>
                                         </tr>
