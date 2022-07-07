@@ -26,20 +26,22 @@ class ChatComponent extends Component {
     }
     
     createMessage() {
+        let activeChat =  JSON.parse(localStorage.getItem('activeChat'));
         let activeUser =  JSON.parse(localStorage.getItem('activeUser'));
         let activeFriend =  JSON.parse(localStorage.getItem('activeFriend'));
         let newMessage = {
-            id:this.state.id,
+           
             senderId :activeUser.id,
             receiverId: activeFriend.id,
             senderUserName :activeUser.userName,
             receiverUserName: activeFriend.userName,
             text: this.state.text,
-            chatId:'',
+            chatId:activeChat.id,
             time: ''
             
 
         }
+        console.log(newMessage);
 
         axios.post("http://localhost:8088/message", newMessage).then((res) => {
             console.log(newMessage);
@@ -52,24 +54,13 @@ class ChatComponent extends Component {
    
     componentDidMount(){
         let activeUser = JSON.parse(localStorage.getItem('activeUser'));
-        let activeFriend = JSON.parse(localStorage.getItem('activeFriend'));
-        axios.get("http://localhost:8088/message/senderId/receiverId/" + activeUser.id + '/' + activeFriend.id).then((res)=>{
-            this.setState({messages3: res.data });
-           // console.log(this.state.messages3);
-            axios.get("http://localhost:8088/message/senderId/receiverId/" + activeFriend.id + '/' + activeUser.id).then((res2)=>{
-          
-        
-                this.setState({messages2: res2.data });
-               // console.log(this.state.messages2);
-                
-                  
-            });
+        let activeChat = JSON.parse(localStorage.getItem('activeChat'));
 
-            
-         //this.setState({messages: [].concat(this.state.messages3,this.state.messages2)});
-         //console.log(this.state.messages);
+        axios.get("http://localhost:8088/message/chatId/"+ activeChat.id).then((res) => {
+            this.setState({messages:res.data});
+            });
         
-        });
+    
         
 
       
@@ -90,7 +81,7 @@ class ChatComponent extends Component {
                                 <tr>
                                 
                                     <th>Sender username</th>
-                                    <th>Rreceiver username</th>
+                                    <th>Receiver username</th>
                                     <th>Message</th>
                                     
                                 

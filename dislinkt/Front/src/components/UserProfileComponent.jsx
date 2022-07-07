@@ -185,9 +185,10 @@ class UserProfileComponent extends Component {
                                 <input name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler} />
                                 <label> Publicity: </label>
                                 <input name="publicity" className="form-control" value={this.state.publicity} onChange={this.changePublicityHandler} />
-                                
+                                <br/>
 
                                 <div className="center"><button className="loginbtn" onClick={()=>this.update(this.state.id)}>Update</button></div>
+                                <br/>
                             </div>
                         </form>
 

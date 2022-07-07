@@ -149,8 +149,9 @@ class RegistrationComponent extends Component {
                                 <input  name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler}/>
                                 <label> Publicity: </label>
                                 <input  name="publicity" className="form-control" value={this.state.publicity} onChange={this.changePublicityHandler}/>
-                                
+                                <br/>
                                 <div className="center"><button className="loginbtn" onClick={()=>this.register()}>Register</button></div>
+                                <br/>
                             </div>
                         </form>
                             
