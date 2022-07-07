@@ -7,8 +7,6 @@ class ChatComponent extends Component {
         this.state = {
             
            messages: [],
-           messages2: [],
-           messages3: [],
            text: ''
            
             
@@ -52,20 +50,24 @@ class ChatComponent extends Component {
             window.location.reload(false);
     } 
  
+    mount(activeChat){
+        
+        axios.get("http://localhost:8088/message/chatId/"+ activeChat.id).then((res) => {
+            this.setState({messages:res.data});
+            setTimeout(this.mount(activeChat) , 1000);
+            });
+             
+        
+    }
     
    
     componentDidMount(){
-        let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+        
+       
         let activeChat = JSON.parse(localStorage.getItem('activeChat'));
 
-        axios.get("http://localhost:8088/message/chatId/"+ activeChat.id).then((res) => {
-            this.setState({messages:res.data});
-            });
+    this.mount(activeChat);
         
-    
-        
-
-      
     
     } 
     render() {
