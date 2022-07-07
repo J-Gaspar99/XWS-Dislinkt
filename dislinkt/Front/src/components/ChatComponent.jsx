@@ -29,6 +29,8 @@ class ChatComponent extends Component {
         let activeChat =  JSON.parse(localStorage.getItem('activeChat'));
         let activeUser =  JSON.parse(localStorage.getItem('activeUser'));
         let activeFriend =  JSON.parse(localStorage.getItem('activeFriend'));
+       let  d = new Date();
+       
         let newMessage = {
            
             senderId :activeUser.id,
@@ -37,7 +39,7 @@ class ChatComponent extends Component {
             receiverUserName: activeFriend.userName,
             text: this.state.text,
             chatId:activeChat.id,
-            time: ''
+            time: d,
             
 
         }

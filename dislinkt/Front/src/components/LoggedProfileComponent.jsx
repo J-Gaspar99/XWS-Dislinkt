@@ -79,7 +79,21 @@ class LoggedProfileComponent extends Component {
                             if(response.data.publicity == 1){   //PUBLIC
 
                                 axios.post("http://localhost:8082/follows",follow);
-                                axios.post("http://localhost:8089/chat",chat);
+
+                                axios.get("http://localhost:8089/chat/chatter1idchatter2id/"+ activeUser.id + "/" + id).then(res3=>{        //provera da li chat vec postoji izmedju ta 2 korisnika
+                                    if (res3.data.id == null){
+                                        axios.get("http://localhost:8089/chat/chatter1idchatter2id/"+ id + "/" + activeUser.id).then(res4=> {
+                                            if (res4.data.id == null){
+                                                axios.post("http://localhost:8089/chat",chat);
+                                            }
+
+                                        });
+                        
+                                    }
+                                });
+                                
+
+
                                 alert("Follow successful")
                                
                             }

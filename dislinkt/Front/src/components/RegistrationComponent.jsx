@@ -14,7 +14,9 @@ class RegistrationComponent extends Component {
             email: '',
             phonenumber:'',
             gender:'',
-            dateofbirth: '',
+            birthday:'',
+            birthmonth:'',
+            birthyear:'',
             biography:'',
             workexperience:'',
             hobbies:'',
@@ -29,11 +31,14 @@ class RegistrationComponent extends Component {
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changePhoneNumberHandler = this.changePhoneNumberHandler.bind(this);
         this.changeGenderHandler = this.changeGenderHandler.bind(this);
-        this.changeDateOfBirthHandler = this.changeDateOfBirthHandler.bind(this);
         this.changeBiographyHandler = this.changeBiographyHandler.bind(this);
         this.changeWorkExperienceHandler = this.changeWorkExperienceHandler.bind(this);
         this.changeHobbiesHandler = this.changeHobbiesHandler.bind(this);
         this.changePublicityHandler = this.changePublicityHandler.bind(this);
+        
+        this.changeBirthdayHandler = this.changeBirthdayHandler.bind(this);
+        this.changeBirthmonthHandler = this.changeBirthmonthHandler.bind(this);
+        this.changeBirthyearHandler = this.changeBirthyearHandler.bind(this);
 
         this.register=this.register.bind(this);
         
@@ -50,7 +55,9 @@ class RegistrationComponent extends Component {
             email: this.state.email,
             phoneNumber:this.state.phonenumber,
             gender:this.state.gender,
-            dateOfBirth:this.state. dateofbirth,
+            birthDay:this.state.birthday,
+            birthMonth:this.state.birthmonth,
+            birthYear:this.state.birthyear,
             biography:this.state.biography,
             workExperience:this.state.workexperience,
             hobbies:this.state.hobbies,
@@ -99,9 +106,7 @@ class RegistrationComponent extends Component {
         this.setState({gender: event.target.value});
     }
 
-    changeDateOfBirthHandler = (event) => {
-        this.setState({dateofbirth: event.target.value});
-    }
+   
     changeBiographyHandler = (event) => {
         this.setState({biography: event.target.value});
     }
@@ -113,6 +118,16 @@ class RegistrationComponent extends Component {
     }
     changePublicityHandler = (event) => {
         this.setState({publicity: event.target.value});
+    }
+
+    changeBirthdayHandler = (event) => {
+        this.setState({birthday: event.target.value});
+    }
+    changeBirthmonthHandler = (event) => {
+        this.setState({birthmonth: event.target.value});
+    }
+    changeBirthyearHandler = (event) => {
+        this.setState({birthyear: event.target.value});
     }
     render() {
         return (
@@ -139,9 +154,12 @@ class RegistrationComponent extends Component {
                                 <input  name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler}/>
                                 <label> Phone number: </label>
                                 <input  name="phonenumber" className="form-control" value={this.state.phonenumber} onChange={this.changePhoneNumberHandler}/>
-                                <label> Date of birth: </label>
-                                <input type="date"  name="dateofbirth" className="form-control" value={this.state.dateofbirth} onChange={this.changeDateOfBirthHandler}/>
-                                <label> Biography: </label>
+                                <label> Birthday: </label>
+                                <input  name="birthday" className="form-control" value={this.state.birthday} onChange={this.changeBirthdayHandler} />
+                                <label> Birthmonth: </label>
+                                <input  name="birthmonth" className="form-control" value={this.state.birthmonth} onChange={this.changeBirthmonthHandler} />
+                                <label> Birthyear: </label>
+                                <input  name="birthyear" className="form-control" value={this.state.birthyear} onChange={this.changeBirthyearHandler} /><label> Biography: </label>
                                 <input  name="biography" className="form-control" value={this.state.biography} onChange={this.changeBiographyHandler}/>   
                                 <label> Work experience: </label>
                                 <input  name="workexperience" className="form-control" value={this.state.workexperience} onChange={this.changeWorkExperienceHandler}/> 
