@@ -27,7 +27,7 @@ logout(){
                                 <Nav.Link style={navLinkStyle} href="/userposts" >My posts </Nav.Link>                               
                                 <Nav.Link style={navLinkStyle} href="/loggedprofiles" >Profiles </Nav.Link>
                                 <Nav.Link style={navLinkStyle} href="/myfriends" >My friends </Nav.Link>
-                                
+                                <Nav.Link style={navLinkStyle} href="/followrequests" >Follow requests </Nav.Link>
                             </Nav>
 
 
