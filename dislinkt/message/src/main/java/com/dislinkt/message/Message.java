@@ -27,6 +27,8 @@ public class Message {
     private Integer senderId;
     private Integer receiverId;
     private Integer chatId;
+    private Integer seen;
+
 
     private String text;
 

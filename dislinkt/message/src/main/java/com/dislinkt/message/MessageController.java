@@ -62,6 +62,7 @@ public class MessageController {
         message.setText(messageDetails.getText());
         message.setTime(messageDetails.getTime());
         message.setChatId(messageDetails.getChatId());
+        message.setSeen(messageDetails.getSeen());
 
 
 
