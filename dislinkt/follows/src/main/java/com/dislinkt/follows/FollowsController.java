@@ -55,6 +55,8 @@ public class FollowsController {
         follows.setFollowingId(followsDetails.getFollowingId());
         follows.setFollowerUserName(followsDetails.getFollowerUserName());
         follows.setFollowingUserName(followsDetails.getFollowingUserName());
+        follows.setNewMessages(followsDetails.getNewMessages());
+        follows.setNewPosts(followsDetails.getNewPosts());
 
         Follows updatedFollows = followsRepository.save(follows);
         return ResponseEntity.ok(updatedFollows);

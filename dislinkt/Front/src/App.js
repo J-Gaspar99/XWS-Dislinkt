@@ -19,6 +19,8 @@ import LoggedPostCommentsComponent from './components/LoggedPostCommentsComponen
 import MyFriendsComponent from './components/MyFriendsComponent';
 import ChatComponent from './components/ChatComponent';
 import FollowRequestComponent from './components/FollowRequestsComponent';
+import BlockedUsersComponent from './components/BlockedUsersComponent';
+import NotificationsComponent from './components/NotificationsComponent';
 
 
 
@@ -70,9 +72,11 @@ function App() {
               <Route path = "/createpost" component={CreatePostComponent} ></Route>
               <Route path = "/loggedviewposts" component={LoggedViewPostsComponent} ></Route>
               <Route path = "/loggedpostcomments" component={LoggedPostCommentsComponent} ></Route>
-              <Route path = "/myfriends" component={MyFriendsComponent} ></Route>
+              <Route path = "/notifications" component={NotificationsComponent} ></Route>
               <Route path = "/chat" component={ChatComponent} ></Route>
               <Route path = "/followrequests" component={FollowRequestComponent} ></Route>
+              <Route path = "/blockedusers" component={BlockedUsersComponent} ></Route>
+              <Route path = "/myfriends" component={MyFriendsComponent} ></Route>
 
 
               </Switch>

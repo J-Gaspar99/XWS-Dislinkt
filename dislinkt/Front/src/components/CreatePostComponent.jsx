@@ -33,15 +33,32 @@ class CreatePostComponent extends Component {
             
         };
 
-        
-    
         axios.post("http://localhost:8080/post",newPost).then((res) => {
             console.log(newPost);
             }); 
-            
-        
+
+            //follow update newPosts +1 za sve followere activeUsera
+            axios.get("http://localhost:8082/follows/following/" + activeUser.id).then((res)=>{
+
+                for (const key in res.data) {
+
+                    let updatedFollow = {
+                        id: res.data[key].id,
+                        followerId: res.data[key].followerId,
+                        followingId: res.data[key].followingId,
+                        followerUserName: res.data[key].followerUserName,
+                        followingUserName: res.data[key].followingUserName,
+                        newMessages: res.data[key].newMessages,
+                        newPosts: res.data[key].newPosts +1,
+                    };
+                    axios.put("http://localhost:8082/follows/" + res.data[key].id, updatedFollow);
+                }
+
+            });
             
     }
+
+
     changeTextHandler = (event) => {
         this.setState({text: event.target.value});
     }

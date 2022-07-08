@@ -10,79 +10,22 @@ class MyFriendsComponent extends Component {
            
             
         }
-        
-
-        this.viewChat = this.viewChat.bind(this);
-        
-        
+     
         
     }
-    viewChat(id){   
-        let activeUser = JSON.parse(localStorage.getItem('activeUser'));
-       
-        axios.get("http://localhost:8089/chat/chatter1idchatter2id/"+ activeUser.id + "/" + id).then(res => {
-            if (res.data.id == null){
-                axios.get("http://localhost:8089/chat/chatter1idchatter2id/"+ id + "/" + activeUser.id).then(res2 => {
+    
 
-                    localStorage.setItem('activeChat', JSON.stringify(res2.data));
-                    axios.get("http://localhost:8081/user/"+ id).then(res3 => {
-
-                        localStorage.setItem('activeFriend', JSON.stringify(res3.data));
-                    });
-                    
-                    this.props.history.push('/chat');
-                });
-
-            }
-            else {
-                localStorage.setItem('activeChat', JSON.stringify(res.data));
-                axios.get("http://localhost:8081/user/"+ id).then(res3 => {
-
-                        localStorage.setItem('activeFriend', JSON.stringify(res3.data));
-                    });
-                this.props.history.push('/chat');
-
-            };
-        });
-        
-
+    viewPosts(id){
+        this.props.history.push('/loggedviewposts');
     }
  
-    
-   
     componentDidMount(){
         let activeUser = JSON.parse(localStorage.getItem('activeUser'));
-        
         axios.get("http://localhost:8082/follows/follower/" + activeUser.id).then((res)=>{
-          
-            this.setState({friends: res.data});
-            console.log(this.state.friends);
-               /*let tmpArray=[];
-                for(const key in res.data){
-                   
-                   tmpArray[key]=res.data[key].followingId;
-                    
-                    
-                };
-                
+            this.setState({friends: res.data}); });
 
-                axios.get("http://localhost:8081/user/id/" + tmpArray).then((res2)=>{
-                       
-                    console.log(res2.data);
-                    this.setState({friends: res2.data});
-                    
-                    });
-                
-                //console.log(this.state.friends);
-               
-                
-               */
-        });
-        
-
-      
-    
     } 
+
     render() {
         return (
             <div>
@@ -90,8 +33,8 @@ class MyFriendsComponent extends Component {
 
                 <div> <br/><br/><br/><br/><br/><br/><br/><br/>
                
-                    <h2 className="text-center">My friends</h2>
-
+                    <h2 className="text-center">Friends</h2>
+                    
                     <div className="row">
                      <table >
                             <thead>
@@ -100,6 +43,8 @@ class MyFriendsComponent extends Component {
                                     <th>Username</th>
                                     
                                     <th>Action</th>
+                                    
+
                                 
                                 </tr>
                             </thead>
@@ -110,11 +55,11 @@ class MyFriendsComponent extends Component {
                                         <tr key= {friends.id}>
                                             <td>{friends.followingUserName}</td>
                                             
-                                           
                                             <td>
-                                                <button style={{marginLeft:"10px"}} onClick={()=>this.viewChat(friends.followingId)} className="loginbtn">Chat</button>
+                                                <button style={{marginLeft:"10px"}} onClick={()=>this.viewPosts(friends.followingId)} className="loginbtn">Posts</button>
                                                 
                                             </td>
+                                            
                                         </tr>
                                     )
                                 }

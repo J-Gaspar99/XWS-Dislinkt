@@ -69,9 +69,9 @@ public class BlockController {
 
 
 
-    //get by senderid and receiverid
-    @GetMapping("/block/senderId/receiverId/{senderId}/{receiverId}")
-    public List<Block> getAllUsersByBlockerIdAndBlockedId(@PathVariable("blockerId") Integer blockerId, @PathVariable("blockedId") Integer blockedId)
+    //get by blockerid and blockedid
+    @GetMapping("/block/blockerId/blockedId/{blockerId}/{blockedId}")
+    public Block getAllUsersByBlockerIdAndBlockedId(@PathVariable("blockerId") Integer blockerId, @PathVariable("blockedId") Integer blockedId)
     {
         return blockRepository.findByBlockerIdAndBlockedId(blockerId,blockedId);
     }

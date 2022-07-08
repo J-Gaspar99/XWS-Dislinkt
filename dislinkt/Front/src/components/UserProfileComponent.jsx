@@ -103,8 +103,8 @@ class UserProfileComponent extends Component {
     update(idd) {
 
         
-        let activeUser =  JSON.parse(localStorage.getItem('activeUser'))
-        console.log(activeUser.id);
+        let activeUser =  JSON.parse(localStorage.getItem('activeUser'));
+        
         let updatedUser = {
             id:idd,
             userName:this.state.username,
@@ -126,7 +126,7 @@ class UserProfileComponent extends Component {
         
         if(response1.data.id == null){
 
-            console.log('updatedUser => ' + JSON.stringify(updatedUser));
+           // console.log('updatedUser => ' + JSON.stringify(updatedUser));
 
             axios.put("http://localhost:8081/user/"+ activeUser.id,updatedUser).then(response => {
                     localStorage.setItem('activeUser', JSON.stringify(updatedUser));

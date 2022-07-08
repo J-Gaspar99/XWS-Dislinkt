@@ -153,8 +153,8 @@ class LoggedViewPostsComponent extends Component {
 
 
     componentDidMount() {
-        let activeProfile = JSON.parse(localStorage.getItem('activeProfile'))
-        axios.get("http://localhost:8080/post/ownerid/" + activeProfile.id).then((res) => {
+        let activeFriend = JSON.parse(localStorage.getItem('activeFriend'))
+        axios.get("http://localhost:8080/post/ownerid/" + activeFriend.id).then((res) => {
             this.setState({ posts: res.data });
         });
 
@@ -178,6 +178,8 @@ class LoggedViewPostsComponent extends Component {
                                     <th>Likes</th>
                                     <th>Dislikes</th>
                                     <th>Comments</th>
+
+                                    <th>Actions</th>
 
 
                                 </tr>

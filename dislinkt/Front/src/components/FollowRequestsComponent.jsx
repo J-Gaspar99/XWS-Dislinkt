@@ -47,7 +47,9 @@ class FollowRequestComponent extends Component {
                         followerId: id,
                         followingId: activeUser.id,
                         followerUserName: userName,
-                        followingUserName: activeUser.userName
+                        followingUserName: activeUser.userName,
+                        newMessages: 0,
+                        newPosts: 0,
                     };
 
                     let chat = {
@@ -93,10 +95,13 @@ class FollowRequestComponent extends Component {
     }
     denyRequest(id){
         axios.delete("http://localhost:8083/followrequest/" +id );
+        window.location.reload(false);
     }
     componentDidMount() {
 
-        axios.get("http://localhost:8083/followrequest").then((res) => {
+        let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+
+        axios.get("http://localhost:8083/followrequest/following/"+ activeUser.id).then((res) => {
             this.setState({ requests: res.data });
 
         });

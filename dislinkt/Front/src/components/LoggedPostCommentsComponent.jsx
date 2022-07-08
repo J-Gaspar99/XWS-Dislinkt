@@ -30,11 +30,21 @@ class LoggedPostCommentsComponent extends Component {
             text: this.state.text,
             ownerUserName: activeUser.userName
 
-        }
+        };
 
-        axios.post("http://localhost:8086/comment/", newComment).then((res) => {
-            console.log(newComment);
-            });
+        let updatedPost ={
+            id:activePost.id,
+            text:activePost.text,
+            likes:activePost.likes,
+            dislikes:activePost.dislikes,
+            comments:activePost.comments +1,
+            ownerId: activePost.ownerId,
+            
+        };
+        //update posta +1 comment
+        axios.put("http://localhost:8080/post/"+ activePost.id, updatedPost);
+
+        axios.post("http://localhost:8086/comment/", newComment);
 
             window.location.reload(false);
     } 

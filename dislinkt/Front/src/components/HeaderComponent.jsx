@@ -13,6 +13,8 @@ class HeaderComponent extends Component {
 logout(){
     localStorage.clear();
 }
+
+
     render() {
         return (
             <div>
@@ -23,11 +25,24 @@ logout(){
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link style={navLinkStyle} href="/userprofile" >My profile </Nav.Link> 
-                                <Nav.Link style={navLinkStyle} href="/userposts" >My posts </Nav.Link>                               
-                                <Nav.Link style={navLinkStyle} href="/loggedprofiles" >Profiles </Nav.Link>
-                                <Nav.Link style={navLinkStyle} href="/myfriends" >My friends </Nav.Link>
-                                <Nav.Link style={navLinkStyle} href="/followrequests" >Follow requests </Nav.Link>
+
+                                <NavDropdown title="Me" id="basic-nav-dropdown">
+                                    
+                                    <NavDropdown.Item href="/userprofile">Profile</NavDropdown.Item>
+                                    <NavDropdown.Item href="/userposts">Posts</NavDropdown.Item>
+                                                                          
+                                </NavDropdown>
+
+                                <NavDropdown title="Others" id="basic-nav-dropdown">
+                                    
+                                    <NavDropdown.Item href="/loggedprofiles">All</NavDropdown.Item>
+                                    <NavDropdown.Item href="/myfriends">Friends</NavDropdown.Item>
+                                                                          
+                                </NavDropdown>                
+                                
+                                <Nav.Link style={navLinkStyle} href="/notifications" >Notifications </Nav.Link>
+                                
+                                
                             </Nav>
 
 

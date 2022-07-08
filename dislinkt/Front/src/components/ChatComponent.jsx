@@ -42,23 +42,40 @@ class ChatComponent extends Component {
 
 
         }
-        console.log(newMessage);
 
-        axios.post("http://localhost:8088/message", newMessage).then((res) => {
-            console.log(newMessage);
+
+        axios.post("http://localhost:8088/message", newMessage);
+
+        axios.get("http://localhost:8082/follows/followerandfollowing/" + activeFriend.id + "/" + activeUser.id).then((res) => {
+
+            let updatedFollow = {
+                id: res.data.id,
+                followerId: res.data.followerId,
+                followingId: res.data.followingId,
+                followerUserName: res.data.followerUserName,
+                followingUserName: res.data.followingUserName,
+                newMessages: res.data.newMessages + 1,
+                newPosts: res.data.newPosts
+            };
+            axios.put("http://localhost:8082/follows/" + res.data.id, updatedFollow);
+
+
         });
 
-          window.location.reload(false);
+        window.location.reload(false);
     }
 
-    mount(activeChat, activeUser) {
+
+
+
+    mount(activeChat, activeUser,activeFriend) {
 
         axios.get("http://localhost:8088/message/chatId/" + activeChat.id).then((res) => {
 
 
             for (const key in res.data) {
 
-                if (res.data[key].receiverId == activeUser.id) {
+                if (res.data[key].receiverId == activeUser.id) {            //stavljanje seena na 1
 
 
 
@@ -80,12 +97,31 @@ class ChatComponent extends Component {
 
             }
 
+            //updatovanje newMessages
+
+            axios.get("http://localhost:8082/follows/followerandfollowing/" + activeUser.id + "/" + activeFriend.id ).then((res) => {
+
+                let updatedFollow = {
+                    id: res.data.id,
+                    followerId: res.data.followerId,
+                    followingId: res.data.followingId,
+                    followerUserName: res.data.followerUserName,
+                    followingUserName: res.data.followingUserName,
+                    newMessages: 0,
+                    newPosts: res.data.newPosts
+                };
+                axios.put("http://localhost:8082/follows/" + res.data.id, updatedFollow);
+
+
+            });
+
+            //setovanje stranice i loop
             this.setState({ messages: res.data });
 
-            setTimeout(this.mount(activeChat, activeUser), 1000);
+            setTimeout(this.mount(activeChat, activeUser,activeFriend), 1000);
         });
 
-        
+
     }
 
 
@@ -94,8 +130,9 @@ class ChatComponent extends Component {
 
         let activeChat = JSON.parse(localStorage.getItem('activeChat'));
         let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+        let activeFriend = JSON.parse(localStorage.getItem('activeFriend'));
 
-        this.mount(activeChat, activeUser);
+        this.mount(activeChat, activeUser,activeFriend);
 
 
     }

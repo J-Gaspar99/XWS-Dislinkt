@@ -22,5 +22,7 @@ public class Follows {
     private Integer followingId;
     private String followerUserName;
     private String followingUserName;
+    private Integer newMessages;
+    private Integer newPosts;
 
 }
