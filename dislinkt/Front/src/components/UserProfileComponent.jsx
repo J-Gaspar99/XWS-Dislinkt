@@ -15,7 +15,9 @@ class UserProfileComponent extends Component {
             email: '',
             phonenumber: '',
             gender: '',
-            dateofbirth: '',
+            birthday:'',
+            birthmonth:'',
+            birthyear:'',
             biography: '',
             workexperience: '',
             hobbies: '',
@@ -31,11 +33,13 @@ class UserProfileComponent extends Component {
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changePhoneNumberHandler = this.changePhoneNumberHandler.bind(this);
         this.changeGenderHandler = this.changeGenderHandler.bind(this);
-        this.changeDateOfBirthHandler = this.changeDateOfBirthHandler.bind(this);
         this.changeBiographyHandler = this.changeBiographyHandler.bind(this);
         this.changeWorkExperienceHandler = this.changeWorkExperienceHandler.bind(this);
         this.changeHobbiesHandler = this.changeHobbiesHandler.bind(this);
         this.changePublicityHandler = this.changePublicityHandler.bind(this);
+        this.changeBirthdayHandler = this.changeBirthdayHandler.bind(this);
+        this.changeBirthmonthHandler = this.changeBirthmonthHandler.bind(this);
+        this.changeBirthyearHandler = this.changeBirthyearHandler.bind(this);
         
 
         this.update = this.update.bind(this);
@@ -71,9 +75,7 @@ class UserProfileComponent extends Component {
         this.setState({gender: event.target.value});
     }
 
-    changeDateOfBirthHandler = (event) => {
-        this.setState({dateofbirth: event.target.value});
-    }
+    
     changeBiographyHandler = (event) => {
         this.setState({biography: event.target.value});
     }
@@ -85,6 +87,16 @@ class UserProfileComponent extends Component {
     }
     changePublicityHandler = (event) => {
         this.setState({publicity: event.target.value});
+        }
+        
+        changeBirthdayHandler = (event) => {
+            this.setState({birthday: event.target.value});
+        }
+        changeBirthmonthHandler = (event) => {
+            this.setState({birthmonth: event.target.value});
+        }
+        changeBirthyearHandler = (event) => {
+            this.setState({birthyear: event.target.value});
         }
 
        
@@ -101,7 +113,9 @@ class UserProfileComponent extends Component {
             lastName:this.state.lastname,
             email:this.state.email,
             phoneNumber:this.state.phonenumber,
-            dateOfBirth:this.state.dateofbirth,
+            birthDay:this.state.birthday,
+            birthMonth:this.state.birthmonth,
+            birthYear:this.state.birthyear,
             biography:this.state.biography,
             workExperience:this.state.workexperience,
             hobbies:this.state.hobbies,
@@ -115,7 +129,7 @@ class UserProfileComponent extends Component {
             console.log('updatedUser => ' + JSON.stringify(updatedUser));
 
             axios.put("http://localhost:8081/user/"+ activeUser.id,updatedUser).then(response => {
-                    localStorage.setItem('activeUser', JSON.stringify(response.data));
+                    localStorage.setItem('activeUser', JSON.stringify(updatedUser));
                     
                 
             }); }
@@ -141,8 +155,10 @@ class UserProfileComponent extends Component {
         lastname: activeUser.lastName,
         email: activeUser.email,
         phonenumber: activeUser.phoneNumber,
+        birthday:activeUser.birthDay,
+        birthmonth:activeUser.birthMonth,
+        birthyear:activeUser.birthYear,
         gender: activeUser.gender,
-        dateofbirth: activeUser.dateOfBirth,
         biography: activeUser.biography,
         workexperience: activeUser.workExperience,
         hobbies: activeUser.hobbies,
@@ -175,8 +191,14 @@ class UserProfileComponent extends Component {
                                 <input name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} />
                                 <label> Phone number: </label>
                                 <input name="phonenumber" className="form-control" value={this.state.phonenumber} onChange={this.changePhoneNumberHandler} />
-                                <label> Date of birth: </label>
-                                <input type="date" name="dateofbirth" className="form-control" value={this.state.dateofbirth} onChange={this.changeDateOfBirthHandler} />
+
+                                <label> Birthday: </label>
+                                <input  name="birthday" className="form-control" value={this.state.birthday} onChange={this.changeBirthdayHandler} />
+                                <label> Birthmonth: </label>
+                                <input  name="birthmonth" className="form-control" value={this.state.birthmonth} onChange={this.changeBirthmonthHandler} />
+                                <label> Birthyear: </label>
+                                <input  name="birthyear" className="form-control" value={this.state.birthyear} onChange={this.changeBirthyearHandler} />
+
                                 <label> Biography: </label>
                                 <input name="biography" className="form-control" value={this.state.biography} onChange={this.changeBiographyHandler} />
                                 <label> Work experience: </label>
@@ -185,9 +207,10 @@ class UserProfileComponent extends Component {
                                 <input name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler} />
                                 <label> Publicity: </label>
                                 <input name="publicity" className="form-control" value={this.state.publicity} onChange={this.changePublicityHandler} />
-                                
+                                <br/>
 
                                 <div className="center"><button className="loginbtn" onClick={()=>this.update(this.state.id)}>Update</button></div>
+                                <br/>
                             </div>
                         </form>
 

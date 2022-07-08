@@ -76,6 +76,7 @@ class ViewProfileComponent extends Component {
                                 
                                 <br/>
                                 <div className="center"><button className="loginbtn" onClick={()=>this.seeposts()}>See posts</button></div>
+                                <br/>
 
             </div>
             

@@ -30,7 +30,9 @@ public class User {
     private String email;
     private String phoneNumber;
     private String gender;
-    private Date dateOfBirth;
+    private Integer birthDay;
+    private Integer birthMonth;
+    private Integer birthYear;
     private String biography;
     private String workExperience;
     private String hobbies;

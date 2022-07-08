@@ -62,6 +62,7 @@ public class MessageController {
         message.setText(messageDetails.getText());
         message.setTime(messageDetails.getTime());
         message.setChatId(messageDetails.getChatId());
+        message.setSeen(messageDetails.getSeen());
 
 
 
@@ -78,7 +79,7 @@ public class MessageController {
     {return messageRepository.findBySenderIdAndReceiverId(senderId,receiverId);
     }
 
-    //get by chatter
+    //get by chatId
     @GetMapping("/message/chatId/{chatId}")
     public List<Message> getAllUsersByChatter(@PathVariable("chatId") Integer chatId)
     {return messageRepository.findByChatId(chatId);

@@ -10,7 +10,9 @@ const navLinkStyle = {
 
 
 class HeaderComponent extends Component {
-
+logout(){
+    localStorage.clear();
+}
     render() {
         return (
             <div>
@@ -25,12 +27,12 @@ class HeaderComponent extends Component {
                                 <Nav.Link style={navLinkStyle} href="/userposts" >My posts </Nav.Link>                               
                                 <Nav.Link style={navLinkStyle} href="/loggedprofiles" >Profiles </Nav.Link>
                                 <Nav.Link style={navLinkStyle} href="/myfriends" >My friends </Nav.Link>
-                                
+                                <Nav.Link style={navLinkStyle} href="/followrequests" >Follow requests </Nav.Link>
                             </Nav>
 
 
                             <Nav>
-                                <Nav.Link style={navLinkStyle} href="/login">Logout</Nav.Link>
+                                <Nav.Link style={navLinkStyle} href="/login" onClick={()=>this.logout()}>Logout</Nav.Link>
                                 
                             </Nav>
                         </Navbar.Collapse>

@@ -65,7 +65,9 @@ public class UserController {
         user.setEmail(userDetails.getEmail());
         user.setPhoneNumber(userDetails.getPhoneNumber());
         user.setGender(userDetails.getGender());
-        user.setDateOfBirth(userDetails.getDateOfBirth());
+        user.setBirthDay(userDetails.getBirthDay());
+        user.setBirthMonth(userDetails.getBirthMonth());
+        user.setBirthYear(userDetails.getBirthYear());
         user.setBiography(userDetails.getBiography());
         user.setWorkExperience(userDetails.getWorkExperience());
         user.setHobbies(userDetails.getHobbies());

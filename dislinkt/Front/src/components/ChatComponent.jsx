@@ -2,122 +2,146 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 class ChatComponent extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            
-           messages: [],
-           messages2: [],
-           messages3: [],
-           text: ''
-           
-            
+
+            messages: [],
+            text: ''
+
+
         }
-        
+
 
         this.createMessage = this.createMessage.bind(this);
         this.changeTextHandler = this.changeTextHandler.bind(this);
-        
+
     }
 
     changeTextHandler = (event) => {
         this.setState({ text: event.target.value });
-        
+
     }
-    
+
     createMessage() {
-        let activeUser =  JSON.parse(localStorage.getItem('activeUser'));
-        let activeFriend =  JSON.parse(localStorage.getItem('activeFriend'));
+        let activeChat = JSON.parse(localStorage.getItem('activeChat'));
+        let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+        let activeFriend = JSON.parse(localStorage.getItem('activeFriend'));
+        let d = new Date();
+
         let newMessage = {
-            id:this.state.id,
-            senderId :activeUser.id,
+
+            senderId: activeUser.id,
             receiverId: activeFriend.id,
-            senderUserName :activeUser.userName,
+            senderUserName: activeUser.userName,
             receiverUserName: activeFriend.userName,
             text: this.state.text,
-            chatId:'',
-            time: ''
-            
+            chatId: activeChat.id,
+            seen: 0,
+            time: d,
+
 
         }
+        console.log(newMessage);
 
         axios.post("http://localhost:8088/message", newMessage).then((res) => {
             console.log(newMessage);
-            });
-
-            window.location.reload(false);
-    } 
- 
-    
-   
-    componentDidMount(){
-        let activeUser = JSON.parse(localStorage.getItem('activeUser'));
-        let activeFriend = JSON.parse(localStorage.getItem('activeFriend'));
-        axios.get("http://localhost:8088/message/senderId/receiverId/" + activeUser.id + '/' + activeFriend.id).then((res)=>{
-            this.setState({messages3: res.data });
-           // console.log(this.state.messages3);
-            axios.get("http://localhost:8088/message/senderId/receiverId/" + activeFriend.id + '/' + activeUser.id).then((res2)=>{
-          
-        
-                this.setState({messages2: res2.data });
-               // console.log(this.state.messages2);
-                
-                  
-            });
-
-            
-         //this.setState({messages: [].concat(this.state.messages3,this.state.messages2)});
-         //console.log(this.state.messages);
-        
         });
-        
 
-      
-    
-    } 
+          window.location.reload(false);
+    }
+
+    mount(activeChat, activeUser) {
+
+        axios.get("http://localhost:8088/message/chatId/" + activeChat.id).then((res) => {
+
+
+            for (const key in res.data) {
+
+                if (res.data[key].receiverId == activeUser.id) {
+
+
+
+                    let updatedMessage = {
+                        id: res.data[key].id,
+                        senderId: res.data[key].senderId,
+                        receiverId: res.data[key].receiverId,
+                        senderUserName: res.data[key].senderUserName,
+                        receiverUserName: res.data[key].receiverUserName,
+                        text: res.data[key].text,
+                        chatId: res.data[key].chatId,
+                        seen: 1,
+                        time: res.data[key].time,
+
+                    };
+                    axios.put("http://localhost:8088/message/" + res.data[key].id, updatedMessage);
+                    res.data[key].seen = 1;
+                };
+
+            }
+
+            this.setState({ messages: res.data });
+
+            setTimeout(this.mount(activeChat, activeUser), 1000);
+        });
+
+        
+    }
+
+
+    componentDidMount() {
+
+
+        let activeChat = JSON.parse(localStorage.getItem('activeChat'));
+        let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+
+        this.mount(activeChat, activeUser);
+
+
+    }
     render() {
         return (
             <div>
-               
 
-                <div> <br/><br/><br/><br/><br/><br/><br/><br/>
-               
+
+                <div> <br /><br /><br /><br /><br /><br /><br /><br />
+
                     <h2 className="text-center">Our messages</h2>
 
                     <div className="row">
-                     <table >
+                        <table >
                             <thead>
                                 <tr>
-                                
+
                                     <th>Sender username</th>
-                                    <th>Rreceiver username</th>
+                                    <th>Receiver username</th>
                                     <th>Message</th>
-                                    
-                                
+
+
                                 </tr>
                             </thead>
                             <tbody>
-                            {
+                                {
                                     this.state.messages.map(
                                         messages =>
-                                        <tr key= {messages.id}>
-                                            <td>{messages.senderUserName}</td>
-                                            <td>{messages.receiverUserName}</td>
-                                            <td>{messages.text}</td>
-                                            
-                                        </tr>
+                                            <tr key={messages.id}>
+                                                <td>{messages.senderUserName}</td>
+                                                <td>{messages.receiverUserName}</td>
+                                                <td>{messages.text}</td>
+
+                                            </tr>
                                     )
                                 }
                             </tbody>
-                            
+
                         </table>
-                        
+
                     </div>
-                    
+
                 </div>
-                <input style={{position:'absolute',top:'154px'}} name="name" value={this.state.text} onChange={this.changeTextHandler}></input>
-                            <button style={{position:'absolute',top:'150px',left:'440px'}} onClick={() => this.createMessage()} className="loginbtn">Message</button>
-                
+                <input style={{ position: 'absolute', top: '154px' }} name="name" value={this.state.text} onChange={this.changeTextHandler}></input>
+                <button style={{ position: 'absolute', top: '150px', left: '440px' }} onClick={() => this.createMessage()} className="loginbtn">Message</button>
+
             </div>
         );
     }

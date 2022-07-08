@@ -46,7 +46,7 @@ class LoggedProfileComponent extends Component {
         });
     } 
 
-    follow(id){
+    follow(id,userName){
         let activeUser = JSON.parse(localStorage.getItem('activeUser'));
 
         axios.get("http://localhost:8082/follows/followerandfollowing/"+activeUser.id+"/"+id).then(res => {             //IF Follow doesnt exists
@@ -60,14 +60,40 @@ class LoggedProfileComponent extends Component {
 
 
                             let follow={
-                                //id?
+                                
                                 followerId:activeUser.id,
-                                followingId:id
+                                followingId:id,
+                                followerUserName:activeUser.userName,
+                                followingUserName : userName
+                            };
+
+                            let chat={
+                                
+                                chatter1Id:activeUser.id,
+                                chatter2Id:id,
+                                chatter1:activeUser.userName,
+                                chatter2:userName,
+                                
                             };
 
                             if(response.data.publicity == 1){   //PUBLIC
 
-                                axios.post("http://localhost:8082/follows",follow)
+                                axios.post("http://localhost:8082/follows",follow);
+
+                                axios.get("http://localhost:8089/chat/chatter1idchatter2id/"+ activeUser.id + "/" + id).then(res3=>{        //provera da li chat vec postoji izmedju ta 2 korisnika
+                                    if (res3.data.id == null){
+                                        axios.get("http://localhost:8089/chat/chatter1idchatter2id/"+ id + "/" + activeUser.id).then(res4=> {
+                                            if (res4.data.id == null){
+                                                axios.post("http://localhost:8089/chat",chat);
+                                            }
+
+                                        });
+                        
+                                    }
+                                });
+                                
+
+
                                 alert("Follow successful")
                                
                             }
@@ -131,7 +157,7 @@ class LoggedProfileComponent extends Component {
                                            
                                             <td>
                                                 <button style={{marginLeft:"10px"}} onClick={()=>this.view(profiles.id)} className="loginbtn">View</button>
-                                                <button style={{marginLeft:"10px"}} onClick={()=>this.follow(profiles.id)} className="loginbtn">Follow</button>
+                                                <button style={{marginLeft:"10px"}} onClick={()=>this.follow(profiles.id,profiles.userName )} className="loginbtn">Follow</button>
                                                 
                                             </td>
                                         </tr>

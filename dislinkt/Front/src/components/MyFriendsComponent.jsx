@@ -17,14 +17,33 @@ class MyFriendsComponent extends Component {
         
         
     }
-    viewChat(id){
-        //setovanenje acticeFriend-a i otvaranje stranice chat
-        axios.get("http://localhost:8081/user/" +id).then(response => {
-            localStorage.setItem('activeFriend', JSON.stringify(response.data))
-            this.props.history.push('/chat')
-        });
-        
+    viewChat(id){   
+        let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+       
+        axios.get("http://localhost:8089/chat/chatter1idchatter2id/"+ activeUser.id + "/" + id).then(res => {
+            if (res.data.id == null){
+                axios.get("http://localhost:8089/chat/chatter1idchatter2id/"+ id + "/" + activeUser.id).then(res2 => {
 
+                    localStorage.setItem('activeChat', JSON.stringify(res2.data));
+                    axios.get("http://localhost:8081/user/"+ id).then(res3 => {
+
+                        localStorage.setItem('activeFriend', JSON.stringify(res3.data));
+                    });
+                    
+                    this.props.history.push('/chat');
+                });
+
+            }
+            else {
+                localStorage.setItem('activeChat', JSON.stringify(res.data));
+                axios.get("http://localhost:8081/user/"+ id).then(res3 => {
+
+                        localStorage.setItem('activeFriend', JSON.stringify(res3.data));
+                    });
+                this.props.history.push('/chat');
+
+            };
+        });
         
 
     }
