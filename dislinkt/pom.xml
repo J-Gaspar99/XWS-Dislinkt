@@ -20,7 +20,11 @@
 
       <module>photo</module>
       <module>message</module>
+
+      <module>block</module>
+
       <module>chat</module>
+
   </modules>
 
   <name>dislinkt</name>
