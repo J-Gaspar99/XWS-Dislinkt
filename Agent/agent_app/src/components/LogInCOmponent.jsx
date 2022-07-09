@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import validator from 'validator';
-
-import UserService from '../services/UserService';
-import ClientPointsService from '../services/ClientPointsService';
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -23,7 +19,7 @@ class LoginComponent extends Component {
 
     login() {
 
-        axios.get("http://localhost:8081/user/" + this.state.userName + "/" + this.state.password).then(response => {
+        axios.get("http://localhost:8092/user/" + this.state.userName + "/" + this.state.password).then(response => {
                 localStorage.setItem('activeUser', JSON.stringify(response.data))
                 if(response.data.id != null){this.props.history.push('/userprofile');
                 window.location.reload(false);}
@@ -32,9 +28,7 @@ class LoginComponent extends Component {
                 }
             });
             
-            
-
-            
+           
 
     }
 

@@ -1,34 +1,63 @@
-import { Route , Switch} from 'react-router-dom';
+import './App.css';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import background from './images/back.jpg';
+
+import HeaderComponent from './components/HeaderComponent';
+
+import RegistrationComponent from './components/RegistrationComponent';
+
+import Unautentifieduserheader from './components/UnautentifiedUserHeader';
+
+import LoginComponent from './components/LogInCOmponent';
 
 
-import AllCompaniesPage from './pages/AllCompanies';
-import LogInPage from './pages/LogIn';
 
-import Layout from './components/layout/Layout';
-import RegistrationPage from './pages/Registration';
-import CompanyRegPage from './pages/CompanyReg';
+const backStyle = {
+  width: '100%',
+  height: '938px',
+  backgroundImage: `url(${background})`,
+  backgroundSize: 'cover' 
+};
+
+function headerDefinition(){
+
+  if(localStorage.getItem('activeUser')==null){
+    return(<Unautentifieduserheader/>)
+  }
+else{
+  return( <HeaderComponent/>)
+}
+
+  
+}
+
 
 function App() {
+  
   return (
-    <Layout>
-      <Switch>
-        <Route path='/' exact>
-          <LogInPage />
-        </Route>
-        <Route path='/registration'>
-          <RegistrationPage />
-        </Route>
-        <Route path='/companyregistration'>
-          <CompanyRegPage />
-        </Route>
-        <Route path='/allcompanies'>
-          <AllCompaniesPage />
-        </Route>
-        <Route path='/login'>
-          <LogInPage />
-        </Route>
-      </Switch>
-    </Layout>
+
+    <div style={backStyle}> 
+      
+        <Router>
+          
+         {headerDefinition() } 
+          <div className="container">
+            <Switch> 
+        
+            <Route path = "/" exact component={LoginComponent}></Route>
+              
+              <Route path = "/register" component={RegistrationComponent}></Route>
+      
+              
+
+              </Switch>
+          </div>
+                                
+        </Router>
+     
+     
+    </div>
+    
   );
 }
 
