@@ -20,10 +20,10 @@ public class PostController {
 
     //CREATE
     @PostMapping("/post")
-    public String createPost(@RequestBody Post post){
+    public Integer createPost(@RequestBody Post post){
         post.setId(seqService.getSeq("posts_sequence"));
         postRepository.save(post);
-        return "Created post with id: " + post.getId();
+        return  post.getId();
     }
 
     //FIND ALL

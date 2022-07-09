@@ -150,7 +150,14 @@ class LoggedViewPostsComponent extends Component {
         this.props.history.push('/loggedpostcomments');
 
     }
+    viewImage(id){
 
+        axios.get("http://localhost:8080/post/" + id).then(response => {
+            localStorage.setItem('activePost', JSON.stringify(response.data))
+
+        });
+        this.props.history.push('/displayimage');
+    }
 
     componentDidMount() {
         let activeFriend = JSON.parse(localStorage.getItem('activeFriend'))
@@ -198,6 +205,7 @@ class LoggedViewPostsComponent extends Component {
                                                     <button style={{ marginLeft: "10px" }} onClick={() => this.like(posts.id)} className="loginbtn">Like</button>
                                                     <button style={{ marginLeft: "10px" }} onClick={() => this.dislike(posts.id)} className="loginbtn">Dislike</button>
                                                     <button style={{ marginLeft: "10px" }} onClick={() => this.comments(posts.id)} className="loginbtn">Comments</button>
+                                                    <button style={{ marginLeft: "10px" }} onClick={() => this.viewImage(posts.id)} className="loginbtn">View Image</button>
 
                                                 </td>
 

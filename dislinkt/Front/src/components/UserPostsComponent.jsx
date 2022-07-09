@@ -16,6 +16,15 @@ class UserPostComponent extends Component {
     this.props.history.push('/createpost');
    }
 
+   addImage(postId){
+    axios.get("http://localhost:8080/post/" + postId ).then(response => {
+    localStorage.setItem('activePost', JSON.stringify(response.data));
+   });
+   this.props.history.push('/uploadimage');
+
+
+   }
+
     componentDidMount(){
         let activeUser =  JSON.parse(localStorage.getItem('activeUser'));
         
@@ -45,7 +54,7 @@ class UserPostComponent extends Component {
                                     <th>Likes</th>
                                     <th>Dislikes</th>
                                     <th>Comments</th>
-                                    
+                                    <th>Action</th>
                                 
                                 </tr>
                             </thead>
@@ -58,6 +67,10 @@ class UserPostComponent extends Component {
                                             <td>{posts.likes}</td>
                                             <td>{posts.dislikes}</td>
                                             <td>{posts.comments}</td>
+                                            <td>
+                                                <button style={{marginLeft:"10px"}} onClick={()=>this.addImage(posts.id)} className="loginbtn">Add Image</button>
+                                                
+                                            </td>
                                             
                                         </tr>
                                     )

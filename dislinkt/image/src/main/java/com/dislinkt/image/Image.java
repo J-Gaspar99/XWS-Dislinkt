@@ -1,27 +1,25 @@
-package com.dislinkt.photo;
+package com.dislinkt.image;
+
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bson.types.Binary;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Getter
 @Setter
-@Document(collection="Photo")
-public class Photo
-{
+@ToString
 
+@Document(collection ="Image")
+public class Image {
+    @Transient
+    public static final String SEQUENCE_NAME = "images_sequence";
     @Id
-    private  String id;
-    private String title;
-    private Binary image;
+    private Integer id;
     private Integer postId;
-
-
-    public Photo(String title) {
-        this.title = title;
-    }
+    private String image1;
 
 }

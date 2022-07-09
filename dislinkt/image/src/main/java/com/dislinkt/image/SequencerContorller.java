@@ -1,4 +1,4 @@
-package com.dislinkt.photo;
+package com.dislinkt.image;
 public class SequencerContorller {
 
 }

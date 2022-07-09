@@ -21,6 +21,8 @@ import ChatComponent from './components/ChatComponent';
 import FollowRequestComponent from './components/FollowRequestsComponent';
 import BlockedUsersComponent from './components/BlockedUsersComponent';
 import NotificationsComponent from './components/NotificationsComponent';
+import UploadImageComponent from './components/UploadImageComponent';
+import DisplayImageComponent from './components/DisplayImageComponent';
 
 
 
@@ -77,6 +79,8 @@ function App() {
               <Route path = "/followrequests" component={FollowRequestComponent} ></Route>
               <Route path = "/blockedusers" component={BlockedUsersComponent} ></Route>
               <Route path = "/myfriends" component={MyFriendsComponent} ></Route>
+              <Route path = "/uploadimage" component={UploadImageComponent} ></Route>
+              <Route path = "/displayimage" component={DisplayImageComponent} ></Route>
 
 
               </Switch>
