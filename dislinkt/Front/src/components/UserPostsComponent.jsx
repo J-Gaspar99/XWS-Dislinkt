@@ -1,3 +1,4 @@
+import { cellClick } from '@syncfusion/ej2-react-schedule';
 import axios from 'axios';
 import React, { Component } from 'react';
 
@@ -24,6 +25,7 @@ class UserPostComponent extends Component {
 
 
    }
+  
 
     componentDidMount(){
         let activeUser =  JSON.parse(localStorage.getItem('activeUser'));
@@ -51,6 +53,7 @@ class UserPostComponent extends Component {
                                 <tr>
                                 
                                     <th>Text</th>
+                                    <th>Link</th>
                                     <th>Likes</th>
                                     <th>Dislikes</th>
                                     <th>Comments</th>
@@ -64,11 +67,13 @@ class UserPostComponent extends Component {
                                         posts =>
                                         <tr key= {posts.id}>
                                             <td>{posts.text}</td>
+                                            <div align="center"><a href={posts.link}><td>{posts.link}</td></a></div>
                                             <td>{posts.likes}</td>
                                             <td>{posts.dislikes}</td>
                                             <td>{posts.comments}</td>
                                             <td>
                                                 <button style={{marginLeft:"10px"}} onClick={()=>this.addImage(posts.id)} className="loginbtn">Add Image</button>
+                                            
                                                 
                                             </td>
                                             

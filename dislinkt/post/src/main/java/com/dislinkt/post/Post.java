@@ -19,6 +19,7 @@ public class Post {
     @Id
     private Integer id;
     private String text;
+    private String link;
     private Integer likes;
     private Integer dislikes;
     private Integer comments;

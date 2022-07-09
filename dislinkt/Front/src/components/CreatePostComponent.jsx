@@ -7,6 +7,7 @@ class CreatePostComponent extends Component {
         this.state = {
             id: this.props.match.params.id,
             text: '',
+            link:'',
             likes: '',
             dislikes: '',
             comments: '',
@@ -15,6 +16,7 @@ class CreatePostComponent extends Component {
 
         }
         this.changeTextHandler = this.changeTextHandler.bind(this);
+        this.changeLinkHandler = this.changeLinkHandler.bind(this);
 
 
         this.createPost = this.createPost.bind(this);
@@ -26,6 +28,7 @@ class CreatePostComponent extends Component {
         let newPost = {
             text: this.state.text,
             likes: 0,
+            link:this.state.link,
             dislikes: 0,
             comments: 0,
             ownerId: activeUser.id
@@ -75,6 +78,9 @@ class CreatePostComponent extends Component {
     changeTextHandler = (event) => {
         this.setState({ text: event.target.value });
     }
+    changeLinkHandler = (event) => {
+        this.setState({ link: event.target.value });
+    }
     componentDidMount() {
 
     }
@@ -90,6 +96,8 @@ class CreatePostComponent extends Component {
                             <div className="form-group">
                                 <label> Text: </label>
                                 <textarea name="text" className="form-control" value={this.state.text} onChange={this.changeTextHandler} />
+                                <label> Link: </label>
+                                <input name="link" className="form-control" value={this.state.link} onChange={this.changeLinkHandler} />
 
 
                                 <div className="center"><button className="loginbtn" onClick={() => this.createPost()}>Create</button></div>

@@ -52,6 +52,7 @@ public class PostController {
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post does not exist with id:"+ id));
 
         post.setText(postDetails.getText());
+        post.setLink(postDetails.getLink());
         post.setLikes(postDetails.getLikes());
         post.setDislikes(postDetails.getDislikes());
         post.setComments(postDetails.getComments());

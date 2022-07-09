@@ -182,6 +182,7 @@ class LoggedViewPostsComponent extends Component {
                                 <tr>
 
                                     <th>Text</th>
+                                    <th>Link</th>
                                     <th>Likes</th>
                                     <th>Dislikes</th>
                                     <th>Comments</th>
@@ -197,6 +198,7 @@ class LoggedViewPostsComponent extends Component {
                                         posts =>
                                             <tr key={posts.id}>
                                                 <td>{posts.text}</td>
+                                                <td>{posts.link}</td>
                                                 <td>{posts.likes}</td>
                                                 <td>{posts.dislikes}</td>
                                                 <td>{posts.comments}</td>
