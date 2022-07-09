@@ -16,11 +16,15 @@ public class Role {
 	
 	public Role() {}
 	
-	public Role(String Rolename) {this.rolename=Rolename;
+	public Role(String Rolename) {
+		this.rolename=Rolename;
 	if(Rolename.equals("REGISTOVAN"))
 		this.roleID=2;
 	if(Rolename.equals("VLASNIK"))
 		this.roleID=3;
+	if(Rolename.equals("ADMIN"))
+			this.roleID=1;
 	}
-	
-}
+
+	}
+

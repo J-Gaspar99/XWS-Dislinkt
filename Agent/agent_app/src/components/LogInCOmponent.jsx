@@ -20,7 +20,9 @@ class LoginComponent extends Component {
     login() {
 
         axios.get("http://localhost:8092/user/" + this.state.userName + "/" + this.state.password).then(response => {
+                console.log(response.data);
                 localStorage.setItem('activeUser', JSON.stringify(response.data))
+                
                 if(response.data.id != null){this.props.history.push('/userprofile');
                 window.location.reload(false);}
                 else{

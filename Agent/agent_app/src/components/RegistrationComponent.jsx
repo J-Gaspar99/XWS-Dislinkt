@@ -12,7 +12,7 @@ class RegistrationComponent extends Component {
             firstname:'',
             lastname:'',
             email: '',
-            uloga:''
+            uloga:2
             
         }
         this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
@@ -29,23 +29,24 @@ class RegistrationComponent extends Component {
     register(){
         //CREATE USER
         let newUser ={
-            id:this.state.id,
-            userName:this.state.username,
+            username:this.state.username,
             password:this.state.password,
 
             firstname:this.state.firstname,
             lastname:this.state.lastname,
             email: this.state.email,
-            uloga:2
+            uloga:this.state.uloga
         };
 
         
         axios.post("http://localhost:8092/user",newUser).then((res) => {
-            alert(res.data);
+           alert(res);
             }); 
         
-          
+
+            
     }
+
     changeUserNameHandler = (event) => {
         this.setState({username: event.target.value});
     }

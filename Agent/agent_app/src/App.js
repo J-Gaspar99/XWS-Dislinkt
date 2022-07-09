@@ -2,13 +2,15 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import background from './images/back.jpg';
 
-import HeaderComponent from './components/HeaderComponent';
+import RegistratedHeaderComponent from './components/RegistratedHeaderComponent';
 
 import RegistrationComponent from './components/RegistrationComponent';
 
 import Unautentifieduserheader from './components/UnautentifiedUserHeader';
 
-import LoginComponent from './components/LogInCOmponent';
+import LoginComponent from './components/LoginComponent';
+import UserProfileComponent from './components/UserProfileComponent';
+import CreateCompanyComponent from './components/CreateCompanyComponent';
 
 
 
@@ -25,7 +27,7 @@ function headerDefinition(){
     return(<Unautentifieduserheader/>)
   }
 else{
-  return( <HeaderComponent/>)
+  return( <RegistratedHeaderComponent/>)
 }
 
   
@@ -47,8 +49,9 @@ function App() {
             <Route path = "/" exact component={LoginComponent}></Route>
               
               <Route path = "/register" component={RegistrationComponent}></Route>
-      
-              
+              <Route path = "/login"  component={LoginComponent}></Route>
+              <Route path = "/userprofile"  component={UserProfileComponent}></Route>
+              <Route path = "/createcompany"  component={CreateCompanyComponent}></Route>
 
               </Switch>
           </div>

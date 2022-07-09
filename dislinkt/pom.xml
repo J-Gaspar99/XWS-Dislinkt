@@ -13,7 +13,6 @@
     <module>post</module>
       <module>follows</module>
       <module>followRequest</module>
-    <module>followRequest</module>
       <module>like</module>
       <module>dislike</module>
       <module>Comment</module>

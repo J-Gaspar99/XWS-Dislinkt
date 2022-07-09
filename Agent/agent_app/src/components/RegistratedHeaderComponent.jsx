@@ -9,7 +9,7 @@ const navLinkStyle = {
 }
 
 
-class HeaderComponent extends Component {
+class RegistratedHeaderComponent extends Component {
 logout(){
     localStorage.clear();
 }
@@ -21,17 +21,12 @@ logout(){
                 <Navbar>
                     <Container>
                         
-                        <Navbar.Brand style={navLinkStyle} href="/">DISLINKT</Navbar.Brand>
+                        <Navbar.Brand style={navLinkStyle} href="/">AGENT APP</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
-
-                                <NavDropdown title="Me" id="basic-nav-dropdown">
-                                    
-                                    <NavDropdown.Item href="/userprofile">Profile</NavDropdown.Item>
-                                    <NavDropdown.Item href="/userposts">Posts</NavDropdown.Item>
-                                                                          
-                                </NavDropdown>
+                            <Nav.Link style={navLinkStyle} href="/userprofile" >Profile </Nav.Link>
+                            <Nav.Link style={navLinkStyle} href="/createcompany" >Create company </Nav.Link>    
 
                                 <NavDropdown title="Others" id="basic-nav-dropdown">
                                     
@@ -58,4 +53,4 @@ logout(){
     }
 }
 
-export default HeaderComponent;
+export default RegistratedHeaderComponent;

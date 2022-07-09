@@ -1,4 +1,5 @@
 package com.example.Agent.model;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -6,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.List;
 import java.sql.*;
-
 
 @Document(collection ="User")
 public class User {
@@ -34,13 +34,16 @@ public class User {
 		
 	}
 
-	public String getId() {
-		return username;
-	}
+	/*public String getId() {
+		return id;
+	}*/
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
 
+	public ObjectId getId() {
+		return id;
+	}
 
 	public String getUsername() {
 		return username;
