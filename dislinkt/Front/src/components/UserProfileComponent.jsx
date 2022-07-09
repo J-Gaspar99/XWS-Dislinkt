@@ -6,20 +6,23 @@ class UserProfileComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: this.props.match.params.id,
-            userName: '',
+            id:this.props.match.params.id,
+            username: '',
             password: '',
 
-            firstName: '',
-            lastName: '',
+            firstname: '',
+            lastname: '',
             email: '',
-            phoneNumber: '',
+            phonenumber: '',
             gender: '',
-            dateOfBirth: '',
+            birthday:'',
+            birthmonth:'',
+            birthyear:'',
             biography: '',
-            workExperiance: '',
+            workexperience: '',
             hobbies: '',
-            publicity: ''
+            publicity: '',
+            
 
         }
         this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
@@ -30,105 +33,141 @@ class UserProfileComponent extends Component {
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changePhoneNumberHandler = this.changePhoneNumberHandler.bind(this);
         this.changeGenderHandler = this.changeGenderHandler.bind(this);
-        this.changeDateOfBirthHandler = this.changeDateOfBirthHandler.bind(this);
         this.changeBiographyHandler = this.changeBiographyHandler.bind(this);
-        this.changeWorkExperianceHandler = this.changeWorkExperianceHandler.bind(this);
+        this.changeWorkExperienceHandler = this.changeWorkExperienceHandler.bind(this);
         this.changeHobbiesHandler = this.changeHobbiesHandler.bind(this);
         this.changePublicityHandler = this.changePublicityHandler.bind(this);
+        this.changeBirthdayHandler = this.changeBirthdayHandler.bind(this);
+        this.changeBirthmonthHandler = this.changeBirthmonthHandler.bind(this);
+        this.changeBirthyearHandler = this.changeBirthyearHandler.bind(this);
+        
 
-
+        this.update = this.update.bind(this);
 
     }
 
     changeUserNameHandler = (event) => {
-        this.setState({ userName: event.target.value });
+        this.setState({username: event.target.value});
     }
     changePasswordHandler = (event) => {
-        this.setState({ password: event.target.value });
+        this.setState({password: event.target.value});
     }
 
-
+    
 
     changeFirstNameHandler = (event) => {
-        this.setState({ firstName: event.target.value });
+        this.setState({firstname: event.target.value});
     }
     changeLastNameHandler = (event) => {
-        this.setState({ lastName: event.target.value });
+        this.setState({lastname: event.target.value});
     }
 
-
+    changeAdressHandler = (event) => {
+        this.setState({adress: event.target.value});
+    }
     changeEmailHandler = (event) => {
-        this.setState({ email: event.target.value });
+        this.setState({email: event.target.value});
     }
     changePhoneNumberHandler = (event) => {
-        this.setState({ phoneNumber: event.target.value });
+        this.setState({phonenumber: event.target.value});
     }
     changeGenderHandler = (event) => {
-        this.setState({ gender: event.target.value });
+        this.setState({gender: event.target.value});
     }
 
-    changeDateOfBirthHandler = (event) => {
-        this.setState({ dateOfBirth: event.target.value });
-    }
+    
     changeBiographyHandler = (event) => {
-        this.setState({ biography: event.target.value });
+        this.setState({biography: event.target.value});
     }
-    changeWorkExperianceHandler = (event) => {
-        this.setState({ workExperiance: event.target.value });
+    changeWorkExperienceHandler = (event) => {
+        this.setState({workexperience: event.target.value});
     }
     changeHobbiesHandler = (event) => {
-        this.setState({ hobbies: event.target.value });
+        this.setState({hobbies: event.target.value});
     }
     changePublicityHandler = (event) => {
-        this.setState({ publicity: event.target.value });
-    }
-    update() {
+        this.setState({publicity: event.target.value});
+        }
+        
+        changeBirthdayHandler = (event) => {
+            this.setState({birthday: event.target.value});
+        }
+        changeBirthmonthHandler = (event) => {
+            this.setState({birthmonth: event.target.value});
+        }
+        changeBirthyearHandler = (event) => {
+            this.setState({birthyear: event.target.value});
+        }
 
+       
+    update(idd) {
+
+        
+        let activeUser =  JSON.parse(localStorage.getItem('activeUser'));
+        
         let updatedUser = {
-            userName:this.state.userName,
+            id:idd,
+            userName:this.state.username,
             password:this.state.password,
-            firstName:this.state.firstName,
-            lastName:this.state.lastName,
+            firstName:this.state.firstname,
+            lastName:this.state.lastname,
             email:this.state.email,
-            phoneNumber:this.state.phoneNumber,
-            dateOfBirth:this.state.dateOfBirth,
+            phoneNumber:this.state.phonenumber,
+            birthDay:this.state.birthday,
+            birthMonth:this.state.birthmonth,
+            birthYear:this.state.birthyear,
             biography:this.state.biography,
-            workExperiance:this.state.workExperiance,
+            workExperience:this.state.workexperience,
             hobbies:this.state.hobbies,
             publicity:this.state.publicity
         };
 
-        let uuid = this.state.id;
+        axios.get("http://localhost:8081/user/username/" + updatedUser.userName).then(response1 => {
         
-        
+        if(response1.data.id == null){
 
-        console.log('updatedUser => ' + JSON.stringify(updatedUser));
-        axios.put("http://localhost:8081/user/"+ uuid ,updatedUser).then(res=> {
-            this.props.history.push('/userprofile')
-        }); 
-        
-    }
-    componentDidMount() {
+           // console.log('updatedUser => ' + JSON.stringify(updatedUser));
 
-        let activeUser = JSON.parse(localStorage.getItem('activeUser'))
-        this.setState({
-            id: activeUser.id,
-            userName: activeUser.userName,
-            password: activeUser.password,
-            firstName: activeUser.firstName,
-            lastName: activeUser.lastName,
-            email: activeUser.email,
-            phoneNumber: activeUser.phoneNumber,
-            gender: activeUser.gender,
-            dateOfBirth: activeUser.dateOfBirth,
-            biography: activeUser.biography,
-            workExperiance: activeUser.workExperiance,
-            hobbies: activeUser.hobbies,
-            publicity: activeUser.publicity
-
+            axios.put("http://localhost:8081/user/"+ activeUser.id,updatedUser).then(response => {
+                    localStorage.setItem('activeUser', JSON.stringify(updatedUser));
+                    
+                
+            }); }
+            else{alert("Username already in use")}
         });
 
+
+        
     }
+
+    
+    
+
+    componentDidMount() {
+
+        
+        let activeUser = JSON.parse(localStorage.getItem('activeUser'))
+        this.setState({
+        id: activeUser.id,
+        username: activeUser.userName,
+        password: activeUser.password,
+        firstname: activeUser.firstName,
+        lastname: activeUser.lastName,
+        email: activeUser.email,
+        phonenumber: activeUser.phoneNumber,
+        birthday:activeUser.birthDay,
+        birthmonth:activeUser.birthMonth,
+        birthyear:activeUser.birthYear,
+        gender: activeUser.gender,
+        biography: activeUser.biography,
+        workexperience: activeUser.workExperience,
+        hobbies: activeUser.hobbies,
+        publicity: activeUser.publicity
+
+    });
+
+    }
+
     render() {
         return (
             <div>
@@ -140,30 +179,38 @@ class UserProfileComponent extends Component {
                         <form>
                             <div className="form-group">
                                 <label> Username: </label>
-                                <input name="username" className="form-control" value={this.state.userName} onChange={this.changeUserNameHandler} />
+                                <input name="username" className="form-control" value={this.state.username} onChange={this.changeUserNameHandler} />
                                 <label> Password: </label>
                                 <input name="password" className="form-control" value={this.state.password} onChange={this.changePasswordHandler} />
 
                                 <label> First name: </label>
-                                <input name="firstname" className="form-control" value={this.state.firstName} onChange={this.changeFirstNameHandler} />
+                                <input name="firstname" className="form-control" value={this.state.firstname} onChange={this.changeFirstNameHandler} />
                                 <label> Last name: </label>
-                                <input name="lastname" className="form-control" value={this.state.lastName} onChange={this.changeLastNameHandler} />
+                                <input name="lastname" className="form-control" value={this.state.lastname} onChange={this.changeLastNameHandler} />
                                 <label> Email: </label>
                                 <input name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} />
                                 <label> Phone number: </label>
-                                <input name="phonenumber" className="form-control" value={this.state.phoneNumber} onChange={this.changePhoneNumberHandler} />
-                                <label> Date of birth: </label>
-                                <input type="date" name="dateofbirth" className="form-control" value={this.state.dateOfBirth} onChange={this.changeDateOfBirthHandler} />
+                                <input name="phonenumber" className="form-control" value={this.state.phonenumber} onChange={this.changePhoneNumberHandler} />
+
+                                <label> Birthday: </label>
+                                <input  name="birthday" className="form-control" value={this.state.birthday} onChange={this.changeBirthdayHandler} />
+                                <label> Birthmonth: </label>
+                                <input  name="birthmonth" className="form-control" value={this.state.birthmonth} onChange={this.changeBirthmonthHandler} />
+                                <label> Birthyear: </label>
+                                <input  name="birthyear" className="form-control" value={this.state.birthyear} onChange={this.changeBirthyearHandler} />
+
                                 <label> Biography: </label>
                                 <input name="biography" className="form-control" value={this.state.biography} onChange={this.changeBiographyHandler} />
-                                <label> Work experiance: </label>
-                                <input name="workexperiance" className="form-control" value={this.state.workExperiance} onChange={this.changeWorkExperianceHandler} />
+                                <label> Work experience: </label>
+                                <input name="workexperience" className="form-control" value={this.state.workexperience} onChange={this.changeWorkExperienceHandler} />
                                 <label> Hobbies: </label>
                                 <input name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler} />
                                 <label> Publicity: </label>
                                 <input name="publicity" className="form-control" value={this.state.publicity} onChange={this.changePublicityHandler} />
+                                <br/>
 
-                                <div className="center"><button className="loginbtn" onClick={this.update()}>Update</button></div>
+                                <div className="center"><button className="loginbtn" onClick={()=>this.update(this.state.id)}>Update</button></div>
+                                <br/>
                             </div>
                         </form>
 

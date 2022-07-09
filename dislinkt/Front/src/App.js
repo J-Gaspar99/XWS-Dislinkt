@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import background from './images/back.jpg';
 
 import HeaderComponent from './components/HeaderComponent';
-import HomePageCommponent from './components/HomePageCommponent';
+import HomePageComponent from './components/HomePageComponent';
 import RegistrationComponent from './components/RegistrationComponent';
 import LoginComponent from './components/LoginComponent';
 import ProfilesComponent from './components/ProfilesComponent';
@@ -12,10 +12,20 @@ import ViewPostsComponent from './components/ViewPostsComponent';
 import UserProfileComponent from './components/UserProfileComponent';
 import UserPostsComponent from './components/UserPostsComponent';
 import CreatePostComponent from './components/CreatePostComponent';
-
-
-
 import Unautentifieduserheader from './components/UnautentifiedUserHeader';
+import LoggedProfileComponent from './components/LoggedProfileComponent';
+import LoggedViewPostsComponent from './components/LoggedViewPostsComponent';
+import LoggedPostCommentsComponent from './components/LoggedPostCommentsComponent';
+import MyFriendsComponent from './components/MyFriendsComponent';
+import ChatComponent from './components/ChatComponent';
+import FollowRequestComponent from './components/FollowRequestsComponent';
+import BlockedUsersComponent from './components/BlockedUsersComponent';
+import NotificationsComponent from './components/NotificationsComponent';
+import UploadImageComponent from './components/UploadImageComponent';
+import DisplayImageComponent from './components/DisplayImageComponent';
+import FeedComponent from './components/FeedComponent';
+
+
 
 const backStyle = {
   width: '100%',
@@ -50,19 +60,30 @@ function App() {
           <div className="container">
             <Switch> 
         
-            <Route path = "/" exact component={HomePageCommponent}></Route>
+            <Route path = "/" exact component={HomePageComponent}></Route>
               <Route path = "/login" exact component={LoginComponent}></Route>
               <Route path = "/register" component={RegistrationComponent}></Route>
       
               <Route path = "/login" component={LoginComponent}></Route>
-              <Route path = "/homepage" component={HomePageCommponent} ></Route>
+              <Route path = "/homepage" component={HomePageComponent} ></Route>
               <Route path = "/profiles" component={ProfilesComponent} ></Route>
               <Route path = "/viewprofile" component={ViewProfileComponent} ></Route>
               <Route path = "/viewposts" component={ViewPostsComponent} ></Route>
               <Route path = "/userprofile" component={UserProfileComponent} ></Route>
               <Route path = "/userposts" component={UserPostsComponent} ></Route>
-              
+              <Route path = "/loggedprofiles" component={LoggedProfileComponent} ></Route>
+              <Route path = "/createpost" component={CreatePostComponent} ></Route>
+              <Route path = "/loggedviewposts" component={LoggedViewPostsComponent} ></Route>
+              <Route path = "/loggedpostcomments" component={LoggedPostCommentsComponent} ></Route>
+              <Route path = "/notifications" component={NotificationsComponent} ></Route>
+              <Route path = "/chat" component={ChatComponent} ></Route>
+              <Route path = "/followrequests" component={FollowRequestComponent} ></Route>
+              <Route path = "/blockedusers" component={BlockedUsersComponent} ></Route>
+              <Route path = "/myfriends" component={MyFriendsComponent} ></Route>
+              <Route path = "/uploadimage" component={UploadImageComponent} ></Route>
+              <Route path = "/displayimage" component={DisplayImageComponent} ></Route>
 
+              <Route path = "/feed" component={FeedComponent} ></Route>
 
 
               </Switch>

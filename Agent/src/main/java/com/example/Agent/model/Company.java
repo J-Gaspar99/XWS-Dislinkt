@@ -22,7 +22,7 @@ public class Company {
 	private ObjectId owner;
 	private Boolean isEnabled;
 	
-	
+	Company(){}
 	
 	
 	
@@ -95,6 +95,15 @@ public class Company {
 	}
 	public void setIsEnabled(Boolean isEnabled) {
 		this.isEnabled = isEnabled;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Company [id=" + id + ", name=" + name + ", description=" + description + ", culture=" + culture
+				+ ", phone=" + phone + ", email=" + email + ", webAdress=" + webAdress + ", owner=" + owner
+				+ ", isEnabled=" + isEnabled + "]";
 	}
 
 

@@ -18,10 +18,13 @@ public class DislikeController {
 
     @Autowired
     private DislikeRepository dislikeRepository;
+    @Autowired
+    private SequencerService seqService;
 
     //CREATE
     @PostMapping("/dislike")
     public String createLike(@RequestBody Dislike dislike){
+        dislike.setId(seqService.getSeq("dislikes_sequence"));
         dislikeRepository.save(dislike);
         return "Created dislike with id: " + dislike.getId();
     }

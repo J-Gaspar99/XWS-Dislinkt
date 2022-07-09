@@ -16,7 +16,7 @@ class ViewProfileComponent extends Component {
             gender:'',
             dateofbirth: '',
             biography:'',
-            workexperiance:'',
+            workexperience:'',
             hobbies:'',
             publicity:'',
 
@@ -26,7 +26,7 @@ class ViewProfileComponent extends Component {
         this.seeposts = this.seeposts.bind(this);
     }
     seeposts(){
-        this.props.history.push('/viewposts');   
+        this.props.history.push('/loggedviewposts');   
     }
 
     componentDidMount(){
@@ -42,7 +42,7 @@ class ViewProfileComponent extends Component {
             phonenumber:activeProfile.phoneNumber,
             dateofbirth:activeProfile.dateOfBirth,
             biography:activeProfile.biography,
-            workexperiance: activeProfile.workExperiance,
+            workexperience: activeProfile.workExperience,
             hobbies: activeProfile.hobbies,
 
             });
@@ -69,13 +69,14 @@ class ViewProfileComponent extends Component {
                                 <input type="date"  name="dateofbirth" className="form-control" value={this.state.dateofbirth} onChange={this.changeDateOfBirthHandler}/>
                                 <label> Biography: </label>
                                 <input  name="biography" className="form-control" value={this.state.biography} onChange={this.changeBiographyHandler}/>   
-                                <label> Work experiance: </label>
-                                <input  name="workexperiance" className="form-control" value={this.state.workexperiance} onChange={this.changeWorkExperianceHandler}/> 
+                                <label> Work experience: </label>
+                                <input  name="workexperience" className="form-control" value={this.state.workexperience} onChange={this.changeWorkExperienceHandler}/> 
                                 <label> Hobbies: </label>
                                 <input  name="hobbies" className="form-control" value={this.state.hobbies} onChange={this.changeHobbiesHandler}/>
                                 
                                 <br/>
                                 <div className="center"><button className="loginbtn" onClick={()=>this.seeposts()}>See posts</button></div>
+                                <br/>
 
             </div>
             

@@ -1,5 +1,6 @@
 package com.example.Agent.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.bson.types.ObjectId;
@@ -46,9 +47,16 @@ public class CompanyController {
 
 	    //FIND BY ID
 	    @GetMapping("/{id}")
-	    public Optional<Company> getUser(@PathVariable ObjectId id){
+	    public Optional<Company> getCompnay(@PathVariable ObjectId id){
 	        return companyRepository.findById(id);
 	    }
+	    
+	    //FIND BY ID
+	    @GetMapping("/all")
+	    public List<Company> getAllCompany(){
+	        return companyRepository.findAll();
+	    }
+	    
 
 	    //DELETE
 	    @DeleteMapping("/user/{id}")

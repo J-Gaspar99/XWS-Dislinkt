@@ -12,11 +12,19 @@
     <module>user</module>
     <module>post</module>
       <module>follows</module>
-      <module>followRequests</module>
+      <module>followRequest</module>
     <module>followRequest</module>
       <module>like</module>
       <module>dislike</module>
       <module>Comment</module>
+
+      <module>photo</module>
+      <module>message</module>
+
+      <module>block</module>
+
+      <module>chat</module>
+
   </modules>
 
   <name>dislinkt</name>

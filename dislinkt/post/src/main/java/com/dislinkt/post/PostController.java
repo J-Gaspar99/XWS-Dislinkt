@@ -15,12 +15,15 @@ import java.util.Optional;
 public class PostController {
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private SequencerService seqService;
 
     //CREATE
     @PostMapping("/post")
-    public String createPost(@RequestBody Post post){
+    public Integer createPost(@RequestBody Post post){
+        post.setId(seqService.getSeq("posts_sequence"));
         postRepository.save(post);
-        return "Created post with id: " + post.getId();
+        return  post.getId();
     }
 
     //FIND ALL
@@ -49,10 +52,12 @@ public class PostController {
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post does not exist with id:"+ id));
 
         post.setText(postDetails.getText());
+        post.setLink(postDetails.getLink());
         post.setLikes(postDetails.getLikes());
         post.setDislikes(postDetails.getDislikes());
         post.setComments(postDetails.getComments());
         post.setOwnerId(postDetails.getOwnerId());
+        post.setPublicity(postDetails.getPublicity());
 
 
         Post updatedPost = postRepository.save(post);
@@ -66,4 +71,13 @@ public class PostController {
         return postRepository.findByOwnerId(ownerid);
 
     }
+
+    //get by publicity
+    @GetMapping("/post/publicity/{publicity}")
+    public List <Post> getPostByPublicity(@PathVariable("publicity") Integer publicity){
+        return postRepository.findByPublicity(publicity);
+
+    }
+
+    
 }

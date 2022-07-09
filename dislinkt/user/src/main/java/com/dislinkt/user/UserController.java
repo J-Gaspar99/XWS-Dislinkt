@@ -20,9 +20,13 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private SequencerService seqService;
     //CREATE
     @PostMapping("/user")
     public String createUser(@RequestBody User user){
+        //generate sequence
+        user.setId(seqService.getSeq("users_sequence"));
         userRepository.save(user);
         return "Created user with id: " + user.getId();
     }
@@ -59,9 +63,11 @@ public class UserController {
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
         user.setEmail(userDetails.getEmail());
-        user.setPhone(userDetails.getPhone());
+        user.setPhoneNumber(userDetails.getPhoneNumber());
         user.setGender(userDetails.getGender());
-        user.setDateOfBirth(userDetails.getDateOfBirth());
+        user.setBirthDay(userDetails.getBirthDay());
+        user.setBirthMonth(userDetails.getBirthMonth());
+        user.setBirthYear(userDetails.getBirthYear());
         user.setBiography(userDetails.getBiography());
         user.setWorkExperience(userDetails.getWorkExperience());
         user.setHobbies(userDetails.getHobbies());
@@ -97,6 +103,8 @@ public class UserController {
         return userRepository.findByUserName(username);
 
     }
+
+
 
 
 

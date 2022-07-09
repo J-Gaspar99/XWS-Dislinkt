@@ -19,10 +19,13 @@ public class CommentController {
 
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private SequencerService seqService;
 
     //CREATE
     @PostMapping("/comment")
     public String createComment(@RequestBody Comment comment) {
+        comment.setId(seqService.getSeq("comments_sequence"));
         commentRepository.save(comment);
         return "Created comment with id: " + comment.getId();
     }
@@ -54,6 +57,7 @@ public class CommentController {
 
         comment.setOwnerId(commentDetails.getOwnerId());
         comment.setPostId(commentDetails.getPostId());
+        comment.setOwnerUserName(commentDetails.getOwnerUserName());
 
         Comment updatedComment = commentRepository.save(comment);
         return ResponseEntity.ok(updatedComment);

@@ -25,10 +25,13 @@ class LoginComponent extends Component {
 
         axios.get("http://localhost:8081/user/" + this.state.userName + "/" + this.state.password).then(response => {
                 localStorage.setItem('activeUser', JSON.stringify(response.data))
-                
+                if(response.data.id != null){this.props.history.push('/userprofile');
+                window.location.reload(false);}
+                else{
+                    alert("Wrong Username and/or Password")
+                }
             });
-            this.props.history.push('/userprofile');
-            window.location.reload(false);
+            
             
 
             
@@ -46,7 +49,7 @@ class LoginComponent extends Component {
 
     componentDidMount() {
         localStorage.clear();
-
+        localStorage.clear();
     }
 
     render() {

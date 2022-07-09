@@ -16,10 +16,12 @@ import java.util.Optional;
 public class FollowsController {
     @Autowired
     private FollowsRepository followsRepository;
-
+    @Autowired
+    private SequencerService seqService;
     //CREATE
     @PostMapping("/follows")
     public String createFollows(@RequestBody Follows follows){
+        follows.setId(seqService.getSeq("follows_sequence"));
         followsRepository.save(follows);
         return "Created follows with id: " + follows.getId();
     }
@@ -51,7 +53,10 @@ public class FollowsController {
 
         follows.setFollowerId(followsDetails.getFollowerId());
         follows.setFollowingId(followsDetails.getFollowingId());
-
+        follows.setFollowerUserName(followsDetails.getFollowerUserName());
+        follows.setFollowingUserName(followsDetails.getFollowingUserName());
+        follows.setNewMessages(followsDetails.getNewMessages());
+        follows.setNewPosts(followsDetails.getNewPosts());
 
         Follows updatedFollows = followsRepository.save(follows);
         return ResponseEntity.ok(updatedFollows);
@@ -61,15 +66,22 @@ public class FollowsController {
 
     //get by Follower
     @GetMapping("/follows/follower/{follower}")
-    public Follows getFollowByFollowerId(@PathVariable("follower") Integer follower){
+    public List <Follows> getFollowByFollowerId(@PathVariable("follower") Integer follower){
         return followsRepository.findByFollowerId(follower);
 
     }
 
     //get by Following
     @GetMapping("/follows/following/{following}")
-    public Follows getFollowByFollowingId(@PathVariable("following") Integer following){
+    public List <Follows> getFollowByFollowingId(@PathVariable("following") Integer following){
         return followsRepository.findByFollowingId(following);
+
+    }
+
+    //get by FollowerAndFollowing
+    @GetMapping("/follows/followerandfollowing/{follower}/{following}")
+    public Follows getFollowByFollowerIdAndFollowingId(@PathVariable("follower") Integer follower,@PathVariable("following") Integer following){
+        return followsRepository.findByFollowerIdAndFollowingId(follower,following);
 
     }
 

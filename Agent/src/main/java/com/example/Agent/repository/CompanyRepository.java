@@ -1,5 +1,6 @@
 package com.example.Agent.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.bson.types.ObjectId;
@@ -15,6 +16,8 @@ public interface CompanyRepository extends MongoRepository<Company,Integer> {
 	Optional<Company> findById(ObjectId id);
 
 	void deleteById(Integer id);
+	
+	List<Company> findAll();
 
 
 }
