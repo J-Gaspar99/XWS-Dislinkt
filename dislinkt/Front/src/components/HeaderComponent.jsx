@@ -39,7 +39,7 @@ logout(){
                                     <NavDropdown.Item href="/myfriends">Friends</NavDropdown.Item>
                                                                           
                                 </NavDropdown>                
-                                <Nav.Link style={navLinkStyle} href="/feed" >Feed </Nav.Link>
+                                
                                 <Nav.Link style={navLinkStyle} href="/notifications" >Notifications </Nav.Link>
                                 
                                 

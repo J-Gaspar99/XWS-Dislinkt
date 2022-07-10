@@ -23,7 +23,6 @@ import BlockedUsersComponent from './components/BlockedUsersComponent';
 import NotificationsComponent from './components/NotificationsComponent';
 import UploadImageComponent from './components/UploadImageComponent';
 import DisplayImageComponent from './components/DisplayImageComponent';
-import FeedComponent from './components/FeedComponent';
 
 
 
@@ -82,8 +81,6 @@ function App() {
               <Route path = "/myfriends" component={MyFriendsComponent} ></Route>
               <Route path = "/uploadimage" component={UploadImageComponent} ></Route>
               <Route path = "/displayimage" component={DisplayImageComponent} ></Route>
-
-              <Route path = "/feed" component={FeedComponent} ></Route>
 
 
               </Switch>

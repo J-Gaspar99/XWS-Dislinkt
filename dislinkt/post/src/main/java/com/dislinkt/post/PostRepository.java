@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface PostRepository extends MongoRepository<Post,Integer> {
    List<Post> findByOwnerId(Integer ownerId);
-   List<Post> findByPublicity(Integer publicity);
 
 }

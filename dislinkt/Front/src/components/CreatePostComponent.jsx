@@ -11,8 +11,7 @@ class CreatePostComponent extends Component {
             likes: '',
             dislikes: '',
             comments: '',
-            ownerId: '',
-            publicity: ''
+            ownerId: ''
 
 
         }
@@ -32,8 +31,7 @@ class CreatePostComponent extends Component {
             link:this.state.link,
             dislikes: 0,
             comments: 0,
-            ownerId: activeUser.id,
-            publicity: activeUser.publicity
+            ownerId: activeUser.id
 
         };
 

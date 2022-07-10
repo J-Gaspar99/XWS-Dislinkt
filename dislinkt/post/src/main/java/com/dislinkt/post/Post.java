@@ -24,5 +24,4 @@ public class Post {
     private Integer dislikes;
     private Integer comments;
     private Integer ownerId;
-    private Integer publicity;
 }

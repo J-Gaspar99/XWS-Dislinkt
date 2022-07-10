@@ -57,7 +57,6 @@ public class PostController {
         post.setDislikes(postDetails.getDislikes());
         post.setComments(postDetails.getComments());
         post.setOwnerId(postDetails.getOwnerId());
-        post.setPublicity(postDetails.getPublicity());
 
 
         Post updatedPost = postRepository.save(post);
@@ -71,13 +70,4 @@ public class PostController {
         return postRepository.findByOwnerId(ownerid);
 
     }
-
-    //get by publicity
-    @GetMapping("/post/publicity/{publicity}")
-    public List <Post> getPostByPublicity(@PathVariable("publicity") Integer publicity){
-        return postRepository.findByPublicity(publicity);
-
-    }
-
-    
 }
