@@ -20,10 +20,13 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private SequencerService seqService;
 
     //CREATE
     @PostMapping("/user")
     public String createUser(@RequestBody User user){
+        user.setId(seqService.getSeq("agent_users_sequence"));
         userRepository.save(user);
         return "Created user with id: " + user.getId();
     }
@@ -31,7 +34,7 @@ public class UserController {
 
     //FIND BY ID
     @GetMapping("/user/{id}")
-    public Optional<User> getUser(@PathVariable ObjectId id){
+    public Optional<User> getUser(@PathVariable Integer id){
         return userRepository.findById(id);
     }
 
@@ -45,7 +48,7 @@ public class UserController {
 
     //UPDATE
     @PutMapping("/user/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable ObjectId id, @RequestBody User userDetails){
+    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User userDetails){
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User does not exist with id:"+ id));
 
         user.setUsername(userDetails.getUsername());
@@ -54,6 +57,7 @@ public class UserController {
         user.setFirstname(userDetails.getFirstname());
         user.setLastname(userDetails.getLastname());
         user.setEmail(userDetails.getEmail());
+        user.setUloga(userDetails.getUloga());
         
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
@@ -62,24 +66,9 @@ public class UserController {
     //FIND BY USERNAME AND PASSWORD
     @GetMapping("/user/{userName}/{password}")
     public User logUser(@PathVariable("userName") String userName, @PathVariable("password") String password){
-        Optional<User> loggedUser = Optional.ofNullable(userRepository.findByUsernameAndPassword(userName,password));
-        return loggedUser.get();
+        User loggedUser = userRepository.findByUsernameAndPassword(userName,password);
+        return loggedUser;
     }
 
-    //LOGIN
-    @PostMapping("/login/{userName}/{password}")
-    public User loginUser(@PathVariable("userName") String userName, @PathVariable("password") String password)
-    {
-        Optional<User> user = Optional.ofNullable(userRepository.findByUsernameAndPassword(userName,password));
-        User user2;
-        if(!user.isPresent())
-        {
-            return null;
-        }
-        else
-        {
-            user2 = user.get();
-            return user2;
-        }
-    }
+
 }

@@ -72,10 +72,10 @@ class UserProfileComponent extends Component {
             if(activeUser.uloga==3){
                 this.setState({
                     id: activeUser.id,
-                    username: activeUser.userName,
+                    username: activeUser.username,
                     password: activeUser.password,
-                    firstname: activeUser.firstName,
-                    lastname: activeUser.lastName,
+                    firstname: activeUser.firstname,
+                    lastname: activeUser.lastname,
                     email: activeUser.email,
                     uloga: "VLASNIK"
                     
@@ -84,10 +84,10 @@ class UserProfileComponent extends Component {
             else {
                 this.setState({
                     id: activeUser.id,
-                    username: activeUser.userName,
+                    username: activeUser.username,
                     password: activeUser.password,
-                    firstname: activeUser.firstName,
-                    lastname: activeUser.lastName,
+                    firstname: activeUser.firstname,
+                    lastname: activeUser.lastname,
                     email: activeUser.email,
                     uloga: "ADMIN"
                     

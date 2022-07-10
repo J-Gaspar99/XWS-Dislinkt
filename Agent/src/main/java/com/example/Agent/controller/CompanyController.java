@@ -10,28 +10,27 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.Agent.exception.ResourceNotFoundException;
 import com.example.Agent.model.Company;
-import com.example.Agent.model.User;
 import com.example.Agent.repository.CompanyRepository;
-import com.example.Agent.repository.UserRepository;
+
+
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-@RequestMapping("/api/company")
+
 public class CompanyController {
 
 	 @Autowired
 	    private CompanyRepository companyRepository;
-	 @Autowired  
-	 	private UserRepository userRepository;
 
-	   /* public CompanyController(CompanyRepository cr,UserRepository ur) {
-	    	this.companyRepository = cr;
-	    	this.userRepository = ur;
-	    }*/
+	@Autowired
+	private SequencerService seqService;
+
+
 	    
 	    
 	    //CREATE
 	    @PostMapping("/company")
 	    public String createCompany(@RequestBody Company company){
+			company.setId(seqService.getSeq("agent_companies_sequence"));
 	        companyRepository.save(company);
 	        return "Created company with id:"+company.getId();
 	    }
@@ -39,7 +38,7 @@ public class CompanyController {
 
 	    //FIND BY ID
 	    @GetMapping("/company/{id}")
-	    public Optional<Company> getCompany(@PathVariable ObjectId id){
+	    public Optional<Company> getCompany(@PathVariable Integer id){
 	        return companyRepository.findById(id);
 	    }
 	    
@@ -60,30 +59,36 @@ public class CompanyController {
 
 	    //UPDATE
 	    @PutMapping("/company/{id}")
-	    public ResponseEntity<Company> updateCompany(@PathVariable ObjectId id, @RequestParam String Description){
+	    public ResponseEntity<Company> updateCompany(@PathVariable Integer id, @RequestBody  Company companyDetails){
 	        Company company = companyRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Company does not exist with id:"+ id));
-	    	company.setDescription(Description);
-	   return ResponseEntity.ok(companyRepository.save(company));
+
+			company.setName(companyDetails.getName());
+			company.setDescription(companyDetails.getDescription());
+			company.setCulture(companyDetails.getCulture());
+			company.setPhone(companyDetails.getPhone());
+			company.setEmail(companyDetails.getEmail());
+			company.setWebAddress(companyDetails.getWebAddress());
+			company.setOwnerId(companyDetails.getOwnerId());
+			company.setIsEnabled(companyDetails.getIsEnabled());
+
+			Company updatedCompany = companyRepository.save(company);
+			return ResponseEntity.ok(updatedCompany);
 	    }
-	
-	    //UPDATE
-	    @PutMapping("/company/enable/{id}")
-	    public ResponseEntity<Company> EnableCompany(@PathVariable ObjectId id){
-	        Company company = companyRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Company does not exist with id:"+ id));
-	        
-	    	company.setIsEnabled(true);       
-	    	
-	    	User user = userRepository.findById(company.getOwner()).get();
-	    	
-	    	user.setUloga(3);
-	    	
-	        userRepository.save(user);
-	    	
-	    	Company updatedCompany = companyRepository.save(company);
-	        
-	        return ResponseEntity.ok(updatedCompany);
-	    }
-	    
+
+
+		//FIND BY OWNER
+		@GetMapping("/company/ownerid/{ownerid}")
+		public Company getCompanyByOwnerId(@PathVariable("ownerid") Integer ownerid){
+			return companyRepository.findByOwnerId(ownerid);
+
+		}
+
+	//FIND BY ENABLED
+	@GetMapping("/company/isenabled/{isenabled}")
+	public List <Company> getCompanyByIsEnabled(@PathVariable("isenabled") Boolean isenabled){
+		return companyRepository.findByIsEnabled(isenabled);
+
+	}
 	    
 	    
 	

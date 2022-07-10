@@ -11,13 +11,11 @@ import com.example.Agent.model.User;
 
 public interface CompanyRepository extends MongoRepository<Company,Integer> {
 
-	Company save(Company user);
 
-	Optional<Company> findById(ObjectId id);
 
-	void deleteById(Integer id);
-	
-	List<Company> findAll();
+	Company findByOwnerId(Integer ownerId);
+
+	List<Company> findByIsEnabled(Boolean isEnabled);
 
 
 }

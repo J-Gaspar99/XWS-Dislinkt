@@ -12,8 +12,8 @@ class CreateCompanyComponent extends Component {
             culture:'',
             phone:'',
             email:'',
-            webAdress: '',
-            owner:'',
+            webAddress: '',
+            ownerId:'',
             isEnabled:''
             
         }
@@ -27,7 +27,7 @@ class CreateCompanyComponent extends Component {
        
  
 
-        this.create=this.create.bind(this);
+        //this.create=this.create.bind(this);
         
     }
     create(){
@@ -39,17 +39,14 @@ class CreateCompanyComponent extends Component {
             culture:this.state.culture,
             phone:this.state.phone,
             email: this.state.email,
-            webAdress:this.state.webAdress,
-            owner: activeUser.id,
+            webAddress:this.state.webAddress,
+            ownerId: activeUser.id,
             isEnabled: "false"
         }
 
-        //alert(newCompany.name);
-        axios.post("http://localhost:8092/company",newCompany).then((res) => {
-           console.log(res.data);
-            }); 
         
-
+        axios.post("http://localhost:8092/company",newCompany);
+        alert("Wait for admin to aprove your company, than you will be able to manipulate it.");
             
     }
 
@@ -71,7 +68,7 @@ class CreateCompanyComponent extends Component {
         this.setState({email: event.target.value});
     }
     changeWebAdressHandler = (event) => {
-        this.setState({webAdress: event.target.value});
+        this.setState({webAddress: event.target.value});
     }
     
     

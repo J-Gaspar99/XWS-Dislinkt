@@ -3,47 +3,53 @@ package com.example.Agent.controller;
 
 import com.example.Agent.model.Joboffer;
 import com.example.Agent.repository.JobofferRepository;
-
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-@RequestMapping(value = "/api/joboffer", produces = MediaType.APPLICATION_JSON_VALUE)
+//@RequestMapping(value = "/api/joboffer", produces = MediaType.APPLICATION_JSON_VALUE)
 public class JobofferController {
 
     @Autowired
     private JobofferRepository jobofferRepository;
+    @Autowired
+    private SequencerService seqService;
 
     //CREATE
-    @PostMapping("/new")
-    public String createUser(@RequestBody Joboffer joboffer){
+    @PostMapping("/joboffer")
+    public String createJobOffer(@RequestBody Joboffer joboffer){
+        joboffer.setId(seqService.getSeq("agent_joboffers_sequence"));
         jobofferRepository.save(joboffer);
-        return "Created joboffer with position: " + joboffer;
+        return "Created job offer with id: " + joboffer.getId();
     }
 
     //FIND ALL
-    @GetMapping("/all")
+    @GetMapping("/joboffer")
     public List<Joboffer> getJobOffer(){
         return jobofferRepository.findAll();
     }
 
     //FIND BY ID
-    @GetMapping("/one/{id}")
-    public Optional<Joboffer> getJoboffer(@PathVariable int id){
+    @GetMapping("/joboffer/{id}")
+    public Optional<Joboffer> getJoboffer(@PathVariable Integer id){
         return jobofferRepository.findById(id);
     }
 
     //DELETE
-    @DeleteMapping("/user/{id}")
-    public String deleteUser(@PathVariable ObjectId id){
+    @DeleteMapping("/joboffer/{id}")
+    public String deleteUser(@PathVariable Integer id){
         jobofferRepository.deleteById(id);
-        return "Deleted user with id: " + id;
+        return "Deleted job offer with id: " + id;
+    }
+
+    //Find by CompanyId
+    @GetMapping("/joboffer/companyid/{companyid}")
+    public List<Joboffer> getJobOfferByCompanyId(@PathVariable("companyid") Integer companyid){
+
+        return jobofferRepository.findByCompanyId(companyid);
     }
 
 }

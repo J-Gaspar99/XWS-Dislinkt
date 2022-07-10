@@ -9,7 +9,7 @@ const navLinkStyle = {
 }
 
 
-class RegistratedHeaderComponent extends Component {
+class OwnerHeaderComponent extends Component {
 logout(){
     localStorage.clear();
 }
@@ -26,8 +26,7 @@ logout(){
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
                             <Nav.Link style={navLinkStyle} href="/userprofile" >Profile </Nav.Link>
-                            <Nav.Link style={navLinkStyle} href="/createcompany" >Create company </Nav.Link>
-                            <Nav.Link style={navLinkStyle} href="/joboffers" >Job offers </Nav.Link>    
+                            <Nav.Link style={navLinkStyle} href="/companyprofile" > Company </Nav.Link>    
                              
                             </Nav>
 
@@ -44,4 +43,4 @@ logout(){
     }
 }
 
-export default RegistratedHeaderComponent;
+export default OwnerHeaderComponent;

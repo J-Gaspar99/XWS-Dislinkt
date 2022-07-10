@@ -1,52 +1,33 @@
 package com.example.Agent.model;
 
 
-import org.bson.types.ObjectId;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-import java.util.List;
-import java.sql.*;
 
-
+@Getter
+@Setter
+@ToString
 
 @Document(collection ="Joboffer")
 
 public class Joboffer {
+	@Transient
+	public static final String SEQUENCE_NAME = "agent_joboffers_sequence";
     @Id
-    private ObjectId id;
-    
+    private Integer id;
     private String position;
-    
     private String description;
+    private String dailyActivities;
+    private String preconditions;
+    private Integer companyId;
+    private String companyName;
     
-    private List<String> daily_activities;
-    
-    private List<String> preconditions;
-    
-    private ObjectId companyId;
-    
-    public Joboffer() {}
 
-	public Joboffer(ObjectId id, String position, String description, List<String> daily_activities , List<String> preconditions) {
-		super();
-		this.id = id;
-		this.position = position;
-		this.description = description;
-		this.daily_activities = daily_activities;
-		this.preconditions = preconditions;
-	}
-
-
-	public ObjectId getId() {
-		return id;
-	}
-
-
-	public void setId(ObjectId id) {
-		this.id = id;
-	} 
 
 
 
