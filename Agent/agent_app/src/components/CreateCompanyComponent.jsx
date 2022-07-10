@@ -84,19 +84,19 @@ class CreateCompanyComponent extends Component {
                         <form>
                             <div className="form-group">
                                 <label> Name: </label>
-                                <input  name="name" className="form-control" value={this.state.name} onChange={this.changeNameHandler}/>
+                                <input  name="name" className="form-control" value={this.state.name} onChange={this.changeNameHandler}/><br/>
                                 <label> Description: </label>
-                                <input  name="desc" className="form-control" value={this.state.description} onChange={this.changeDescriptionHandler}/>
+                                <input  name="desc" className="form-control" value={this.state.description} onChange={this.changeDescriptionHandler}/><br/>
                         
                                 <label> Culture: </label>
-                                <input  name="cul" className="form-control" value={this.state.culture} onChange={this.changeCultureHandler}/>
+                                <input  name="cul" className="form-control" value={this.state.culture} onChange={this.changeCultureHandler}/><br/>
                                 <label> Phone: </label>
-                                <input  name="phone" className="form-control" value={this.state.phone} onChange={this.changePhoneHandler}/>
+                                <input  name="phone" className="form-control" value={this.state.phone} onChange={this.changePhoneHandler}/><br/>
         
                                 <label> Email: </label>
-                                <input  name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler}/>
+                                <input  name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler}/><br/>
                                 <label> Web addres: </label>
-                                <input  name="web" className="form-control" value={this.state.webAdress} onChange={this.changeWebAdressHandler}/>
+                                <input  name="web" className="form-control" value={this.state.webAdress} onChange={this.changeWebAdressHandler}/><br/>
                                
                                 <br/>
                                 <div className="center"><button className="loginbtn" onClick={()=>this.create()}>Register</button></div>

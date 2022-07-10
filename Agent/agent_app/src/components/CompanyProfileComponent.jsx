@@ -110,19 +110,19 @@ class CompanyProfileComponent extends Component {
                         <form>
                             <div className="form-group">
                                 <label> Name: </label>
-                                <input name="name" className="form-control" value={this.state.name} onChange={this.changeNameHandler} />
+                                <input name="name" className="form-control" value={this.state.name} onChange={this.changeNameHandler} /><br/>
                                 <label> Description: </label>
-                                <input name="description" className="form-control" value={this.state.description} onChange={this.changeDescriptionHandler} />
+                                <input name="description" className="form-control" value={this.state.description} onChange={this.changeDescriptionHandler} /><br/>
 
                                 <label> Culture: </label>
-                                <input name="culture" className="form-control" value={this.state.culture} onChange={this.changeCultureHandler} />
+                                <input name="culture" className="form-control" value={this.state.culture} onChange={this.changeCultureHandler} /><br/>
                                 <label> Phone: </label>
-                                <input name="phone" className="form-control" value={this.state.phone} onChange={this.changePhoneHandler} />
+                                <input name="phone" className="form-control" value={this.state.phone} onChange={this.changePhoneHandler} /><br/>
                                 <label> Email: </label>
-                                <input name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} />
+                                <input name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} /><br/>
                                 
                                 <label> Web address: </label>
-                                <input name="web" className="form-control" value={this.state.webAddress} onChange={this.changeWebAddressHandler} />
+                                <input name="web" className="form-control" value={this.state.webAddress} onChange={this.changeWebAddressHandler} /><br/>
                                 <br/>
                                 <div className="center"><button className="loginbtn" onClick={()=>this.update()}>Update</button></div>
 

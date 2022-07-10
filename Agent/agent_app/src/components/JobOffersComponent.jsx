@@ -13,16 +13,6 @@ class JobOffersComponent extends Component {
         
     }
 
-    comment(id){
-        //kreiranje active joboffera
-        axios.get("http://localhost:8092/joboffer/" + id).then((res)=>{
-            localStorage.setItem('activeJobOffer', JSON.stringify(res.data));
-        })
-        
-        //prelaz na sl stranicu
-        this.props.history.push('/comments');
-        
-    }
     
    
  
@@ -54,7 +44,7 @@ class JobOffersComponent extends Component {
                                     <th>Preconditions</th>
                                     
                                     
-                                    <th>Action</th>
+                                    
                                     
 
                                 
@@ -70,12 +60,6 @@ class JobOffersComponent extends Component {
                                             <td>{jobs.description}</td>
                                             <td>{jobs.dailyActivities}</td>
                                             <td>{jobs.preconditions}</td>
-                                            
-                                            
-                                            <td>
-                                                <button style={{marginLeft:"10px"}} onClick={()=>this.comment(jobs.id)} className="loginbtn">Comments</button>
-                                                
-                                            </td>
                                             
                                         </tr>
                                     )

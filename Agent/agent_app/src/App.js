@@ -8,7 +8,7 @@ import RegistrationComponent from './components/RegistrationComponent';
 
 import UnautentifiedUserHeader from './components/UnautentifiedUserHeader';
 
-import LoginComponent from './components/LoginComponent';
+import LoginComponent from './components/LogInComponent';
 import UserProfileComponent from './components/UserProfileComponent';
 import CreateCompanyComponent from './components/CreateCompanyComponent';
 import AdminHeaderComponent from './components/AdminHeaderComponent';
@@ -16,8 +16,6 @@ import OwnerHeaderComponent from './components/OwnerHeaderComponent';
 import CompanyProfileComponent from './components/CompanyProfileComponent';
 import CompaniesComponent from './components/CompaniesComponent';
 import JobOffersComponent from './components/JobOffersComponent';
-import CreateCommentComponent from './components/CreateCommentComponent';
-import CommentsComponent from './components/CommentsComponent';
 
 
 
@@ -77,8 +75,6 @@ function App() {
               <Route path = "/companyprofile"  component={CompanyProfileComponent}></Route>
               <Route path = "/companies"  component={CompaniesComponent}></Route>
               <Route path = "/joboffers"  component={JobOffersComponent}></Route>
-              <Route path = "/comments"  component={CommentsComponent}></Route>
-              <Route path = "/createcomment"  component={CreateCommentComponent}></Route>
 
 
               </Switch>

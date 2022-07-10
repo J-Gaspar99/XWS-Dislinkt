@@ -109,16 +109,16 @@ class UserProfileComponent extends Component {
                         <form>
                             <div className="form-group">
                                 <label> Username: </label>
-                                <input name="username" className="form-control" value={this.state.username} onChange={this.changeUserNameHandler} />
+                                <input name="username" className="form-control" value={this.state.username} onChange={this.changeUserNameHandler} /><br/>
                                 <label> Password: </label>
-                                <input name="password" className="form-control" value={this.state.password} onChange={this.changePasswordHandler} />
+                                <input name="password" className="form-control" value={this.state.password} onChange={this.changePasswordHandler} /><br/>
 
                                 <label> First name: </label>
-                                <input name="firstname" className="form-control" value={this.state.firstname} onChange={this.changeFirstNameHandler} />
+                                <input name="firstname" className="form-control" value={this.state.firstname} onChange={this.changeFirstNameHandler} /><br/>
                                 <label> Last name: </label>
-                                <input name="lastname" className="form-control" value={this.state.lastname} onChange={this.changeLastNameHandler} />
+                                <input name="lastname" className="form-control" value={this.state.lastname} onChange={this.changeLastNameHandler} /><br/>
                                 <label> Email: </label>
-                                <input name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} />
+                                <input name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} /><br/>
                                 
                                 <label> Role: </label>
                                 <input name="role" className="form-control" value={this.state.uloga}  />
